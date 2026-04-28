@@ -1,26 +1,121 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #EDEFF2;
+  --muted: #9CA3B8;
+  --card: #0F1320;
+  --border: #1A1F30;
+
+  --hasla-pink: #FF5184;
+  --hasla-salmon: #FA5F5C;
+  --hasla-orange: #FF8653;
+  --hasla-yellow: #FFD06A;
+  --hasla-green: #7EC497;
+  --hasla-sky: #21A3DD;
+  --hasla-deep: #2353A3;
+  --hasla-silver: #DDDDDD;
+
+  /* Brand font: Yoon Meoli (머리정체) — local TTF, exposed by next/font as --font-yoon */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --color-hasla-pink: var(--hasla-pink);
+  --color-hasla-salmon: var(--hasla-salmon);
+  --color-hasla-orange: var(--hasla-orange);
+  --color-hasla-yellow: var(--hasla-yellow);
+  --color-hasla-green: var(--hasla-green);
+  --color-hasla-sky: var(--hasla-sky);
+  --color-hasla-deep: var(--hasla-deep);
+  --color-hasla-silver: var(--hasla-silver);
+  --font-display: var(--font-yoon);
+  --font-body: var(--font-yoon);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
+html, body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Body — Noto Sans KR */
+  font-family: var(--font-body), 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
 }
+
+/* Display — 윤머리정체 (제목·슬로건·hero) */
+.font-display {
+  font-family: var(--font-yoon), var(--font-body), 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  font-weight: 300;
+  letter-spacing: -0.005em;
+}
+
+/* Background halo / decorative gradient (oriented to match logo's left→right flow) */
+.hasla-gradient {
+  background: linear-gradient(90deg,
+    #FFD06A 0%,
+    #FF8653 22%,
+    #FF5184 45%,
+    #B96AC7 65%,
+    #21A3DD 85%,
+    #2353A3 100%);
+}
+
+/* Primary CTA — visually matches the logo's color blend */
+.hasla-button {
+  background: linear-gradient(95deg,
+    #F7B05B 0%,
+    #FF8653 18%,
+    #FA5F5C 36%,
+    #FF5184 52%,
+    #B96AC7 70%,
+    #4A8FD6 88%,
+    #2353A3 100%);
+  background-size: 180% 100%;
+  background-position: 50% 50%;
+  transition: background-position 0.6s ease, transform 0.2s ease;
+}
+.hasla-button:hover {
+  background-position: 100% 50%;
+}
+.hasla-button:active {
+  transform: scale(0.985);
+}
+
+.hasla-gradient-text {
+  background: linear-gradient(95deg, #FFD06A 0%, #FF8653 35%, #FF5184 70%, #21A3DD 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes hasla-rotate-bg {
+  from { transform: rotate(0deg) }
+  to   { transform: rotate(360deg) }
+}
+
+.hasla-rotate {
+  animation: hasla-rotate-bg 24s linear infinite;
+}
+
+@keyframes hasla-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(1) }
+  50%      { opacity: 0.95; transform: scale(1.04) }
+}
+
+.hasla-pulse {
+  animation: hasla-pulse 6s ease-in-out infinite;
+}
+
+/* prevent overscroll color flash on iOS */
+html { background: var(--background); }
+
+body {
+  min-height: 100dvh;
+}
+
+/* avoid horizontal scroll on small screens */
+html, body { overflow-x: hidden; }
