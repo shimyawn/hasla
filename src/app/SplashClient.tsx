@@ -125,12 +125,12 @@ export default function SplashClient() {
           data-cta
           onClick={handleEnter}
           aria-disabled={navigating}
-          className={`block w-full rounded-full px-6 py-4 text-center font-display text-[15px] font-medium ${
+          className={`block w-full rounded-full border px-6 py-4 text-center font-display text-[15px] font-medium ${
             navigating
-              ? 'bg-white text-black pointer-events-none'
+              ? 'border-white bg-white text-black pointer-events-none'
               : revealed
-                ? 'hasla-button text-white shadow-[0_8px_28px_rgba(255,99,132,0.25)]'
-                : 'border border-white/30 text-white/60'
+                ? 'hasla-button border-transparent text-white shadow-[0_8px_28px_rgba(255,99,132,0.25)]'
+                : 'border-white/30 bg-transparent text-white/60'
           }`}
           style={{ transition: `background-color ${DISSOLVE_MS}ms ${EASE}, color ${DISSOLVE_MS}ms ${EASE}, border-color ${TRANSITION_MS}ms ${EASE}` }}
         >
