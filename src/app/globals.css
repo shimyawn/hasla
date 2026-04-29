@@ -53,6 +53,13 @@ html, body {
   letter-spacing: -0.005em;
 }
 
+/* Clean body type — Noto Sans KR (본문 가독성 우선) */
+.font-clean {
+  font-family: var(--font-noto), 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
 /* Background halo / decorative gradient (oriented to match logo's left→right flow) */
 .hasla-gradient {
   background: linear-gradient(90deg,

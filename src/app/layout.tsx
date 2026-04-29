@@ -17,7 +17,7 @@ const yoonMeoli = localFont({
 const notoSans = Noto_Sans_KR({
   subsets: ['latin'],
   weight: ['300', '400', '500', '700'],
-  variable: '--font-body',
+  variable: '--font-noto',
   display: 'swap',
 })
 

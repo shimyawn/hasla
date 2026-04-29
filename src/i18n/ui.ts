@@ -47,7 +47,7 @@ export const UI: Record<Lang, UIStrings> = {
     infoNoticeParagraphs: [
       '현재 HASLA는 정식 개관을 앞둔 가오픈 기간입니다.',
       '시스템 최적화를 위한 시운영 단계로, 일부 관람 및 이용이 제한될 수 있는 점 방문객 여러분의 너른 양해 부탁드립니다.',
-      '2026년 7월 중순, 그랜드 오픈 예정이니 더욱 완벽한 모습으로 정식 인사드리겠습니다. HASLA에 보내주시는 많은 관심과 기대 부탁드립니다.',
+      '2026년 7월 중순, 그랜드 오픈 예정이니 더욱 완벽한 모습으로 정식 인사드리겠습니다. HASLA에 많은 관심과 기대 부탁드립니다. 감사합니다.',
     ],
     infoSessionsHeading: '인피니티 포레스트 조명쇼 타임테이블',
     infoSessionsNote: '매일 19:30부터 21:30까지, 30분 간격 4회 송출됩니다.',
@@ -72,7 +72,8 @@ export const UI: Record<Lang, UIStrings> = {
     aboutTeaserHeading: '한 발 앞서 만나는 하슬라의 밤',
     aboutTeaserNote: '티저 영상은 곧 공개됩니다.',
 
-    reviewsIntro: '관람 후 느낀 빛과 울림을 들려주세요. 여러분의 한 마디가 숲을 더 깊이 깨웁니다.',
+    reviewsIntro:
+      '관람 후 느낀 점을 편하게 들려주세요.\n여러분의 한 마디가 강릉을 지키는 다섯 개의 달에 빛을 더합니다.',
     reviewsCta: '리뷰 작성하러 가기',
   },
 
@@ -122,7 +123,7 @@ export const UI: Record<Lang, UIStrings> = {
     infoNoticeParagraphs: [
       'HASLA is currently in a soft-open period ahead of its official grand opening.',
       'During this system-optimization phase, some areas and services may be limited. We sincerely appreciate your understanding.',
-      'The grand opening is planned for mid-July 2026. We look forward to greeting you again in our complete form, and thank you for your continued interest in HASLA.',
+      'The grand opening is planned for mid-July 2026, when we will greet you in our complete form. We look forward to your continued interest in HASLA. Thank you.',
     ],
     infoSessionsHeading: 'Infinity Forest Light Show — Timetable',
     infoSessionsNote: 'Daily, four 30-minute sessions between 19:30 and 21:30.',
@@ -147,7 +148,8 @@ export const UI: Record<Lang, UIStrings> = {
     aboutTeaserHeading: 'A Glimpse of the Hasla Night',
     aboutTeaserNote: 'The teaser video will be released soon.',
 
-    reviewsIntro: 'Tell us about the light and resonance you felt. Your words help the forest awaken further.',
+    reviewsIntro:
+      'Share how you felt after the experience.\nYour words add light to the five moons that watch over Gangneung.',
     reviewsCta: 'Leave a review',
   },
 }

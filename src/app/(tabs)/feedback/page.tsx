@@ -13,7 +13,7 @@ export default function FeedbackPage() {
           {t.reviewsPageTitle}
         </h1>
 
-        <p className="mt-5 text-[14px] leading-[1.85] text-white/75">
+        <p className="mt-5 whitespace-pre-line text-[14px] leading-[1.85] text-white/75">
           {t.reviewsIntro}
         </p>
 

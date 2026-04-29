@@ -18,7 +18,7 @@ function zoneNumber(id: string) {
 
 export default function ZonePageClient({ zone }: Props) {
   const router = useRouter()
-  const { lang } = useLang()
+  const { lang, t } = useLang()
   const prev = getPrevZone(zone.id)
   const next = getNextZone(zone.id)
   const all = getAllZones()
@@ -122,6 +122,33 @@ export default function ZonePageClient({ zone }: Props) {
               </FadeInSection>
             ))}
           </ul>
+        </section>
+      )}
+
+      {/* Timetable — only for Infinity Forest (zone6) */}
+      {zone.id === 'zone6' && (
+        <section className="mx-auto max-w-md px-6 pt-12">
+          <FadeInSection>
+            <div className="mb-3 flex items-center gap-3">
+              <span aria-hidden className="h-px w-8" style={{ backgroundColor: zone.accentColor }} />
+              <span className="font-display text-[10px] tracking-[0.4em]" style={{ color: zone.accentColor }}>
+                {t.infoSessionsHeading}
+              </span>
+            </div>
+            <div className="grid grid-cols-4 gap-2">
+              {['19:30', '20:00', '20:30', '21:00'].map((time) => (
+                <div
+                  key={time}
+                  className="rounded-md border border-white/15 py-3 text-center font-display text-[14px] text-white"
+                >
+                  {time}
+                </div>
+              ))}
+            </div>
+            <p className="mt-3 text-[12.5px] leading-relaxed text-white/55">
+              {t.infoSessionsNote}
+            </p>
+          </FadeInSection>
         </section>
       )}
 
