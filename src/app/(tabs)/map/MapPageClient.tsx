@@ -38,14 +38,14 @@ export default function MapPageClient({ zones }: Props) {
         </p>
 
         {/* Map */}
-        <div className="relative aspect-[1600/1749] w-full overflow-hidden rounded-2xl border border-border bg-card">
+        <div className="relative aspect-[1600/1748] w-full overflow-hidden rounded-2xl border border-border bg-card">
           <Image
             src="/images/map.jpg"
             alt={t.metaTitle}
             fill
             priority
             sizes="(max-width: 448px) 100vw, 448px"
-            className="object-cover brightness-[0.82]"
+            className="object-cover"
           />
           {zones.map((z, i) => {
             const L = localized(z, lang)
