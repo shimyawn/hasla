@@ -130,7 +130,7 @@ export default function ZonePageClient({ zone }: Props) {
         <Link
           href={`/zone/${prev.id}`}
           aria-label="Previous zone"
-          className="fixed left-1.5 top-1/2 z-30 flex h-14 w-9 -translate-y-1/2 items-center justify-center rounded-r-2xl bg-black/40 text-white opacity-40 backdrop-blur-md transition-opacity duration-300 hover:opacity-100 active:opacity-100"
+          className="fixed left-1.5 top-[60%] z-30 flex h-14 w-9 -translate-y-1/2 items-center justify-center rounded-r-2xl bg-black/40 text-white opacity-40 backdrop-blur-md transition-opacity duration-300 hover:opacity-100 active:opacity-100"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
             <path d="M15 18l-6-6 6-6" />
@@ -139,7 +139,7 @@ export default function ZonePageClient({ zone }: Props) {
       ) : (
         <span
           aria-hidden
-          className="fixed left-1.5 top-1/2 z-30 flex h-14 w-9 -translate-y-1/2 items-center justify-center rounded-r-2xl bg-black/30 text-white/15 backdrop-blur-md"
+          className="fixed left-1.5 top-[60%] z-30 flex h-14 w-9 -translate-y-1/2 items-center justify-center rounded-r-2xl bg-black/30 text-white/15 backdrop-blur-md"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
             <path d="M15 18l-6-6 6-6" />
@@ -152,7 +152,7 @@ export default function ZonePageClient({ zone }: Props) {
         <Link
           href={`/zone/${next.id}`}
           aria-label="Next zone"
-          className="fixed right-1.5 top-1/2 z-30 flex h-14 w-9 -translate-y-1/2 items-center justify-center rounded-l-2xl bg-black/40 text-white opacity-40 backdrop-blur-md transition-opacity duration-300 hover:opacity-100 active:opacity-100"
+          className="fixed right-1.5 top-[60%] z-30 flex h-14 w-9 -translate-y-1/2 items-center justify-center rounded-l-2xl bg-black/40 text-white opacity-40 backdrop-blur-md transition-opacity duration-300 hover:opacity-100 active:opacity-100"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
             <path d="M9 18l6-6-6-6" />
@@ -162,7 +162,7 @@ export default function ZonePageClient({ zone }: Props) {
         <Link
           href="/map"
           aria-label="Back to map"
-          className="fixed right-1.5 top-1/2 z-30 flex h-14 w-9 -translate-y-1/2 items-center justify-center rounded-l-2xl bg-black/40 text-white opacity-50 backdrop-blur-md transition-opacity duration-300 hover:opacity-100"
+          className="fixed right-1.5 top-[60%] z-30 flex h-14 w-9 -translate-y-1/2 items-center justify-center rounded-l-2xl bg-black/40 text-white opacity-50 backdrop-blur-md transition-opacity duration-300 hover:opacity-100"
         >
           {/* close-style icon for last zone */}
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
