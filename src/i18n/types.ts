@@ -56,6 +56,7 @@ export interface UIStrings {
   infoGrandOpenLabel: string
   infoGrandOpenWhen: string
   infoCloseLabel: string
+  infoPerDayLabel: string
   splashStatusBanner: string
 }
 

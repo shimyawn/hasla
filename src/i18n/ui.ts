@@ -56,6 +56,7 @@ export const UI: Record<Lang, UIStrings> = {
     infoGrandOpenLabel: '그랜드 오픈',
     infoGrandOpenWhen: '2026년 7월 중순 예정',
     infoCloseLabel: '닫기',
+    infoPerDayLabel: '1일 4타임',
     splashStatusBanner: '지금은 가오픈 기간입니다 · 1일 4타임 송출 · 그랜드 오픈 2026년 7월 중순 예정',
   },
 
@@ -114,6 +115,7 @@ export const UI: Record<Lang, UIStrings> = {
     infoGrandOpenLabel: 'Grand Opening',
     infoGrandOpenWhen: 'Mid-July 2026 (planned)',
     infoCloseLabel: 'Close',
+    infoPerDayLabel: '4 sessions/day',
     splashStatusBanner: 'Currently in soft-open · 4 sessions/day · Grand opening mid-July 2026',
   },
 }
