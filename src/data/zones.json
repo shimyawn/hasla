@@ -58,7 +58,7 @@
       "tagline": "달빛을 받은 정원의 연못 위에 하슬라의 생명이 비치고, 관람객이 다가서면 움직임에 반응한다",
       "accentColor": "#2353A3",
       "element": "수(水)",
-      "mapPin": { "cx": "85%", "cy": "74%", "w": "12%", "h": "7.3%" },
+      "mapPin": { "cx": "88%", "cy": "78%", "w": "12%", "h": "7.3%" },
       "assets": {
         "mainImage": "/images/zone3_main.png",
         "audioUrl": "/audio/docent_zone3.mp3"
@@ -146,7 +146,7 @@
       "tagline": "원형 데크 위에 떠오른 찬란한 달빛, 발 밑에서 펼쳐지는 또 하나의 신비로운 세계",
       "accentColor": "#FA5F5C",
       "element": "화(火)",
-      "mapPin": { "cx": "24%", "cy": "19%", "w": "11%", "h": "7.6%" },
+      "mapPin": { "cx": "25%", "cy": "19%", "w": "11%", "h": "7.6%" },
       "assets": {
         "mainImage": "/images/zone7_main.jpg",
         "audioUrl": "/audio/docent_zone7.mp3"
