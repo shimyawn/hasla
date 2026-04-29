@@ -37,10 +37,10 @@ const en = {
   heroTitle:
     'On a night when five moons rise,\nthe fantasy of ancient Hasla unfolds.',
   body: [
-    'Long ago, in the ancient land of Hasla in Gangneung,\nthere was a time when the moon never set, watching over the sky.\nThe moon governed the cycles of water and fire,\ntree and star, and the earth —\nand people, animals, and plants mingled without boundaries,\ndancing each day in a forest stained with five colors of light.',
-    'Then, one day, the moon broke into five fragments\nand descended into the pine forest.',
-    'As time passed, the fantasy of ancient Hasla faded —\npreserved only through the songs of the elder trees who guard the forest,\npassed down like a secret to the young saplings.',
-    'On this night, as five moons rise above the pines,\nthe shining memory of ancient Hasla unfolds before your eyes.',
+    "Long ago, in Gangneung's ancient land of Hasla,\nthere was a time when the moon never set — watching over the sky.\nThe moon governed the cycles of water and fire,\ntree and star, and the earth itself.\nPeople, animals, and plants moved as one,\ndancing each day in a forest aglow with five colors of light.",
+    'Then one day, the moon shattered into five fragments\nand drifted down into the pine forest.',
+    'As time passed, the fantasy of ancient Hasla faded —\nkept alive only in the songs of the elder trees who watch over the forest,\nwhispered like a secret to the young saplings.',
+    'Tonight, as five moons rise above the pines,\nthe shining memory of ancient Hasla unfolds before your eyes.',
   ],
   s3Label: 'Five Elements, the Cycle of Light',
   s3Intro: 'Each of the five moons holds one of the Five Elements —\nWood, Fire, Earth, Metal, Water.',
@@ -52,12 +52,12 @@ const en = {
     { element: 'Water', desc: 'Clouds sweep through starlight, and rain falls upon the forest.' },
   ],
   s3Outro:
-    'When the five finally come together as one full moon, the sleeping forest fully awakens.',
-  s4Label: 'Add Your Step to the Forest',
+    'When the five finally unite as one full moon, the sleeping forest awakens at last.',
+  s4Label: 'Add your step to the forest',
   s4: [
     'Listen for the breath of a small stump.',
-    'Meet the shimmering afterimage in a memory-marked pond.',
-    'Stand before the giant stump bathed in moonlight,\nand witness the forest awakening.',
+    'Meet the shimmering afterimage in a pond that remembers.',
+    'Stand before the giant stump bathed in moonlight,\nand witness the moment the forest awakens.',
   ],
   ctaLabel: 'Explore',
 }

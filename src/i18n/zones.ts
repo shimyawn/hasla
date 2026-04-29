@@ -183,9 +183,9 @@ const en: Record<string, LocalizedZone> = {
   zone4: {
     title: 'Five Moons',
     subtitle: 'The Great Stump — heart of the Hasla forest',
-    tagline: "The world's greatest pine stump, catching five streams of moonlight from the night sky.",
+    tagline: "The world's largest pine stump, catching five streams of moonlight from the night sky.",
     story:
-      "The heart of the Hasla forest — grown to colossal size by the concentrated light of five moons.",
+      'The heart of the Hasla forest — grown to colossal size by the concentrated light of five moons.',
     description:
       "Where the greatest pine of Hasla once stood. From the giant stump, five vertical beams rise to signify the five moons. Searchlights announce the rebirth of slumbering Hasla as the mystical moonlight radiates across the forest — the primal energy that sustains all of Hasla's ecology.",
     direction: [
