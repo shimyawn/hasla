@@ -16,7 +16,7 @@
       "tagline": "달 모양의 입구를 통해 신비로운 세상과 통하는 하슬라 포털",
       "accentColor": "#21A3DD",
       "element": "수(水)",
-      "mapPin": { "cx": "82%", "cy": "86%", "w": "20%", "h": "11.8%" },
+      "mapPin": { "cx": "84%", "cy": "84%", "w": "20%", "h": "11.8%" },
       "assets": {
         "mainImage": "/images/zone1_main.jpg",
         "audioUrl": "/audio/docent_zone1.mp3"
@@ -37,7 +37,7 @@
       "tagline": "그루터기가 관람객의 두드림에 화답하며, 빛과 화음으로 숲의 생명을 일깨운다",
       "accentColor": "#7EC497",
       "element": "목(木)",
-      "mapPin": { "cx": "60%", "cy": "84%", "w": "22%", "h": "11.5%" },
+      "mapPin": { "cx": "62%", "cy": "82%", "w": "22%", "h": "11.5%" },
       "assets": {
         "mainImage": "/images/zone2_main.png",
         "audioUrl": "/audio/docent_zone2.mp3"
@@ -58,7 +58,7 @@
       "tagline": "달빛을 받은 정원의 연못 위에 하슬라의 생명이 비치고, 관람객이 다가서면 움직임에 반응한다",
       "accentColor": "#2353A3",
       "element": "수(水)",
-      "mapPin": { "cx": "78%", "cy": "70%", "w": "18%", "h": "11%" },
+      "mapPin": { "cx": "80%", "cy": "70%", "w": "18%", "h": "11%" },
       "assets": {
         "mainImage": "/images/zone3_main.png",
         "audioUrl": "/audio/docent_zone3.mp3"
@@ -79,7 +79,7 @@
       "tagline": "밤하늘로부터 쏟아지는 다섯개의 달빛을 받아내는, 세상에서 가장 큰 소나무 그루터기",
       "accentColor": "#FFD06A",
       "element": "토(土)",
-      "mapPin": { "cx": "58%", "cy": "72%", "w": "19%", "h": "13.4%" },
+      "mapPin": { "cx": "61%", "cy": "69%", "w": "19%", "h": "13.4%" },
       "assets": {
         "mainImage": "/images/zone4_main.png",
         "audioUrl": "/audio/docent_zone4.mp3"
@@ -100,7 +100,7 @@
       "tagline": "하늘에 뜬 달을 거울 속에서 마주하는 신비로운 공간",
       "accentColor": "#FF5184",
       "element": "화(火)",
-      "mapPin": { "cx": "51%", "cy": "56%", "w": "11%", "h": "12.2%" },
+      "mapPin": { "cx": "53%", "cy": "55%", "w": "11%", "h": "12.2%" },
       "assets": {
         "mainImage": "/images/zone5_main.png",
         "audioUrl": "/audio/docent_zone5.mp3"
@@ -121,7 +121,7 @@
       "tagline": "7M의 LED WALL로 연출하는 몰입형 콘텐츠 — 다섯 개의 달이 차례로 떠오르는 문라이트 쇼",
       "accentColor": "#FF8653",
       "element": "토(土)",
-      "mapPin": { "cx": "30%", "cy": "32%", "w": "18%", "h": "12.6%" },
+      "mapPin": { "cx": "32%", "cy": "33%", "w": "18%", "h": "12.6%" },
       "assets": {
         "mainImage": "/images/zone6_main.png",
         "audioUrl": "/audio/docent_zone6.mp3"
@@ -146,7 +146,7 @@
       "tagline": "원형 데크 위에 떠오른 찬란한 달빛, 발 밑에서 펼쳐지는 또 하나의 신비로운 세계",
       "accentColor": "#FA5F5C",
       "element": "화(火)",
-      "mapPin": { "cx": "20%", "cy": "15%", "w": "11%", "h": "7.6%" },
+      "mapPin": { "cx": "22%", "cy": "19%", "w": "11%", "h": "7.6%" },
       "assets": {
         "mainImage": "/images/zone7_main.jpg",
         "audioUrl": "/audio/docent_zone7.mp3"
@@ -168,7 +168,7 @@
       "tagline": "바닥 위에 흘러내리는 빛의 파동",
       "accentColor": "#7EC497",
       "element": "목(木)",
-      "mapPin": { "cx": "11%", "cy": "13%", "w": "13%", "h": "10.2%" },
+      "mapPin": { "cx": "11%", "cy": "14%", "w": "13%", "h": "10.2%" },
       "assets": {
         "mainImage": "/images/zone8_main.png",
         "audioUrl": "/audio/docent_zone8.mp3"
