@@ -2,6 +2,8 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useCallback } from 'react'
 import FadeInSection from '@/components/zone/FadeInSection'
 import { getAllZones, getNextZone, getPrevZone } from '@/lib/zones'
 import type { Zone } from '@/lib/types'
@@ -15,7 +17,8 @@ function zoneNumber(id: string) {
 }
 
 export default function ZonePageClient({ zone }: Props) {
-  const { t, lang } = useLang()
+  const router = useRouter()
+  const { lang } = useLang()
   const prev = getPrevZone(zone.id)
   const next = getNextZone(zone.id)
   const all = getAllZones()
@@ -31,11 +34,19 @@ export default function ZonePageClient({ zone }: Props) {
     media: zone.media ?? [],
     element: zone.element ?? '',
   }
-  const prevL = prev ? localizeZone(prev.id, lang) : null
-  const nextL = next ? localizeZone(next.id, lang) : null
+
+  // Smart back: history.back if available, fallback to /map
+  const goBack = useCallback(() => {
+    if (typeof window !== 'undefined' && window.history.length > 1) {
+      router.back()
+    } else {
+      router.push('/map')
+    }
+  }, [router])
 
   return (
-    <main className="min-h-dvh bg-black pb-40">
+    <main className="min-h-dvh bg-black pb-24">
+      {/* Hero */}
       <div className="relative h-[58vh] min-h-[320px] w-full overflow-hidden">
         <Image
           src={zone.assets.mainImage}
@@ -46,17 +57,19 @@ export default function ZonePageClient({ zone }: Props) {
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/30 to-black" />
-        <Link
-          href="/map"
-          className="absolute left-5 top-5 rounded-full bg-black/50 px-3 py-1.5 text-[12px] text-white backdrop-blur-sm"
+
+        {/* Smart back button — uses history when possible */}
+        <button
+          type="button"
+          onClick={goBack}
+          aria-label="Back"
+          className="absolute left-5 top-5 flex h-9 w-9 items-center justify-center rounded-full bg-black/55 text-white backdrop-blur-md transition-colors hover:bg-black/75"
         >
-          {t.navMap}
-        </Link>
-        {L.element && (
-          <div className="absolute right-5 top-16 rounded-full bg-black/50 px-3 py-1.5 text-[11px] tracking-[0.25em] text-white backdrop-blur-sm">
-            {L.element}
-          </div>
-        )}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+
         <div className="absolute bottom-0 left-0 right-0 px-6 pb-6">
           <div className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-[10px] font-semibold tracking-[0.3em] text-black" style={{ backgroundColor: zone.accentColor }}>
             ZONE {zoneNumber(zone.id)}
@@ -68,6 +81,7 @@ export default function ZonePageClient({ zone }: Props) {
         </div>
       </div>
 
+      {/* Tagline */}
       {L.tagline && (
         <section className="mx-auto max-w-md px-6 pt-6">
           <FadeInSection>
@@ -78,6 +92,7 @@ export default function ZonePageClient({ zone }: Props) {
         </section>
       )}
 
+      {/* Story */}
       <section className="mx-auto max-w-md px-6 pt-6">
         <FadeInSection>
           <div className="mb-3 inline-block h-px w-10" style={{ backgroundColor: zone.accentColor }} aria-hidden />
@@ -85,6 +100,7 @@ export default function ZonePageClient({ zone }: Props) {
         </FadeInSection>
       </section>
 
+      {/* Description */}
       {L.description && (
         <section className="mx-auto max-w-md px-6 pt-5">
           <FadeInSection>
@@ -93,12 +109,10 @@ export default function ZonePageClient({ zone }: Props) {
         </section>
       )}
 
+      {/* Direction list */}
       {L.direction.length > 0 && (
         <section className="mx-auto max-w-md px-6 pt-9">
-          <FadeInSection>
-            <h2 className="font-display text-[12px] tracking-[0.35em] text-hasla-yellow/85">{t.sectionDirection}</h2>
-          </FadeInSection>
-          <ul className="mt-3 flex flex-col gap-2.5">
+          <ul className="flex flex-col gap-2.5">
             {L.direction.map((d, i) => (
               <FadeInSection key={i} delay={0.04 * i}>
                 <li className="flex items-start gap-3">
@@ -111,42 +125,59 @@ export default function ZonePageClient({ zone }: Props) {
         </section>
       )}
 
-      <nav className="mx-auto mt-12 max-w-md px-6">
-        <div className="mb-3 flex items-center justify-between text-[10px] tracking-[0.3em] text-muted">
-          <span>{idx + 1} {t.zoneTotalSeparator} {all.length}</span>
-          <Link href="/map" className="hover:text-foreground">MAP</Link>
-        </div>
-        <div className="grid grid-cols-2 gap-3">
-          {prev ? (
-            <Link href={`/zone/${prev.id}`} className="group relative overflow-hidden rounded-xl border border-border bg-card/50 px-4 py-3.5 transition-colors active:bg-card">
-              <span aria-hidden className="absolute left-0 top-0 h-full w-[3px]" style={{ backgroundColor: prev.accentColor }} />
-              <div className="flex items-center gap-2 text-[10px] tracking-[0.3em]" style={{ color: prev.accentColor }}>
-                ← ZONE {zoneNumber(prev.id)}
-              </div>
-              <div className="mt-1 truncate font-display text-[14px] text-foreground/90">
-                {prevL?.title ?? prev.title}
-              </div>
-            </Link>
-          ) : (
-            <Link href="/" className="group relative overflow-hidden rounded-xl border border-border bg-card/50 px-4 py-3.5 transition-colors active:bg-card">
-              <div className="text-[10px] tracking-[0.3em] text-muted">{t.navHome}</div>
-              <div className="mt-1 font-display text-[14px] text-foreground/80">{t.navFirst}</div>
-            </Link>
-          )}
+      {/* Floating prev arrow — vertically centered, edge-pinned */}
+      {prev ? (
+        <Link
+          href={`/zone/${prev.id}`}
+          aria-label="Previous zone"
+          className="fixed left-1.5 top-1/2 z-30 flex h-14 w-9 -translate-y-1/2 items-center justify-center rounded-r-2xl bg-black/40 text-white opacity-40 backdrop-blur-md transition-opacity duration-300 hover:opacity-100 active:opacity-100"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </Link>
+      ) : (
+        <span
+          aria-hidden
+          className="fixed left-1.5 top-1/2 z-30 flex h-14 w-9 -translate-y-1/2 items-center justify-center rounded-r-2xl bg-black/30 text-white/15 backdrop-blur-md"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </span>
+      )}
 
-          {next ? (
-            <Link href={`/zone/${next.id}`} className="group relative overflow-hidden rounded-xl px-4 py-3.5 text-right text-black transition-transform active:scale-[0.99]" style={{ backgroundColor: next.accentColor }}>
-              <div className="text-[10px] tracking-[0.3em] opacity-85">ZONE {zoneNumber(next.id)} →</div>
-              <div className="mt-1 truncate font-display text-[14px]">{nextL?.title ?? next.title}</div>
-            </Link>
-          ) : (
-            <Link href="/map" className="hasla-gradient relative block rounded-xl px-4 py-3.5 text-right text-black transition-transform active:scale-[0.99]">
-              <div className="text-[10px] tracking-[0.3em]">{t.navFinish}</div>
-              <div className="mt-1 font-display text-[14px]">{t.navBackToMap}</div>
-            </Link>
-          )}
-        </div>
-      </nav>
+      {/* Floating next arrow */}
+      {next ? (
+        <Link
+          href={`/zone/${next.id}`}
+          aria-label="Next zone"
+          className="fixed right-1.5 top-1/2 z-30 flex h-14 w-9 -translate-y-1/2 items-center justify-center rounded-l-2xl bg-black/40 text-white opacity-40 backdrop-blur-md transition-opacity duration-300 hover:opacity-100 active:opacity-100"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </Link>
+      ) : (
+        <Link
+          href="/map"
+          aria-label="Back to map"
+          className="fixed right-1.5 top-1/2 z-30 flex h-14 w-9 -translate-y-1/2 items-center justify-center rounded-l-2xl bg-black/40 text-white opacity-50 backdrop-blur-md transition-opacity duration-300 hover:opacity-100"
+        >
+          {/* close-style icon for last zone */}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+            <path d="M3 12h18M21 12l-4 4M21 12l-4-4" />
+          </svg>
+        </Link>
+      )}
+
+      {/* Progress indicator — bottom-center */}
+      <div
+        aria-hidden
+        className="fixed bottom-5 left-1/2 z-30 -translate-x-1/2 rounded-full bg-black/55 px-3 py-1 font-display text-[10px] tracking-[0.4em] text-white/65 backdrop-blur-md"
+      >
+        {String(idx + 1).padStart(2, '0')} / {String(all.length).padStart(2, '0')}
+      </div>
     </main>
   )
 }
