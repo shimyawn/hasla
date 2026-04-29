@@ -102,7 +102,7 @@ function MapView({ zones, lang, t }: { zones: Zone[]; lang: Lang; t: ReturnType<
           fill
           priority
           sizes="(max-width: 448px) 100vw, 448px"
-          className="object-cover"
+          className="object-cover brightness-[0.82]"
         />
         {zones.map((z, i) => {
           const L = localized(z, lang)
