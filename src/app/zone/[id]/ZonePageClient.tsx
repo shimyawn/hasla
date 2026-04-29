@@ -117,23 +117,6 @@ export default function ZonePageClient({ zone }: Props) {
         </section>
       )}
 
-      {L.media.length > 0 && (
-        <section className="mx-auto max-w-md px-6 pt-8">
-          <FadeInSection>
-            <h2 className="font-display text-[12px] tracking-[0.35em] text-hasla-yellow/85">{t.sectionMedia}</h2>
-          </FadeInSection>
-          <FadeInSection delay={0.04}>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {L.media.map((m, i) => (
-                <span key={i} className="rounded-full border px-3 py-1 text-[12px]" style={{ borderColor: `${zone.accentColor}80`, color: zone.accentColor }}>
-                  {m}
-                </span>
-              ))}
-            </div>
-          </FadeInSection>
-        </section>
-      )}
-
       <nav className="mx-auto mt-12 max-w-md px-6">
         <div className="mb-3 flex items-center justify-between text-[10px] tracking-[0.3em] text-muted">
           <span>{idx + 1} {t.zoneTotalSeparator} {all.length}</span>

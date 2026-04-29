@@ -7,7 +7,7 @@ const ko: Record<string, LocalizedZone> = {
     subtitle: '달빛이 열어주는 통로',
     tagline: '달 모양의 입구를 통해 신비로운 세상과 통하는 하슬라 포털',
     story:
-      '고대 하슬라의 숲으로 향하는 게이트 중 하나, 달빛이 열어주는 달을 닮은 통로',
+      '고대 하슬라의 숲으로 향하는 게이트 중 하나, 달빛이 열어주는 달을 닮은 통로입니다.',
     description:
       '송림 사이에 나타난 원형의 포털은 하슬라 세계로 들어가는 관문이자 시작점입니다. 하슬라의 신화와 이야기는 이곳에서 열리며, 포털을 지나면 판타지의 세계가 펼쳐집니다.',
     direction: [
@@ -23,7 +23,7 @@ const ko: Record<string, LocalizedZone> = {
     tagline:
       '그루터기가 관람객의 두드림에 화답하며, 빛과 화음으로 숲의 생명을 일깨운다',
     story:
-      '당시 하슬라는 달빛 에너지를 받아 모든 동식물이 자유롭게 노래하던 시절이었다. 그루터기에 손을 얹으면 빛으로 맥박하며 깨어고, 각자의 하모니를 쌓아 노래하며 숲의 복귀를 축하한다.',
+      '당시 하슬라는 달빛 에너지를 받아 모든 동식물이 자유롭게 노래하던 시절이었습니다. 그루터기에 손을 얹으면 빛으로 맥박하며 깨어나고, 각자의 하모니를 쌓아 노래하며 숲의 복귀를 축하합니다.',
     description:
       '달빛이 스며들며 하슬라의 숲이 다시 숨을 쉽니다. 고대의 기억이 남은 그루터기는 노래로 화답하고, 관람객이 그루터기를 두드리면 빛과 사운드가 파동처럼 확산되며 숲의 맥박이 살아나는 연출이 구현됩니다. 관람객 참여를 통해 생명의 기운이 깨어나는 경험을 제공합니다.',
     direction: [
@@ -39,9 +39,9 @@ const ko: Record<string, LocalizedZone> = {
     tagline:
       '달빛을 받은 정원의 연못 위에 하슬라의 생명이 비치고, 관람객이 다가서면 움직임에 반응한다',
     story:
-      '달빛 아래 신비한 생명들(빛의 물고기)이 모여드는 비밀의 샘, 다가서면 과거 하슬라 시절의 연못이 재현된다.',
+      '달빛 아래 신비한 생명들(빛의 물고기)이 모여드는 비밀의 샘으로, 다가서면 과거 하슬라 시절의 연못이 재현됩니다.',
     description:
-      '거울면 위로 달빛과 생명체의 영상이 투사되며, 관람객의 접근에 따라 물결·빛·생명체가 반응하는 인터랙션이 연출됩니다. 가까이 다가서면 도망가는 빛의 물고기를 따라 달빛에 잠긴 연못의 시간을 거닐어 보세요.',
+      '거울면 위로 달빛과 생명체의 영상이 투사되며, 관람객의 접근에 따라 물결·빛·생명체가 반응하는 인터랙션이 연출됩니다. 가까이 다가서면 도망가는 빛의 물고기를 따라 달빛에 잠긴 연못의 시간을 거닐어 볼 수 있습니다.',
     direction: [
       '스마트 미러 위에 헤엄치는 하슬라의 물고기 영상.',
       '관람객의 접근에 따라 도망가는 물고기 — 인터랙션 센서로 연동.',
@@ -55,7 +55,7 @@ const ko: Record<string, LocalizedZone> = {
     tagline:
       '밤하늘로부터 쏟아지는 다섯개의 달빛을 받아내는, 세상에서 가장 큰 소나무 그루터기',
     story:
-      '다섯 달빛을 집중적으로 받아 세상에서 가장 크게 자라난, 하슬라 숲의 심장',
+      '다섯 달빛을 집중적으로 받아 세상에서 가장 크게 자라난, 하슬라 숲의 심장입니다.',
     description:
       '하슬라 시절 가장 큰 소나무가 있던 자리. 거대한 그루터기에서 다섯 줄기의 빛이 수직으로 솟아오르며 다섯 달을 상징합니다. 서치라이트 조명 연출이 잠들었던 하슬라의 부활을 알리고, 신비한 다섯개의 달빛은 하슬라 전역으로 퍼져 나갑니다 — 이 강력한 빛은 하슬라 생태계를 구성하는 모든 에너지의 근원입니다.',
     direction: [
@@ -69,8 +69,8 @@ const ko: Record<string, LocalizedZone> = {
     title: '달의 초상',
     subtitle: '미러 벽체 — 거울에 비친 달',
     tagline: '하늘에 뜬 달을 거울 속에서 마주하는 신비로운 공간',
-    story:
-      '달빛은 하슬라 숲의 근원이었기에, 사람들은 이 거울에 비친 달의 초상을 통해서만 달과 조우할 수 있었다. (거울에 비친 달에게 소원을 빌거나 등..)',
+      story:
+      '달빛은 하슬라 숲의 근원이었기에, 사람들은 이 거울에 비친 달의 초상을 통해서만 달과 조우할 수 있었습니다. 거울에 비친 달에게 가만히 소원을 얹어 보세요.',
     description:
       '조명쇼 구간으로 넘어가기 전 시야를 전환하는 전이 공간. 지그재그로 배치된 거울 벽 사이를 걸으며, 관람객은 달빛에 비친 자신의 모습과 달의 잔영을 마주합니다. 반사면에 비친 달과 관람객의 모습이 겹쳐지며 달빛과 내가 하나가 되는 경험을 제공하고, 야간 포토존으로도 활용됩니다.',
     direction: [
@@ -84,11 +84,11 @@ const ko: Record<string, LocalizedZone> = {
     title: '인피니티 포레스트',
     subtitle: '달빛의 창 — 빛의 축제',
     tagline:
-      '7M의 LED WALL로 연출하는 몰입형 콘텐츠 — 다섯 개의 달이 차례로 떠오르는 문라이트 쇼',
+      '8M의 LED WALL로 연출하는 몰입형 콘텐츠 — 다섯 개의 달이 차례로 떠오르는 문라이트 쇼',
     story:
-      '달빛에너지와 숲이 음악과 빛으로 어우러져, 고대 하슬라 숲의 신비로운 세계를 재현하는 체험의 장. 다섯 달의 세계를 비추는 거대한 포털, 하늘에 뜬 달들을 엿보는 신비로운 창.',
+      '달빛에너지와 숲이 음악과 빛으로 어우러져, 고대 하슬라 숲의 신비로운 세계를 재현하는 체험의 장입니다. 다섯 달의 세계를 비추는 거대한 포털이자, 하늘에 뜬 달들을 엿보는 신비로운 창입니다.',
     description:
-      '송림 사이에 설치된 약 7.4m 규모의 LED WALL로 끝없이 확장되는 숲을 구현한 공간. 빛과 음향이 어우러지며 관람객은 신비로운 세계 속을 거니는 듯한 몰입감을 경험합니다. 다섯 달이 차례로 떠오르고 마침내 하나로 모이는 ‘하슬라 문라이트 쇼’가 펼쳐집니다.',
+      '송림 사이에 설치된 약 8m 규모의 LED WALL로 끝없이 확장되는 숲을 구현한 공간입니다. 빛과 음향이 어우러지며 관람객은 신비로운 세계 속을 거니는 듯한 몰입감을 경험합니다. 다섯 달이 차례로 떠오르고 마침내 하나로 모이는 ‘하슬라 문라이트 쇼’가 펼쳐집니다.',
     direction: [
       'EVERGREEN MOON(목) — 푸른 달빛이 숲을 적시며 사슴과 산맥이 모습을 드러낸다.',
       'SOLAR MOON(화) — 태양과 달이 교차하며 붉은 불꽃이 피어오른다.',
@@ -106,7 +106,7 @@ const ko: Record<string, LocalizedZone> = {
     tagline:
       '원형 데크 위에 떠오른 찬란한 달빛, 발 밑에서 펼쳐지는 또 하나의 신비로운 세계',
     story:
-      '관람객이 하슬라의 달빛과 그 세계를 걸으며 숲의 기억과 교감하는 인터랙티브 원형 공간',
+      '관람객이 하슬라의 달빛과 그 세계를 걸으며 숲의 기억과 교감하는 인터랙티브 원형 공간입니다.',
     description:
       '원형 데크에 프로젝션 맵핑을 적용한 몰입형 인터랙션 공간. 중앙의 달은 조명쇼 각 테마와 연동되어 변화하고, 바닥에는 달의 세계가 투사됩니다. 관람객의 움직임에 반응해 파도와 균열, 빛의 파편이 피어나며 — 마치 사라진 달의 기억 속을 걷는 듯한 잔상의 세계를 마주하게 됩니다.',
     direction: [
@@ -122,7 +122,7 @@ const ko: Record<string, LocalizedZone> = {
     subtitle: '달의 에너지가 숲길을 따라 흐르는 순간',
     tagline: '바닥 위에 흘러내리는 빛의 파동',
     story:
-      '달빛의 에너지가 숲 바닥을 타고 물결치듯 흘러, 고대 하슬라의 숲을 깨어나게 한다.',
+      '달빛의 에너지가 숲 바닥을 타고 물결치듯 흘러, 고대 하슬라의 숲을 깨어나게 합니다.',
     description:
       '송림 바닥에 달의 에너지가 흐르는 듯한 분위기를 조성하는 고보 조명 연출 공간. 바닥에 고보 패턴을 투사해 신비로운 달빛의 파동이 송림 바닥을 따라 흘러갑니다. 한 걸음 내딛을 때마다 달의 파동이 바닥에서 울려 퍼지고 — 관람객은 빛과 함께 걷는 특별한 경험을 하게 됩니다.',
     direction: [
@@ -213,11 +213,11 @@ const en: Record<string, LocalizedZone> = {
   zone6: {
     title: 'Infinity Forest',
     subtitle: 'Window of moonlight — a festival of light',
-    tagline: 'An immersive 7m LED wall presenting the Moonlight Show — five moons rising one by one.',
+    tagline: 'An immersive 8m LED wall presenting the Moonlight Show — five moons rising one by one.',
     story:
       "An experiential stage where moonlight, forest, music, and light merge to recreate the mystical world of ancient Hasla — a vast portal onto the realm of five moons, a window into the sky's hidden lights.",
     description:
-      'A roughly 7.4m LED wall set among the pines transforms the forest into an endless expanse. Light and sound combine in an immersive walk through a mystical world. Five moons rise one by one, finally uniting in the climactic Hasla Moonlight Show.',
+      'A roughly 8m LED wall set among the pines transforms the forest into an endless expanse. Light and sound combine in an immersive walk through a mystical world. Five moons rise one by one, finally uniting in the climactic Hasla Moonlight Show.',
     direction: [
       'EVERGREEN MOON (Wood) — Blue moonlight bathes the forest as deer and mountain ranges appear.',
       'SOLAR MOON (Fire) — Sun and moon cross paths and red flames rise.',
