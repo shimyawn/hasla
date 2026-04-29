@@ -11,12 +11,14 @@ export default function PreOpenBanner() {
       <div className="font-display text-[10px] tracking-[0.4em] text-hasla-yellow">
         {t.infoPreOpenLabel}
       </div>
-      <p className="mt-2.5 text-[13px] leading-[1.7] text-white/85">
-        {t.infoNoticeLine1}
-      </p>
-      <p className="mt-1.5 text-[13px] leading-[1.7] text-white/85">
-        {t.infoNoticeLine2}
-      </p>
+      {t.infoNoticeParagraphs.map((p, i) => (
+        <p
+          key={i}
+          className="mt-2.5 first-of-type:mt-2.5 text-[13px] leading-[1.7] text-white/85"
+        >
+          {p}
+        </p>
+      ))}
     </aside>
   )
 }

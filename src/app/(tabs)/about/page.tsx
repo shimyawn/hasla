@@ -23,14 +23,14 @@ const ko = {
   s3Label: '오행, 다섯 빛의 순환',
   s3Intro: '다섯 개의 달은 각각 오행 — 목·화·토·금·수의 힘을 품습니다.',
   s3Moons: [
-    { name: 'EVERGREEN MOON', element: '목 (木)', desc: '푸른 달빛이 숲을 적시고, 사슴과 산맥이 모습을 드러냅니다.' },
-    { name: 'SOLAR MOON',     element: '화 (火)', desc: '태양과 달이 교차하며 붉은 불꽃이 피어오릅니다.' },
-    { name: 'AMBER MOON',     element: '토 (土)', desc: '불길의 재가 황토가 되어 새로운 씨앗이 움틉니다.' },
-    { name: 'STARLIGHT MOON', element: '금 (金)', desc: '흙 속에서 태어난 보석이 별이 되어 밤하늘을 물들입니다.' },
-    { name: 'CLOUD MOON',     element: '수 (水)', desc: '별빛 사이 구름이 몰려와, 빗방울이 숲을 적십니다.' },
+    { element: '목 (木)', desc: '푸른 달빛이 숲을 적시고, 사슴과 산맥이 모습을 드러냅니다.' },
+    { element: '화 (火)', desc: '태양과 달이 교차하며 붉은 불꽃이 피어오릅니다.' },
+    { element: '토 (土)', desc: '불길의 재가 황토가 되어 새로운 씨앗이 움틉니다.' },
+    { element: '금 (金)', desc: '흙 속에서 태어난 보석이 별이 되어 밤하늘을 물들입니다.' },
+    { element: '수 (水)', desc: '별빛 사이 구름이 몰려와, 빗방울이 숲을 적십니다.' },
   ],
   s3Outro:
-    '다섯이 마침내 하나로 모여 천문도의 무늬를 새기는 신월(THE NEW MOON)이 떠오를 때, 잠들어 있던 숲이 깨어납니다.',
+    '다섯이 마침내 하나로 모여 천문도의 무늬를 새기는 만월이 떠오를 때, 잠들어 있던 숲이 깨어납니다.',
   s4Label: '숲의 합창에 발걸음을 더하세요',
   s4: [
     '작은 그루터기의 숨결에 귀 기울여 보세요.',
@@ -39,7 +39,6 @@ const ko = {
     '달빛을 머금은 거대한 그루터기 앞에서, 숲이 깨어나는 순간을 목격해 보세요.',
   ],
   outro: [
-    '이 숲은 더 이상 단순한 산책로가 아닙니다.',
     '모든 나무가 서로의 선율이 되어 겹치고 울리며,',
     '숲은 마침내 달빛의 힘으로 깨어나 — 당신의 마음을 비춥니다.',
   ],
@@ -64,14 +63,14 @@ const en = {
   s3Label: 'Five Elements, the Cycle of Light',
   s3Intro: 'Each of the five moons holds one of the Five Elements — Wood, Fire, Earth, Metal, Water.',
   s3Moons: [
-    { name: 'EVERGREEN MOON', element: 'Wood', desc: 'Blue moonlight bathes the forest as deer and mountain ranges appear.' },
-    { name: 'SOLAR MOON',     element: 'Fire', desc: 'Sun and moon cross paths, and red flames rise.' },
-    { name: 'AMBER MOON',     element: 'Earth', desc: 'Embers turn to ochre soil, and new seeds sprout.' },
-    { name: 'STARLIGHT MOON', element: 'Metal', desc: 'Gems born in the earth ascend to the sky as stars.' },
-    { name: 'CLOUD MOON',     element: 'Water', desc: 'Clouds sweep through starlight, and rain falls upon the forest.' },
+    { element: 'Wood', desc: 'Blue moonlight bathes the forest as deer and mountain ranges appear.' },
+    { element: 'Fire', desc: 'Sun and moon cross paths, and red flames rise.' },
+    { element: 'Earth', desc: 'Embers turn to ochre soil, and new seeds sprout.' },
+    { element: 'Metal', desc: 'Gems born in the earth ascend to the sky as stars.' },
+    { element: 'Water', desc: 'Clouds sweep through starlight, and rain falls upon the forest.' },
   ],
   s3Outro:
-    'When the five finally gather as one — a New Moon etching a star-chart across the sky — the sleeping forest awakens.',
+    'When the five finally gather as one — a full moon etching a star-chart across the sky — the sleeping forest awakens.',
   s4Label: "Add Your Step to the Forest's Chorus",
   s4: [
     'Listen for the breath of a small stump.',
@@ -80,7 +79,6 @@ const en = {
     'Stand before the giant stump bathed in moonlight, and witness the forest awakening.',
   ],
   outro: [
-    'This forest is no longer just a path.',
     'Every tree becomes a melody for the others, layered and resonant —',
     'and the forest, awakened by moonlight, finally illuminates your heart.',
   ],
@@ -88,7 +86,7 @@ const en = {
 }
 
 export default function AboutPage() {
-  const { lang } = useLang()
+  const { lang, t } = useLang()
   const c = lang === 'en' ? en : ko
 
   return (
@@ -141,16 +139,11 @@ export default function AboutPage() {
           </FadeInSection>
           <ul className="flex flex-col divide-y divide-white/10">
             {c.s3Moons.map((moon, i) => (
-              <FadeInSection key={moon.name} delay={0.05 * i}>
+              <FadeInSection key={moon.element} delay={0.05 * i}>
                 <li className="py-4">
-                  <div className="flex items-baseline justify-between gap-3">
-                    <span className="font-display text-[12.5px] tracking-[0.18em] text-white">
-                      {moon.name}
-                    </span>
-                    <span className="font-display text-[10.5px] tracking-[0.32em] text-hasla-yellow/85">
-                      {moon.element}
-                    </span>
-                  </div>
+                  <span className="font-display text-[12.5px] tracking-[0.32em] text-hasla-yellow/85">
+                    {moon.element}
+                  </span>
                   <p className="mt-1.5 text-[13px] leading-[1.7] text-white/65">
                     {moon.desc}
                   </p>
@@ -199,6 +192,26 @@ export default function AboutPage() {
             </Link>
           </div>
         </FadeInSection>
+
+        {/* Teaser — placeholder, will host embedded video */}
+        <Section label={t.aboutTeaserLabel}>
+          <FadeInSection>
+            <p className="mb-5 font-display text-[16px] leading-[1.85] text-white/85">
+              {t.aboutTeaserHeading}
+            </p>
+          </FadeInSection>
+          <FadeInSection delay={0.06}>
+            <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-white/8 bg-white/[0.03]">
+              {/* TODO: replace with <iframe src="<youtube/vimeo url>"/> when teaser ships */}
+              <div className="flex h-full w-full flex-col items-center justify-center gap-2">
+                <span className="font-display text-[10px] tracking-[0.5em] text-hasla-yellow/85">
+                  {t.comingSoonLabel}
+                </span>
+                <p className="text-[13px] text-white/55">{t.aboutTeaserNote}</p>
+              </div>
+            </div>
+          </FadeInSection>
+        </Section>
       </div>
     </main>
   )

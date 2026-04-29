@@ -44,8 +44,7 @@ export interface UIStrings {
   infoSheetTitle: string
   infoPreOpenLabel: string
   infoPreOpenLineShort: string
-  infoNoticeLine1: string
-  infoNoticeLine2: string
+  infoNoticeParagraphs: string[]
   infoSessionsHeading: string
   infoSessionsNote: string
   infoGrandOpenLabel: string
@@ -64,6 +63,14 @@ export interface UIStrings {
   reviewsPageTitle: string
   comingSoonLabel: string
   comingSoonNote: string
+  // About — teaser
+  aboutTeaserLabel: string
+  aboutTeaserHeading: string
+  aboutTeaserNote: string
+  // Reviews
+  reviewsIntro: string
+  reviewsCta: string
+  reviewsOpenInNewTab: string
 }
 
 export interface LocalizedZone {

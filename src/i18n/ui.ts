@@ -44,8 +44,11 @@ export const UI: Record<Lang, UIStrings> = {
     infoSheetTitle: '운영 안내',
     infoPreOpenLabel: '공지',
     infoPreOpenLineShort: '지금은 가오픈 기간입니다',
-    infoNoticeLine1: '지금은 가오픈 기간이라서 제한적으로 시운영중이니 너른 양해 부탁드립니다.',
-    infoNoticeLine2: '2026년 7월 중순 그랜드 오픈 예정이니 많은 관심 부탁드립니다.',
+    infoNoticeParagraphs: [
+      '현재 HASLA는 정식 개관을 앞둔 가오픈 기간입니다.',
+      '시스템 최적화를 위한 시운영 단계로, 일부 관람 및 이용이 제한될 수 있는 점 방문객 여러분의 너른 양해 부탁드립니다.',
+      '2026년 7월 중순, 그랜드 오픈 예정이니 더욱 완벽한 모습으로 정식 인사드리겠습니다. HASLA에 보내주시는 많은 관심과 기대 부탁드립니다.',
+    ],
     infoSessionsHeading: '인피니티 포레스트 조명쇼 타임테이블',
     infoSessionsNote: '매일 19:30부터 21:30까지, 30분 간격 4회 송출됩니다.',
     infoGrandOpenLabel: '그랜드 오픈',
@@ -64,6 +67,14 @@ export const UI: Record<Lang, UIStrings> = {
     reviewsPageTitle: '리뷰',
     comingSoonLabel: 'COMING SOON',
     comingSoonNote: '곧 공개됩니다.',
+
+    aboutTeaserLabel: '티저',
+    aboutTeaserHeading: '한 발 앞서 만나는 하슬라의 밤',
+    aboutTeaserNote: '티저 영상은 곧 공개됩니다.',
+
+    reviewsIntro: '관람 후 느낀 빛과 울림을 들려주세요. 여러분의 한 마디가 숲의 합창이 됩니다.',
+    reviewsCta: '리뷰 작성하러 가기',
+    reviewsOpenInNewTab: '새 창에서 열기',
   },
 
   en: {
@@ -109,8 +120,11 @@ export const UI: Record<Lang, UIStrings> = {
     infoSheetTitle: 'Operating Information',
     infoPreOpenLabel: 'Notice',
     infoPreOpenLineShort: 'Currently in soft-open period',
-    infoNoticeLine1: 'We are currently in a soft-open period with limited operations. Thank you for your understanding.',
-    infoNoticeLine2: 'The grand opening is planned for mid-July 2026. We look forward to your continued interest.',
+    infoNoticeParagraphs: [
+      'HASLA is currently in a soft-open period ahead of its official grand opening.',
+      'During this system-optimization phase, some areas and services may be limited. We sincerely appreciate your understanding.',
+      'The grand opening is planned for mid-July 2026. We look forward to greeting you again in our complete form, and thank you for your continued interest in HASLA.',
+    ],
     infoSessionsHeading: 'Infinity Forest Light Show — Timetable',
     infoSessionsNote: 'Daily, four 30-minute sessions between 19:30 and 21:30.',
     infoGrandOpenLabel: 'Grand Opening',
@@ -129,5 +143,13 @@ export const UI: Record<Lang, UIStrings> = {
     reviewsPageTitle: 'Reviews',
     comingSoonLabel: 'COMING SOON',
     comingSoonNote: 'Coming soon.',
+
+    aboutTeaserLabel: 'Teaser',
+    aboutTeaserHeading: 'A Glimpse of the Hasla Night',
+    aboutTeaserNote: 'The teaser video will be released soon.',
+
+    reviewsIntro: 'Tell us about the light and resonance you felt. Your words become part of the forest\'s chorus.',
+    reviewsCta: 'Leave a review',
+    reviewsOpenInNewTab: 'Open in new tab',
   },
 }
