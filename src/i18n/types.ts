@@ -51,6 +51,8 @@ export interface UIStrings {
   infoSheetTitle: string
   infoPreOpenLabel: string
   infoPreOpenLineShort: string
+  infoNoticeLine1: string
+  infoNoticeLine2: string
   infoSessionsHeading: string
   infoSessionsNote: string
   infoGrandOpenLabel: string

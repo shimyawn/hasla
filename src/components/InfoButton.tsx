@@ -72,18 +72,21 @@ export default function InfoButton() {
             </button>
           </div>
 
-          {/* PRE-OPEN status */}
-          <div className="border-t border-white/8 pt-5">
+          {/* 공지 — soft-open + grand opening notice */}
+          <div className="border-t border-white/10 pt-5">
             <div className="font-display text-[10px] tracking-[0.4em] text-hasla-yellow">
               {t.infoPreOpenLabel}
             </div>
-            <p className="mt-3 font-display text-[15px] leading-relaxed text-white/85">
-              {t.infoPreOpenLineShort}
+            <p className="mt-3 text-[14px] leading-[1.75] text-white/85">
+              {t.infoNoticeLine1}
+            </p>
+            <p className="mt-2 text-[14px] leading-[1.75] text-white/85">
+              {t.infoNoticeLine2}
             </p>
           </div>
 
-          {/* Show times */}
-          <div className="mt-7 border-t border-white/8 pt-5">
+          {/* Infinity Forest Light Show timetable */}
+          <div className="mt-7 border-t border-white/10 pt-5">
             <div className="font-display text-[10px] tracking-[0.4em] text-hasla-yellow">
               {t.infoSessionsHeading}
             </div>
@@ -99,16 +102,6 @@ export default function InfoButton() {
             </div>
             <p className="mt-3 text-[12px] leading-relaxed text-white/55">
               {t.infoSessionsNote}
-            </p>
-          </div>
-
-          {/* Grand opening */}
-          <div className="mt-7 border-t border-white/8 pt-5">
-            <div className="font-display text-[10px] tracking-[0.4em] text-hasla-yellow">
-              {t.infoGrandOpenLabel}
-            </div>
-            <p className="mt-3 font-display text-[15px] text-white/85">
-              {t.infoGrandOpenWhen}
             </p>
           </div>
         </div>
