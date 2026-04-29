@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 import { useLang } from '@/i18n/LanguageContext'
 import FadeInSection from '@/components/zone/FadeInSection'
 import PreOpenBanner from '@/components/PreOpenBanner'
@@ -132,19 +131,6 @@ export default function AboutPage() {
             </FadeInSection>
           ))}
         </Section>
-
-        {/* CTA */}
-        <FadeInSection delay={0.2}>
-          <div className="mt-16 flex justify-center">
-            <Link
-              href="/map"
-              className="hasla-gradient inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-display text-[14px] font-medium text-black transition-transform active:scale-[0.98]"
-            >
-              {c.ctaLabel}
-              <span aria-hidden>→</span>
-            </Link>
-          </div>
-        </FadeInSection>
 
         {/* Teaser — placeholder, will host embedded video */}
         <Section label={t.aboutTeaserLabel}>

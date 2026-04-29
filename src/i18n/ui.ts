@@ -15,6 +15,7 @@ export const UI: Record<Lang, UIStrings> = {
 
     toggleMap: '지도보기',
     toggleList: '목록보기',
+    mapPageTitle: 'HASLA 지도',
     mapCaption: '빛나는 영역을 탭하면 각 ZONE의 안내로 이동합니다.',
 
     sectionDirection: '연출 방향',
@@ -114,6 +115,7 @@ export const UI: Record<Lang, UIStrings> = {
 
     toggleMap: 'Map',
     toggleList: 'List',
+    mapPageTitle: 'HASLA Map',
     mapCaption: 'Tap a glowing zone to view its details.',
 
     sectionDirection: 'Direction',

@@ -15,6 +15,7 @@ export interface UIStrings {
   // Map page
   toggleMap: string
   toggleList: string
+  mapPageTitle: string
   mapCaption: string
   // Zone detail
   sectionDirection: string
