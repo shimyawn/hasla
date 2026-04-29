@@ -148,8 +148,8 @@ function MapView({ zones, lang, t }: { zones: Zone[]; lang: Lang; t: ReturnType<
 
 function ListView({ zones, lang, t }: { zones: Zone[]; lang: Lang; t: ReturnType<typeof useLang>['t'] }) {
   return (
-    <section className="mx-auto mt-6 max-w-md px-4 pb-12">
-      <ul className="flex flex-col gap-10">
+    <section className="mx-auto mt-6 max-w-md px-6 pb-16">
+      <ul className="flex flex-col gap-12">
         {zones.map((z, idx) => {
           const L = localized(z, lang)
           const num = String(idx + 1).padStart(2, '0')
@@ -158,50 +158,87 @@ function ListView({ zones, lang, t }: { zones: Zone[]; lang: Lang; t: ReturnType
               <li>
                 <Link
                   href={`/zone/${z.id}`}
-                  className="block overflow-hidden rounded-2xl border border-white/10 bg-white text-neutral-900 shadow-[0_8px_24px_rgba(0,0,0,0.18)] transition-transform active:scale-[0.99]"
-                  style={{ borderLeftColor: z.accentColor, borderLeftWidth: 4 }}
+                  className="group block overflow-hidden bg-black text-white transition-opacity"
                 >
+                  {/* Hero — full bleed, no overlay text, subtle bottom fade only */}
                   <div className="relative aspect-[16/10] w-full overflow-hidden">
                     <Image
                       src={z.assets.mainImage}
                       alt={L.title}
                       fill
                       sizes="(max-width: 448px) 100vw, 448px"
-                      className="object-cover"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 px-5 pb-4">
-                      <div className="flex items-center gap-2 text-[10px] tracking-[0.3em] text-white/85">
-                        <span style={{ color: z.accentColor }}>ZONE {num}</span>
-                        <span>· {L.element}</span>
-                      </div>
-                      <h3 className="mt-1 font-display text-2xl font-medium text-white">{L.title}</h3>
-                      {L.subtitle && (
-                        <p className="mt-0.5 font-display text-[13px] text-white/75">{L.subtitle}</p>
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40" />
+                  </div>
+
+                  {/* Content panel — pure black, generous spacing */}
+                  <div className="relative pt-6 pb-7">
+                    {/* Hairline accent divider */}
+                    <div
+                      aria-hidden
+                      className="absolute left-0 top-0 h-[2px] w-12"
+                      style={{ background: z.accentColor }}
+                    />
+
+                    {/* Number + element row */}
+                    <div className="mb-4 flex items-baseline justify-between gap-3 text-[10px] tracking-[0.4em]">
+                      <span className="font-display" style={{ color: z.accentColor }}>
+                        ZONE · {num}
+                      </span>
+                      {L.element && (
+                        <span className="font-display text-white/35">{L.element}</span>
                       )}
                     </div>
-                  </div>
-                  <div className="px-5 py-4">
-                    {L.tagline && (
-                      <p className="mb-3 font-display text-[14px] leading-snug" style={{ color: z.accentColor }}>
-                        “{L.tagline}”
+
+                    {/* Title + subtitle */}
+                    <h3 className="font-display text-[28px] font-medium leading-[1.15] text-white">
+                      {L.title}
+                    </h3>
+                    {L.subtitle && (
+                      <p className="mt-1.5 font-display text-[14px] leading-snug text-white/55">
+                        {L.subtitle}
                       </p>
                     )}
-                    <p className="text-[13.5px] leading-[1.85] text-neutral-800">{L.story}</p>
-                    {L.description && (
-                      <p className="mt-3 text-[13px] leading-[1.8] text-neutral-700">{L.description}</p>
+
+                    {/* Tagline */}
+                    {L.tagline && (
+                      <p className="mt-5 font-display text-[15px] italic leading-[1.65] text-white/80">
+                        {L.tagline}
+                      </p>
                     )}
+
+                    {/* Story (verbatim doc text) */}
+                    <p className="mt-4 text-[14px] leading-[1.95] text-white/75">
+                      {L.story}
+                    </p>
+
+                    {/* Description (rich) */}
+                    {L.description && (
+                      <p className="mt-3 text-[13px] leading-[1.9] text-white/55">
+                        {L.description}
+                      </p>
+                    )}
+
+                    {/* Media chips — minimal */}
                     {L.media?.length > 0 && (
-                      <div className="mt-4 flex flex-wrap gap-1.5">
+                      <div className="mt-6 flex flex-wrap gap-x-4 gap-y-1.5 text-[11px] tracking-wide text-white/45">
                         {L.media.map((m, i) => (
-                          <span key={i} className="rounded-full border px-2.5 py-0.5 text-[11px]" style={{ borderColor: `${z.accentColor}80`, color: z.accentColor, backgroundColor: `${z.accentColor}10` }}>
-                            {m}
-                          </span>
+                          <span key={i}>· {m}</span>
                         ))}
                       </div>
                     )}
-                    <div className="mt-4 flex items-center justify-end gap-1 text-[12px] font-medium" style={{ color: z.accentColor }}>
-                      {t.viewDetail}
+
+                    {/* CTA link */}
+                    <div className="mt-7 flex items-center gap-2 text-[12px] tracking-[0.2em] transition-opacity group-hover:opacity-100">
+                      <span className="font-display" style={{ color: z.accentColor }}>
+                        {t.viewDetail}
+                      </span>
+                      <span
+                        aria-hidden
+                        className="block h-px flex-1 transition-all duration-500 ease-out group-hover:flex-[2]"
+                        style={{ background: `${z.accentColor}55` }}
+                      />
                     </div>
                   </div>
                 </Link>
