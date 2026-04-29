@@ -5,17 +5,13 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useLang } from '@/i18n/LanguageContext'
 
-interface Props {
-  year: number
-}
-
 const TRANSITION_MS = 1500
 const NAV_TOTAL_MS = 1500
 const DISSOLVE_MS = 1100
 // Smooth symmetric ease for buttery cross-fades
 const EASE = 'cubic-bezier(0.45, 0.05, 0.55, 0.95)'
 
-export default function SplashClient({ year }: Props) {
+export default function SplashClient() {
   const router = useRouter()
   const { t } = useLang()
   const [revealed, setRevealed] = useState(false)
@@ -130,7 +126,6 @@ export default function SplashClient({ year }: Props) {
         >
           {t.splashCta}
         </a>
-        <p className="mt-2 text-center text-[11px] text-muted/80">© {year} HASLA · {t.copyrightSuffix}</p>
       </footer>
 
       {/* White dissolve overlay — fades in on CTA click */}

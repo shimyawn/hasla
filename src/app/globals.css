@@ -110,6 +110,17 @@ html, body {
   animation: hasla-pulse 6s ease-in-out infinite;
 }
 
+/* Subtle breathing for map zone icons — gentle dimming + tiny scale */
+@keyframes icon-breathe {
+  0%, 100% { opacity: 0.88; transform: scale(1) }
+  50%      { opacity: 1;    transform: scale(1.025) }
+}
+
+.icon-breathe {
+  animation: icon-breathe 5.5s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
 /* prevent overscroll color flash on iOS */
 html { background: var(--background); }
 

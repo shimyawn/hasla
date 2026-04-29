@@ -102,7 +102,7 @@ function MapView({ zones, lang, t }: { zones: Zone[]; lang: Lang; t: ReturnType<
           sizes="(max-width: 448px) 100vw, 448px"
           className="object-cover"
         />
-        {zones.map((z) => {
+        {zones.map((z, i) => {
           const L = localized(z, lang)
           return (
             <Link
@@ -117,18 +117,19 @@ function MapView({ zones, lang, t }: { zones: Zone[]; lang: Lang; t: ReturnType<
                 height: z.mapPin.h,
               }}
             >
-              {/* Icon overlay covers the existing illustration */}
+              {/* Subtle breathing icon — dims + tiny scale loop, staggered per zone */}
               <Image
                 src={`/icons/${z.id}.png`}
                 alt=""
                 fill
                 sizes="22vw"
-                className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.05] group-active:scale-[1.05]"
+                className="icon-breathe object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06] group-active:scale-[1.06]"
                 style={{
                   filter: `drop-shadow(0 0 8px ${z.accentColor}aa)`,
+                  animationDelay: `${(i * 0.65) % 5.5}s`,
                 }}
               />
-              {/* Subtle bloom on hover/tap only */}
+              {/* Bloom on hover/tap */}
               <span
                 aria-hidden
                 className="absolute inset-[-12%] rounded-[40%] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-active:opacity-100"
@@ -158,9 +159,9 @@ function ListView({ zones, lang, t }: { zones: Zone[]; lang: Lang; t: ReturnType
               <li>
                 <Link
                   href={`/zone/${z.id}`}
-                  className="group block overflow-hidden bg-black text-white transition-opacity"
+                  className="group block overflow-hidden bg-black text-white"
                 >
-                  {/* Hero — full bleed, no overlay text, subtle bottom fade only */}
+                  {/* Hero */}
                   <div className="relative aspect-[16/10] w-full overflow-hidden">
                     <Image
                       src={z.assets.mainImage}
@@ -172,8 +173,8 @@ function ListView({ zones, lang, t }: { zones: Zone[]; lang: Lang; t: ReturnType
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40" />
                   </div>
 
-                  {/* Content panel — pure black, generous spacing */}
-                  <div className="relative pt-6 pb-7">
+                  {/* Slim content panel — only enough to entice the click */}
+                  <div className="relative pt-6 pb-6">
                     {/* Hairline accent divider */}
                     <div
                       aria-hidden
@@ -182,7 +183,7 @@ function ListView({ zones, lang, t }: { zones: Zone[]; lang: Lang; t: ReturnType
                     />
 
                     {/* Number + element row */}
-                    <div className="mb-4 flex items-baseline justify-between gap-3 text-[10px] tracking-[0.4em]">
+                    <div className="mb-3.5 flex items-baseline justify-between gap-3 text-[10px] tracking-[0.4em]">
                       <span className="font-display" style={{ color: z.accentColor }}>
                         ZONE · {num}
                       </span>
@@ -191,52 +192,31 @@ function ListView({ zones, lang, t }: { zones: Zone[]; lang: Lang; t: ReturnType
                       )}
                     </div>
 
-                    {/* Title + subtitle */}
-                    <h3 className="font-display text-[28px] font-medium leading-[1.15] text-white">
+                    {/* Title */}
+                    <h3 className="font-display text-[26px] font-medium leading-[1.15] text-white">
                       {L.title}
                     </h3>
                     {L.subtitle && (
-                      <p className="mt-1.5 font-display text-[14px] leading-snug text-white/55">
+                      <p className="mt-1.5 font-display text-[13.5px] leading-snug text-white/55">
                         {L.subtitle}
                       </p>
                     )}
 
-                    {/* Tagline */}
+                    {/* Tagline only (one-line introduction) */}
                     {L.tagline && (
-                      <p className="mt-5 font-display text-[15px] italic leading-[1.65] text-white/80">
+                      <p className="mt-4 font-display text-[14.5px] italic leading-[1.55] text-white/75 line-clamp-2">
                         {L.tagline}
                       </p>
                     )}
 
-                    {/* Story (verbatim doc text) */}
-                    <p className="mt-4 text-[14px] leading-[1.95] text-white/75">
-                      {L.story}
-                    </p>
-
-                    {/* Description (rich) */}
-                    {L.description && (
-                      <p className="mt-3 text-[13px] leading-[1.9] text-white/55">
-                        {L.description}
-                      </p>
-                    )}
-
-                    {/* Media chips — minimal */}
-                    {L.media?.length > 0 && (
-                      <div className="mt-6 flex flex-wrap gap-x-4 gap-y-1.5 text-[11px] tracking-wide text-white/45">
-                        {L.media.map((m, i) => (
-                          <span key={i}>· {m}</span>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* CTA link */}
-                    <div className="mt-7 flex items-center gap-2 text-[12px] tracking-[0.2em] transition-opacity group-hover:opacity-100">
+                    {/* CTA — encourages tap */}
+                    <div className="mt-6 flex items-center gap-2 text-[12px] tracking-[0.2em]">
                       <span className="font-display" style={{ color: z.accentColor }}>
                         {t.viewDetail}
                       </span>
                       <span
                         aria-hidden
-                        className="block h-px flex-1 transition-all duration-500 ease-out group-hover:flex-[2]"
+                        className="block h-px flex-1 transition-all duration-500 ease-out group-hover:flex-[1.6]"
                         style={{ background: `${z.accentColor}55` }}
                       />
                     </div>
