@@ -144,7 +144,7 @@ export const UI: Record<Lang, UIStrings> = {
     infoButtonLabel: 'INFO',
     infoSheetTitle: 'Operating Information',
     infoPreOpenLabel: 'Notice',
-    infoPreOpenLineShort: 'Currently in soft-open period',
+    infoPreOpenLineShort: 'SOFT OPEN',
     infoNoticeParagraphs: [
       'HASLA is currently in a soft-open period ahead of its official grand opening.',
       'As a system-optimization phase,\nsome areas and services may be limited.\nWe sincerely appreciate your understanding.',
