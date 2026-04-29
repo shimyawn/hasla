@@ -72,7 +72,7 @@ export const UI: Record<Lang, UIStrings> = {
     aboutTeaserHeading: '한 발 앞서 만나는 하슬라의 밤',
     aboutTeaserNote: '티저 영상은 곧 공개됩니다.',
 
-    reviewsIntro: '관람 후 느낀 빛과 울림을 들려주세요. 여러분의 한 마디가 숲의 합창이 됩니다.',
+    reviewsIntro: '관람 후 느낀 빛과 울림을 들려주세요. 여러분의 한 마디가 숲을 더 깊이 깨웁니다.',
     reviewsCta: '리뷰 작성하러 가기',
     reviewsOpenInNewTab: '새 창에서 열기',
   },
@@ -148,7 +148,7 @@ export const UI: Record<Lang, UIStrings> = {
     aboutTeaserHeading: 'A Glimpse of the Hasla Night',
     aboutTeaserNote: 'The teaser video will be released soon.',
 
-    reviewsIntro: 'Tell us about the light and resonance you felt. Your words become part of the forest\'s chorus.',
+    reviewsIntro: 'Tell us about the light and resonance you felt. Your words help the forest awaken further.',
     reviewsCta: 'Leave a review',
     reviewsOpenInNewTab: 'Open in new tab',
   },

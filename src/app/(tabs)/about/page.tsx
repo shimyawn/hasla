@@ -16,9 +16,9 @@ const ko = {
   ],
   s2Label: '다섯 개의 달이 뜨는 밤',
   s2: [
-    '어떤 기록도 남아있지 않은 고대 하슬라에는, 숲이 살아 우리와 함께 숨 쉬고 노래하던 시절이 있었습니다.',
-    '그곳에서는 동물과 식물, 인간의 경계가 흐려지고, 모든 존재가 하나의 선율로 이어졌습니다.',
-    '달빛이 숲을 감싸 안으면 나무는 노래를 부르고, 연못은 기억을 비추며, 바위와 바람마저 울림이 되었습니다.',
+    '어떤 기록도 남아있지 않은 고대 하슬라에는,\n숲이 살아 우리와 함께 숨 쉬고 노래하던 시절이 있었습니다.',
+    '그곳에서는 동물과 식물, 인간의 경계가 흐려지고,\n모든 존재가 하나의 선율로 이어졌습니다.',
+    '달빛이 숲을 감싸 안으면 나무는 노래를 부르고,\n연못은 기억을 비추며,\n숲은 빛으로 가득 찼습니다.',
   ],
   s3Label: '오행, 다섯 빛의 순환',
   s3Intro: '다섯 개의 달은 각각 오행 — 목·화·토·금·수의 힘을 품습니다.',
@@ -31,12 +31,11 @@ const ko = {
   ],
   s3Outro:
     '다섯이 마침내 하나로 모여 천문도의 무늬를 새기는 만월이 떠오를 때, 잠들어 있던 숲이 깨어납니다.',
-  s4Label: '숲의 합창에 발걸음을 더하세요',
+  s4Label: '숲에 발걸음을 더하세요',
   s4: [
     '작은 그루터기의 숨결에 귀 기울여 보세요.',
     '기억이 새겨진 연못 속 빛나는 잔상을 마주해 보세요.',
-    '디딤돌 위에 발걸음을 올리면, 당신의 리듬이 숲의 합창에 더해집니다.',
-    '달빛을 머금은 거대한 그루터기 앞에서, 숲이 깨어나는 순간을 목격해 보세요.',
+    '달빛을 머금은 거대한 그루터기 앞에서,\n숲이 깨어나는 순간을 목격해 보세요.',
   ],
   outro: [
     '모든 나무가 서로의 선율이 되어 겹치고 울리며,',
@@ -56,9 +55,9 @@ const en = {
   ],
   s2Label: 'A Night of Five Moons',
   s2: [
-    'In a time no record remembers, ancient Hasla was a forest that breathed and sang with us.',
-    'There, the boundaries between animal, plant, and human blurred — and every being was joined in a single melody.',
-    'When the moonlight wrapped the forest, the trees sang, the ponds reflected memory, and even the rocks and wind became echoes.',
+    'In a time no record remembers,\nancient Hasla was a forest that breathed and sang with us.',
+    'There, the boundaries between animal, plant, and human blurred —\nand every being was joined in a single melody.',
+    'When the moonlight wrapped the forest, the trees sang,\nthe ponds reflected memory,\nand the forest was filled with light.',
   ],
   s3Label: 'Five Elements, the Cycle of Light',
   s3Intro: 'Each of the five moons holds one of the Five Elements — Wood, Fire, Earth, Metal, Water.',
@@ -71,12 +70,11 @@ const en = {
   ],
   s3Outro:
     'When the five finally gather as one — a full moon etching a star-chart across the sky — the sleeping forest awakens.',
-  s4Label: "Add Your Step to the Forest's Chorus",
+  s4Label: 'Add Your Step to the Forest',
   s4: [
     'Listen for the breath of a small stump.',
     'Meet the shimmering afterimage in a memory-marked pond.',
-    "Step onto a stone, and your rhythm joins the forest's chorus.",
-    'Stand before the giant stump bathed in moonlight, and witness the forest awakening.',
+    'Stand before the giant stump bathed in moonlight,\nand witness the forest awakening.',
   ],
   outro: [
     'Every tree becomes a melody for the others, layered and resonant —',
@@ -123,7 +121,7 @@ export default function AboutPage() {
         <Section label={c.s2Label}>
           {c.s2.map((line, i) => (
             <FadeInSection key={i} delay={0.06 * i}>
-              <p className="mb-5 last:mb-0 font-display text-[16px] leading-[1.95] text-white/85">
+              <p className="mb-5 last:mb-0 whitespace-pre-line font-display text-[16px] leading-[1.95] text-white/85">
                 {line}
               </p>
             </FadeInSection>
@@ -162,7 +160,7 @@ export default function AboutPage() {
         <Section label={c.s4Label}>
           {c.s4.map((line, i) => (
             <FadeInSection key={i} delay={0.06 * i}>
-              <p className="mb-4 last:mb-0 font-display text-[16px] leading-[1.85] text-white/85">
+              <p className="mb-4 last:mb-0 whitespace-pre-line font-display text-[16px] leading-[1.85] text-white/85">
                 {line}
               </p>
             </FadeInSection>
