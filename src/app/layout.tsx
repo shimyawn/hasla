@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from 'next'
 import localFont from 'next/font/local'
 import { Noto_Sans_KR } from 'next/font/google'
 import './globals.css'
-import FloatingAudioPlayer from '@/components/audio/FloatingAudioPlayer'
 import { LanguageProvider } from '@/i18n/LanguageContext'
 import LanguageButton from '@/components/LanguageButton'
 import InfoButton from '@/components/InfoButton'
@@ -51,7 +50,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <InfoButton />
           </div>
           {children}
-          <FloatingAudioPlayer />
         </LanguageProvider>
       </body>
     </html>

@@ -23,13 +23,6 @@ export interface UIStrings {
   navFinish: string
   navFirst: string
   zoneTotalSeparator: string
-  // Audio
-  audioTitleDefault: string
-  audioTapToPlay: string
-  audioError: string
-  ariaPlay: string
-  ariaPause: string
-  ariaSeek: string
   // Misc
   viewDetail: string
   // Element labels (오행)

@@ -7,7 +7,6 @@ export interface MapBox {
 
 export interface ZoneAssets {
   mainImage: string
-  audioUrl: string
 }
 
 export interface Zone {

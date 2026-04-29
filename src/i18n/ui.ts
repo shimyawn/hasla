@@ -24,13 +24,6 @@ export const UI: Record<Lang, UIStrings> = {
     navFirst: '처음으로',
     zoneTotalSeparator: '/',
 
-    audioTitleDefault: '오디오 도슨트',
-    audioTapToPlay: '화면을 탭하면 재생됩니다.',
-    audioError: '오디오 파일이 아직 준비되지 않았습니다.',
-    ariaPlay: '재생',
-    ariaPause: '일시정지',
-    ariaSeek: '재생 위치',
-
     viewDetail: '자세히 보기 →',
 
     elementWater: '수(水)',
@@ -84,13 +77,6 @@ export const UI: Record<Lang, UIStrings> = {
     navFinish: 'FINISH →',
     navFirst: 'Home',
     zoneTotalSeparator: '/',
-
-    audioTitleDefault: 'Audio Docent',
-    audioTapToPlay: 'Tap the screen to play.',
-    audioError: 'Audio is not yet available.',
-    ariaPlay: 'Play',
-    ariaPause: 'Pause',
-    ariaSeek: 'Seek position',
 
     viewDetail: 'View details →',
 

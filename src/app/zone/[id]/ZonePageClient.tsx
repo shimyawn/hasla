@@ -2,8 +2,6 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect } from 'react'
-import { useAudioStore } from '@/store/audioStore'
 import FadeInSection from '@/components/zone/FadeInSection'
 import { getAllZones, getNextZone, getPrevZone } from '@/lib/zones'
 import type { Zone } from '@/lib/types'
@@ -18,7 +16,6 @@ function zoneNumber(id: string) {
 
 export default function ZonePageClient({ zone }: Props) {
   const { t, lang } = useLang()
-  const loadZone = useAudioStore((s) => s.loadZone)
   const prev = getPrevZone(zone.id)
   const next = getNextZone(zone.id)
   const all = getAllZones()
@@ -36,10 +33,6 @@ export default function ZonePageClient({ zone }: Props) {
   }
   const prevL = prev ? localizeZone(prev.id, lang) : null
   const nextL = next ? localizeZone(next.id, lang) : null
-
-  useEffect(() => {
-    loadZone(zone.id, zone.assets.audioUrl, L.title)
-  }, [zone.id, zone.assets.audioUrl, L.title, loadZone])
 
   return (
     <main className="min-h-dvh bg-black pb-40">
