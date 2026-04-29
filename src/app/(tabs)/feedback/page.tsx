@@ -18,7 +18,7 @@ export default function FeedbackPage() {
         </p>
 
         {/* Primary CTA — opens external review form */}
-        <div className="mt-10 flex flex-col items-stretch gap-3">
+        <div className="mt-10">
           <a
             href={REVIEW_URL}
             target="_blank"
@@ -27,14 +27,6 @@ export default function FeedbackPage() {
           >
             {t.reviewsCta}
             <span aria-hidden>→</span>
-          </a>
-          <a
-            href={REVIEW_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-center text-[12px] tracking-[0.05em] text-white/45 underline-offset-4 hover:text-white/75 hover:underline"
-          >
-            {t.reviewsOpenInNewTab} ↗
           </a>
         </div>
       </div>

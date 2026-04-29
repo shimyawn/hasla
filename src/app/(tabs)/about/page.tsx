@@ -10,9 +10,10 @@ const ko = {
   heroTitle:
     '다섯개의 달이 피어오르는 밤,\n고대 하슬라의 판타지가 펼쳐집니다.',
   body: [
-    '아주 먼 옛날, 강릉의 고대 땅 하슬라에는\n달이 지지 않고 영원히 하늘을 지키던 눈부신 시절이 있었습니다.\n달의 움직임은 물과 불, 나무와 별, 그리고 땅의 순환을 다스렸고,\n사람과 동식물은 경계 없이 매일 함께 모여 노래하며\n오색 빛으로 물든 숲에서 달빛 아래 춤을 추었습니다.',
-    '그러던 어느 날, 영원할 것 같던 달빛이 다섯 갈래로 조각나\n소나무 숲속으로 소리 없이 내려앉았습니다.\n아무도 기억하지 못하는 그날의 판타지는\n오직 숲을 지켜온 할아버지 나무들의 속삭임을 통해\n어린 나무들에게 비밀처럼 전해져 내려왔습니다.',
-    '이제 긴 기다림을 끝내고 숲이 다시 숨을 쉬기 시작합니다.\n다섯 개의 달이 소나무 숲 위로 떠오르는 오늘,\n당신의 눈 앞에 펼쳐질 고대 하슬라의 신비로운 환상 속으로 초대합니다.',
+    '아주 먼 옛날, 강릉의 고대 땅 하슬라에는\n달이 지지 않고 하늘을 지키던 시절이 있었습니다.\n달은 물과 불, 나무와 별, 그리고 땅의 순환을 다스렸고,\n사람과 동물, 식물은 경계 없이 어울리며\n오색 빛으로 물든 숲에서 매일 춤을 추었습니다.',
+    '그러던 어느 날, 달이 다섯 갈래로 조각나\n소나무 숲 속으로 내려앉았습니다.',
+    '시간이 흐르며 고대 하슬라의 판타지는 잊혀져가고,\n숲을 지켜온 할아버지 나무들의 노래를 통해서만\n어린 나무들에게 비밀처럼 전해져 내려왔습니다.',
+    '다섯 개의 달이 소나무 숲 위로 떠오르는 오늘,\n고대 하슬라의 빛나는 기억이 눈앞에 펼쳐집니다.',
   ],
   s3Label: '오행, 다섯 빛의 순환',
   s3Intro: '다섯 개의 달은 각각 오행 — 목·화·토·금·수의 힘을 품습니다.',
@@ -31,7 +32,7 @@ const ko = {
     '기억이 새겨진 연못 속 빛나는 잔상을 마주해 보세요.',
     '달빛을 머금은 거대한 그루터기 앞에서,\n숲이 깨어나는 순간을 목격해 보세요.',
   ],
-  ctaLabel: '여덟 개의 자리를 둘러보러 가기',
+  ctaLabel: '둘러보기',
 }
 
 const en = {
@@ -39,9 +40,10 @@ const en = {
   heroTitle:
     'On a night when five moons rise,\nthe fantasy of ancient Hasla unfolds.',
   body: [
-    'Long ago, in the ancient land of Hasla in Gangneung,\nthere was a radiant age when the moon never set,\neternally guarding the sky.\nIts movement governed the cycles of water and fire,\ntree and star, and the earth itself —\nand people, animals, and plants gathered each day to sing without boundaries,\ndancing beneath the moonlight in a forest stained with five colors.',
-    'Then, one day, the moonlight that seemed eternal\nshattered into five fragments\nand descended silently into the pine forest.\nThe wonder of that day, which no one remembers,\nhas been passed down only through the whispers\nof the elder trees who keep the forest —\na secret, told quietly to the young saplings.',
-    'Now, the long wait ends, and the forest begins to breathe again.\nOn this night, as five moons rise above the pines,\nwe invite you into the mysterious wonder of ancient Hasla\nthat will unfold before your eyes.',
+    'Long ago, in the ancient land of Hasla in Gangneung,\nthere was a time when the moon never set, watching over the sky.\nThe moon governed the cycles of water and fire,\ntree and star, and the earth —\nand people, animals, and plants mingled without boundaries,\ndancing each day in a forest stained with five colors of light.',
+    'Then, one day, the moon broke into five fragments\nand descended into the pine forest.',
+    'As time passed, the fantasy of ancient Hasla faded —\npreserved only through the songs of the elder trees who guard the forest,\npassed down like a secret to the young saplings.',
+    'On this night, as five moons rise above the pines,\nthe shining memory of ancient Hasla unfolds before your eyes.',
   ],
   s3Label: 'Five Elements, the Cycle of Light',
   s3Intro: 'Each of the five moons holds one of the Five Elements — Wood, Fire, Earth, Metal, Water.',
@@ -60,7 +62,7 @@ const en = {
     'Meet the shimmering afterimage in a memory-marked pond.',
     'Stand before the giant stump bathed in moonlight,\nand witness the forest awakening.',
   ],
-  ctaLabel: 'Visit the eight zones',
+  ctaLabel: 'Explore',
 }
 
 export default function AboutPage() {

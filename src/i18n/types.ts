@@ -70,7 +70,6 @@ export interface UIStrings {
   // Reviews
   reviewsIntro: string
   reviewsCta: string
-  reviewsOpenInNewTab: string
 }
 
 export interface LocalizedZone {

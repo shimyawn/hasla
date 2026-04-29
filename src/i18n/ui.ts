@@ -74,7 +74,6 @@ export const UI: Record<Lang, UIStrings> = {
 
     reviewsIntro: '관람 후 느낀 빛과 울림을 들려주세요. 여러분의 한 마디가 숲을 더 깊이 깨웁니다.',
     reviewsCta: '리뷰 작성하러 가기',
-    reviewsOpenInNewTab: '새 창에서 열기',
   },
 
   en: {
@@ -150,6 +149,5 @@ export const UI: Record<Lang, UIStrings> = {
 
     reviewsIntro: 'Tell us about the light and resonance you felt. Your words help the forest awaken further.',
     reviewsCta: 'Leave a review',
-    reviewsOpenInNewTab: 'Open in new tab',
   },
 }
