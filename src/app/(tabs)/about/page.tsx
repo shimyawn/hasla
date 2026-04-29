@@ -97,7 +97,7 @@ export default function AboutPage() {
         {/* Section — Five moons grid */}
         <Section label={c.s3Label}>
           <FadeInSection>
-            <p className="mb-7 whitespace-pre-line font-display text-[15px] leading-[1.95] text-white/85">
+            <p className="mb-7 whitespace-pre-line font-display text-[16.5px] leading-[1.85] text-white/85">
               {c.s3Intro}
             </p>
           </FadeInSection>
