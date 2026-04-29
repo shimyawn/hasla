@@ -32,15 +32,10 @@ export default function MapPageClient({ zones }: Props) {
   return (
     <main className="min-h-dvh bg-black pb-28">
       <section className="mx-auto mt-8 max-w-md px-4">
-        {/* Title + caption block — sits above the map */}
-        <header className="mb-4 px-1 text-center">
-          <h1 className="font-display text-[22px] font-medium text-white">
-            {t.mapPageTitle}
-          </h1>
-          <p className="mt-2 font-clean text-[12.5px] leading-[1.65] text-white/60">
-            {t.mapCaption}
-          </p>
-        </header>
+        {/* Caption block — sits above the map */}
+        <p className="mb-4 px-1 text-center font-clean text-[12.5px] leading-[1.65] text-white/60">
+          {t.mapCaption}
+        </p>
 
         {/* Map */}
         <div className="relative aspect-[1600/1749] w-full overflow-hidden rounded-2xl border border-border bg-card">
