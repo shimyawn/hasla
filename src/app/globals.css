@@ -64,6 +64,18 @@ html, body {
     #2353A3 100%);
 }
 
+/* Vertical (top→bottom) variant — for narrow vertical bars where the 90deg
+   variant collapses to a single visible color. */
+.hasla-gradient-v {
+  background: linear-gradient(180deg,
+    #FFD06A 0%,
+    #FF8653 22%,
+    #FF5184 45%,
+    #B96AC7 65%,
+    #21A3DD 85%,
+    #2353A3 100%);
+}
+
 /* Primary CTA — visually matches the logo's color blend */
 .hasla-button {
   background: linear-gradient(95deg,

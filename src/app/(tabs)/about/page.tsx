@@ -82,17 +82,17 @@ export default function AboutPage() {
             <p className="font-display text-[11px] tracking-[0.45em] text-hasla-yellow/80">
               {c.heroEyebrow}
             </p>
-            <h1 className="mt-5 whitespace-pre-line font-display text-[26px] font-medium italic leading-[1.45] text-white">
+            <h1 className="mt-5 whitespace-pre-line font-display text-[23px] font-medium italic leading-[1.5] text-white">
               {c.heroTitle}
             </h1>
           </header>
         </FadeInSection>
 
-        {/* Body — three narrative paragraphs */}
+        {/* Body — narrative paragraphs */}
         <section className="mt-16 space-y-10">
           {c.body.map((para, i) => (
             <FadeInSection key={i} delay={0.06 * i}>
-              <p className="whitespace-pre-line font-display text-[16px] leading-[1.95] text-white/85">
+              <p className="whitespace-pre-line font-display text-[15px] leading-[1.95] text-white/85">
                 {para}
               </p>
             </FadeInSection>
@@ -102,7 +102,7 @@ export default function AboutPage() {
         {/* Section — Five moons grid */}
         <Section label={c.s3Label}>
           <FadeInSection>
-            <p className="mb-7 font-display text-[16px] leading-[1.95] text-white/85">
+            <p className="mb-7 font-display text-[15px] leading-[1.95] text-white/85">
               {c.s3Intro}
             </p>
           </FadeInSection>
@@ -121,7 +121,7 @@ export default function AboutPage() {
             ))}
           </ul>
           <FadeInSection delay={0.1}>
-            <p className="mt-7 font-display text-[16px] italic leading-[1.95] text-white/85">
+            <p className="mt-7 font-display text-[15px] italic leading-[1.95] text-white/85">
               {c.s3Outro}
             </p>
           </FadeInSection>
@@ -131,7 +131,7 @@ export default function AboutPage() {
         <Section label={c.s4Label}>
           {c.s4.map((line, i) => (
             <FadeInSection key={i} delay={0.06 * i}>
-              <p className="mb-4 last:mb-0 whitespace-pre-line font-display text-[16px] leading-[1.85] text-white/85">
+              <p className="mb-4 last:mb-0 whitespace-pre-line font-display text-[15px] leading-[1.85] text-white/85">
                 {line}
               </p>
             </FadeInSection>
@@ -154,7 +154,7 @@ export default function AboutPage() {
         {/* Teaser — placeholder, will host embedded video */}
         <Section label={t.aboutTeaserLabel}>
           <FadeInSection>
-            <p className="mb-5 font-display text-[16px] leading-[1.85] text-white/85">
+            <p className="mb-5 font-display text-[15px] leading-[1.85] text-white/85">
               {t.aboutTeaserHeading}
             </p>
           </FadeInSection>
