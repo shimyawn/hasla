@@ -4,7 +4,6 @@ import { Noto_Sans_KR } from 'next/font/google'
 import './globals.css'
 import { LanguageProvider } from '@/i18n/LanguageContext'
 import LanguageButton from '@/components/LanguageButton'
-import InfoButton from '@/components/InfoButton'
 
 const yoonMeoli = localFont({
   src: [
@@ -45,9 +44,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ko" className={`${yoonMeoli.variable} ${notoSans.variable} h-full antialiased`}>
       <body className="min-h-dvh bg-background text-foreground">
         <LanguageProvider>
-          <div className="fixed right-4 top-3 z-30 flex items-center gap-2">
+          <div className="fixed right-4 top-3 z-50">
             <LanguageButton />
-            <InfoButton />
           </div>
           {children}
         </LanguageProvider>

@@ -57,29 +57,7 @@ export default function MapPageClient({ zones }: Props) {
   }, [])
 
   return (
-    <main className="min-h-dvh bg-black pb-32">
-      <header className="sticky top-0 z-10 border-b border-border bg-black/85 backdrop-blur-md">
-        <div className="mx-auto flex max-w-md items-center justify-between px-5 py-3">
-          <Link
-            href="/"
-            className="font-display text-[12px] tracking-[0.3em] text-muted hover:text-foreground"
-          >
-            {t.navHome}
-          </Link>
-          <Link href="/" className="relative h-8 w-24 shrink-0" aria-label={t.metaTitle}>
-            <Image
-              src="/images/logo_full.png"
-              alt={t.metaTitle}
-              fill
-              priority
-              sizes="96px"
-              className="object-contain"
-            />
-          </Link>
-          <span className="w-[60px]" />
-        </div>
-      </header>
-
+    <main className="min-h-dvh bg-black pb-28">
       <section className="mx-auto mt-4 max-w-md px-4">
         <div className="relative grid grid-cols-2 overflow-hidden rounded-full border border-border bg-card/60 p-1">
           <span

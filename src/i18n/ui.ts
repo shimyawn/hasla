@@ -53,6 +53,17 @@ export const UI: Record<Lang, UIStrings> = {
     infoCloseLabel: '닫기',
     infoPerDayLabel: '1일 4타임',
     splashStatusBanner: '지금은 가오픈 기간입니다 · 1일 4타임 송출 · 그랜드 오픈 2026년 7월 중순 예정',
+
+    tabHome: '메인',
+    tabAbout: 'HASLA 소개',
+    tabShow: '상영시간표',
+    tabReviews: '리뷰',
+
+    aboutPageTitle: 'HASLA 소개',
+    showPageTitle: '상영시간표',
+    reviewsPageTitle: '리뷰',
+    comingSoonLabel: 'COMING SOON',
+    comingSoonNote: '곧 공개됩니다.',
   },
 
   en: {
@@ -107,5 +118,16 @@ export const UI: Record<Lang, UIStrings> = {
     infoCloseLabel: 'Close',
     infoPerDayLabel: '4 sessions/day',
     splashStatusBanner: 'Currently in soft-open · 4 sessions/day · Grand opening mid-July 2026',
+
+    tabHome: 'Home',
+    tabAbout: 'About HASLA',
+    tabShow: 'Show Schedule',
+    tabReviews: 'Reviews',
+
+    aboutPageTitle: 'About HASLA',
+    showPageTitle: 'Show Schedule',
+    reviewsPageTitle: 'Reviews',
+    comingSoonLabel: 'COMING SOON',
+    comingSoonNote: 'Coming soon.',
   },
 }

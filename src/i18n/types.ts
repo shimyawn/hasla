@@ -53,6 +53,17 @@ export interface UIStrings {
   infoCloseLabel: string
   infoPerDayLabel: string
   splashStatusBanner: string
+  // Bottom tabs
+  tabHome: string
+  tabAbout: string
+  tabShow: string
+  tabReviews: string
+  // Page titles + placeholders
+  aboutPageTitle: string
+  showPageTitle: string
+  reviewsPageTitle: string
+  comingSoonLabel: string
+  comingSoonNote: string
 }
 
 export interface LocalizedZone {
