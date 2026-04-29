@@ -93,7 +93,7 @@ export default function MapPageClient({ zones }: Props) {
 function MapView({ zones, lang, t }: { zones: Zone[]; lang: Lang; t: ReturnType<typeof useLang>['t'] }) {
   return (
     <section className="mx-auto mt-4 max-w-md px-4">
-      <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl border border-border bg-card">
+      <div className="relative aspect-[1600/1749] w-full overflow-hidden rounded-2xl border border-border bg-card">
         <Image
           src="/images/map.jpg"
           alt={t.metaTitle}
