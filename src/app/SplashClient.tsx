@@ -117,7 +117,6 @@ export default function SplashClient() {
           style={{ opacity: navigating ? 0 : 1, transition: `opacity ${TRANSITION_MS}ms ${EASE}` }}
         >
           <p>{t.infoPreOpenLineShort}.</p>
-          <p>19:30 · 20:00 · 20:30 · 21:00 ({t.infoPerDayLabel})</p>
           <p>{t.infoGrandOpenLabel} · {t.infoGrandOpenWhen}</p>
         </div>
         <a
