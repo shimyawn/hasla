@@ -45,7 +45,7 @@ export default function ZonePageClient({ zone }: Props) {
   }, [router])
 
   return (
-    <main className="min-h-dvh bg-black pb-24">
+    <main className="min-h-dvh bg-black pb-32">
       {/* Hero */}
       <div className="relative h-[58vh] min-h-[320px] w-full overflow-hidden">
         <Image
@@ -178,10 +178,11 @@ export default function ZonePageClient({ zone }: Props) {
         </Link>
       )}
 
-      {/* Progress indicator — bottom-center */}
+      {/* Progress indicator — sits above the bottom tab bar */}
       <div
         aria-hidden
-        className="fixed bottom-5 left-1/2 z-30 -translate-x-1/2 rounded-full bg-black/55 px-3 py-1 font-display text-[10px] tracking-[0.4em] text-white/65 backdrop-blur-md"
+        className="fixed left-1/2 z-30 -translate-x-1/2 rounded-full bg-black/55 px-3 py-1 font-display text-[10px] tracking-[0.4em] text-white/65 backdrop-blur-md"
+        style={{ bottom: 'calc(env(safe-area-inset-bottom, 0px) + 76px)' }}
       >
         {String(idx + 1).padStart(2, '0')} / {String(all.length).padStart(2, '0')}
       </div>
