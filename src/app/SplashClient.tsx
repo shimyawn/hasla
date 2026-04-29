@@ -103,8 +103,15 @@ export default function SplashClient() {
 
         <p
           aria-hidden
-          className="mt-4 text-[11px] tracking-[0.3em] text-white/45"
-          style={{ opacity: revealed ? 0 : 1, transition: `opacity ${TRANSITION_MS}ms ${EASE}` }}
+          className="mt-4 inline-block text-[11px] tracking-[0.3em] text-white/45"
+          style={{
+            opacity: revealed ? 0 : 1,
+            transform: revealed ? 'translateY(6px)' : 'translateY(0)',
+            transition: `opacity ${TRANSITION_MS}ms ${EASE}, transform ${TRANSITION_MS}ms ${EASE}`,
+            willChange: 'opacity, transform',
+            isolation: 'isolate',
+            backfaceVisibility: 'hidden',
+          }}
         >
           {t.splashHint}
         </p>
