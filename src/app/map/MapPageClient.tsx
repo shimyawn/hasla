@@ -172,80 +172,77 @@ function MapView({ zones, lang, t }: { zones: Zone[]; lang: Lang; t: ReturnType<
   )
 }
 
-function ListView({ zones, lang, t }: { zones: Zone[]; lang: Lang; t: ReturnType<typeof useLang>['t'] }) {
+function ListView({ zones, lang }: { zones: Zone[]; lang: Lang; t: ReturnType<typeof useLang>['t'] }) {
   return (
-    <section className="mx-auto mt-6 max-w-md px-6 pb-16">
-      <ul className="flex flex-col gap-12">
+    <section className="mx-auto mt-4 max-w-md px-4 pb-12">
+      <ul className="flex flex-col divide-y divide-white/8">
         {zones.map((z, idx) => {
           const L = localized(z, lang)
           const num = String(idx + 1).padStart(2, '0')
           return (
-            <FadeInSection key={z.id}>
+            <FadeInSection key={z.id} delay={0.03 * idx}>
               <li>
                 <Link
                   href={`/zone/${z.id}`}
-                  className="group block overflow-hidden bg-black text-white"
+                  className="group relative flex items-center gap-4 py-4 active:bg-white/[0.02]"
                 >
-                  {/* Hero */}
-                  <div className="relative aspect-[16/10] w-full overflow-hidden">
+                  {/* Accent bar — appears on hover/active */}
+                  <span
+                    aria-hidden
+                    className="absolute left-0 top-1/2 h-0 w-[3px] -translate-y-1/2 rounded-full transition-all duration-300 ease-out group-hover:h-[70%] group-active:h-[70%]"
+                    style={{ background: z.accentColor }}
+                  />
+
+                  {/* Thumbnail */}
+                  <div className="relative h-[88px] w-[88px] shrink-0 overflow-hidden rounded-xl bg-white/5">
                     <Image
                       src={z.assets.mainImage}
                       alt={L.title}
                       fill
-                      sizes="(max-width: 448px) 100vw, 448px"
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                      sizes="88px"
+                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40" />
+                    <div className="absolute inset-0 bg-gradient-to-tr from-black/30 to-transparent" />
                   </div>
 
-                  {/* Slim content panel — only enough to entice the click */}
-                  <div className="relative pt-6 pb-6">
-                    {/* Hairline accent divider */}
-                    <div
-                      aria-hidden
-                      className="absolute left-0 top-0 h-[2px] w-12"
-                      style={{ background: z.accentColor }}
-                    />
-
-                    {/* Number + element row */}
-                    <div className="mb-3.5 flex items-baseline justify-between gap-3 text-[10px] tracking-[0.4em]">
+                  {/* Content column */}
+                  <div className="min-w-0 flex-1 pr-2">
+                    <div className="flex items-baseline gap-1.5 text-[10px] tracking-[0.32em]">
                       <span className="font-display" style={{ color: z.accentColor }}>
-                        ZONE · {num}
+                        ZONE {num}
                       </span>
                       {L.element && (
-                        <span className="font-display text-white/35">{L.element}</span>
+                        <span className="font-display text-white/30">· {L.element}</span>
                       )}
                     </div>
-
-                    {/* Title */}
-                    <h3 className="font-display text-[26px] font-medium leading-[1.15] text-white">
+                    <h3 className="mt-1 truncate font-display text-[20px] font-medium leading-tight text-white">
                       {L.title}
                     </h3>
                     {L.subtitle && (
-                      <p className="mt-1.5 font-display text-[13.5px] leading-snug text-white/55">
+                      <p className="mt-0.5 truncate font-display text-[12.5px] leading-snug text-white/55">
                         {L.subtitle}
                       </p>
                     )}
-
-                    {/* Tagline only (one-line introduction) */}
                     {L.tagline && (
-                      <p className="mt-4 font-display text-[14.5px] italic leading-[1.55] text-white/75 line-clamp-2">
+                      <p className="mt-1.5 truncate font-display text-[12.5px] italic leading-snug text-white/65">
                         {L.tagline}
                       </p>
                     )}
-
-                    {/* CTA — encourages tap */}
-                    <div className="mt-6 flex items-center gap-2 text-[12px] tracking-[0.2em]">
-                      <span className="font-display" style={{ color: z.accentColor }}>
-                        {t.viewDetail}
-                      </span>
-                      <span
-                        aria-hidden
-                        className="block h-px flex-1 transition-all duration-500 ease-out group-hover:flex-[1.6]"
-                        style={{ background: `${z.accentColor}55` }}
-                      />
-                    </div>
                   </div>
+
+                  {/* Chevron */}
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-4 w-4 shrink-0 text-white/30 transition-colors duration-300 group-hover:text-white/85"
+                    aria-hidden
+                  >
+                    <path d="M9 6l6 6-6 6" />
+                  </svg>
                 </Link>
               </li>
             </FadeInSection>
