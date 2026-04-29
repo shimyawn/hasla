@@ -70,6 +70,19 @@ export interface UIStrings {
   // Reviews
   reviewsIntro: string
   reviewsCta: string
+  // Notify (grand-open notification signup)
+  notifySectionLabel: string
+  notifyHeading: string
+  notifyIntro: string
+  notifyEmailPlaceholder: string
+  notifyPhonePlaceholder: string
+  notifyConsent: string
+  notifySubmit: string
+  notifySubmitting: string
+  notifySuccess: string
+  notifyError: string
+  notifyValidation: string
+  notifyComingSoon: string
 }
 
 export interface LocalizedZone {

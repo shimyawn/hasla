@@ -145,7 +145,7 @@ export default function ZonePageClient({ zone }: Props) {
                 </div>
               ))}
             </div>
-            <p className="mt-3 text-[12.5px] leading-relaxed text-white/55">
+            <p className="mt-3 whitespace-pre-line text-[12.5px] leading-relaxed text-white/55">
               {t.infoSessionsNote}
             </p>
           </FadeInSection>

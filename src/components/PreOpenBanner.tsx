@@ -14,7 +14,7 @@ export default function PreOpenBanner() {
       {t.infoNoticeParagraphs.map((p, i) => (
         <p
           key={i}
-          className="mt-2.5 text-[13px] leading-[1.7] text-neutral-800"
+          className="mt-2.5 whitespace-pre-line text-[13px] leading-[1.7] text-neutral-800"
         >
           {p}
         </p>

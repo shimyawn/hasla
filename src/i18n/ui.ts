@@ -46,11 +46,13 @@ export const UI: Record<Lang, UIStrings> = {
     infoPreOpenLineShort: '지금은 가오픈 기간입니다',
     infoNoticeParagraphs: [
       '현재 HASLA는 정식 개관을 앞둔 가오픈 기간입니다.',
-      '시스템 최적화를 위한 시운영 단계로, 일부 관람 및 이용이 제한될 수 있는 점 방문객 여러분의 너른 양해 부탁드립니다.',
-      '2026년 7월 중순, 그랜드 오픈 예정이니 더욱 완벽한 모습으로 정식 인사드리겠습니다. HASLA에 많은 관심과 기대 부탁드립니다. 감사합니다.',
+      '시스템 최적화를 위한 시운영 단계로,\n일부 관람 및 이용이 제한될 수 있습니다.\n방문객 여러분의 너른 양해 부탁드립니다.',
+      '2026년 7월 중순, 그랜드 오픈 예정인 HASLA는\n더욱 완벽한 모습으로 정식 인사드리겠습니다.',
+      'HASLA에 많은 관심과 기대 부탁드립니다.\n감사합니다.',
     ],
     infoSessionsHeading: '인피니티 포레스트 조명쇼 타임테이블',
-    infoSessionsNote: '매일 19:30부터 21:30까지, 30분 간격 4회 송출됩니다.',
+    infoSessionsNote:
+      '매일 19:30부터 21:30까지, 30분 간격 4회 송출됩니다.\n7월 정식 오픈 이후 시간표가 변경될 예정입니다.',
     infoGrandOpenLabel: '그랜드 오픈',
     infoGrandOpenWhen: '2026년 7월 중순 예정',
     infoCloseLabel: '닫기',
@@ -60,11 +62,11 @@ export const UI: Record<Lang, UIStrings> = {
     tabHome: '메인',
     tabAbout: 'HASLA 소개',
     tabShow: '상영시간표',
-    tabReviews: '리뷰',
+    tabReviews: '관람객 참여',
 
     aboutPageTitle: 'HASLA 소개',
     showPageTitle: '상영시간표',
-    reviewsPageTitle: '리뷰',
+    reviewsPageTitle: '관람객 참여',
     comingSoonLabel: 'COMING SOON',
     comingSoonNote: '곧 공개됩니다.',
 
@@ -75,6 +77,19 @@ export const UI: Record<Lang, UIStrings> = {
     reviewsIntro:
       '관람 후 느낀 점을 편하게 들려주세요.\n여러분의 한 마디가 강릉을 지키는 다섯 개의 달에 빛을 더합니다.',
     reviewsCta: '리뷰 작성하러 가기',
+
+    notifySectionLabel: '알림 신청',
+    notifyHeading: '정식 오픈 알림 소식 받기',
+    notifyIntro: '2026년 7월 그랜드 오픈 시 가장 먼저 알려드릴게요.',
+    notifyEmailPlaceholder: '이메일 (선택)',
+    notifyPhonePlaceholder: '전화번호 (선택)',
+    notifyConsent: '신청과 함께 오픈 알림 발송에 동의하는 것으로 간주됩니다.',
+    notifySubmit: '신청하기',
+    notifySubmitting: '신청 중…',
+    notifySuccess: '신청 완료! 정식 오픈 시 알려드릴게요.',
+    notifyError: '신청에 실패했습니다. 잠시 후 다시 시도해 주세요.',
+    notifyValidation: '이메일이나 전화번호 중 하나를 입력해 주세요.',
+    notifyComingSoon: '신청 기능은 곧 활성화됩니다.',
   },
 
   en: {
@@ -122,11 +137,13 @@ export const UI: Record<Lang, UIStrings> = {
     infoPreOpenLineShort: 'Currently in soft-open period',
     infoNoticeParagraphs: [
       'HASLA is currently in a soft-open period ahead of its official grand opening.',
-      'During this system-optimization phase, some areas and services may be limited. We sincerely appreciate your understanding.',
-      'The grand opening is planned for mid-July 2026, when we will greet you in our complete form. We look forward to your continued interest in HASLA. Thank you.',
+      'As a system-optimization phase,\nsome areas and services may be limited.\nWe sincerely appreciate your understanding.',
+      'HASLA, planned to grand-open in mid-July 2026,\nwill greet you again in its complete form.',
+      'Thank you for your continued interest in HASLA.\nThank you.',
     ],
     infoSessionsHeading: 'Infinity Forest Light Show — Timetable',
-    infoSessionsNote: 'Daily, four 30-minute sessions between 19:30 and 21:30.',
+    infoSessionsNote:
+      'Daily, four 30-minute sessions between 19:30 and 21:30.\nThe schedule may change after the official July opening.',
     infoGrandOpenLabel: 'Grand Opening',
     infoGrandOpenWhen: 'Mid-July 2026 (planned)',
     infoCloseLabel: 'Close',
@@ -136,11 +153,11 @@ export const UI: Record<Lang, UIStrings> = {
     tabHome: 'Home',
     tabAbout: 'About HASLA',
     tabShow: 'Show Schedule',
-    tabReviews: 'Reviews',
+    tabReviews: 'Engage',
 
     aboutPageTitle: 'About HASLA',
     showPageTitle: 'Show Schedule',
-    reviewsPageTitle: 'Reviews',
+    reviewsPageTitle: 'Engage with HASLA',
     comingSoonLabel: 'COMING SOON',
     comingSoonNote: 'Coming soon.',
 
@@ -151,5 +168,18 @@ export const UI: Record<Lang, UIStrings> = {
     reviewsIntro:
       'Share how you felt after the experience.\nYour words add light to the five moons that watch over Gangneung.',
     reviewsCta: 'Leave a review',
+
+    notifySectionLabel: 'Sign up',
+    notifyHeading: 'Get notified at grand opening',
+    notifyIntro: "We'll be the first to let you know when HASLA officially opens in July 2026.",
+    notifyEmailPlaceholder: 'Email (optional)',
+    notifyPhonePlaceholder: 'Phone (optional)',
+    notifyConsent: 'By signing up, you agree to receive opening updates.',
+    notifySubmit: 'Sign up',
+    notifySubmitting: 'Submitting…',
+    notifySuccess: "You're in! We'll be in touch.",
+    notifyError: 'Something went wrong. Please try again later.',
+    notifyValidation: 'Please enter an email or phone number.',
+    notifyComingSoon: 'Sign-up will be activated soon.',
   },
 }
