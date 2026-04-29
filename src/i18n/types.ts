@@ -74,9 +74,12 @@ export interface UIStrings {
   notifySectionLabel: string
   notifyHeading: string
   notifyIntro: string
+  notifyBenefits: string[]
   notifyEmailPlaceholder: string
   notifyPhonePlaceholder: string
   notifyConsent: string
+  notifyConsentDetail: string
+  notifyConsentRequired: string
   notifySubmit: string
   notifySubmitting: string
   notifySuccess: string
