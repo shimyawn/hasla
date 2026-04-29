@@ -61,19 +61,18 @@ export default function SplashClient() {
           {t.splashLabel}
         </p>
 
-        {/* Stacked logos — softened cross-fade with subtle scale to ease the visual swap */}
-        <div className="relative aspect-[3/1] w-[88%] max-w-[420px]">
+        {/* Stacked logos — pure opacity cross-fade. Breathing wrapped on parent so it never conflicts. */}
+        <div className="relative aspect-[3/1] w-[88%] max-w-[420px] icon-breathe">
           <Image
             src="/images/logo_black.png"
             alt="HASLA"
             fill
             priority
             sizes="(max-width: 640px) 88vw, 420px"
-            className={`object-contain ${revealed ? '' : 'hasla-pulse'}`}
+            className="object-contain"
             style={{
               opacity: revealed ? 0 : 1,
-              transform: revealed ? 'scale(1.02)' : 'scale(1)',
-              transition: `opacity ${TRANSITION_MS}ms ${EASE}, transform ${TRANSITION_MS}ms ${EASE}`,
+              transition: `opacity ${TRANSITION_MS}ms ${EASE}`,
             }}
           />
           <Image
@@ -82,11 +81,10 @@ export default function SplashClient() {
             fill
             priority
             sizes="(max-width: 640px) 88vw, 420px"
-            className={`object-contain ${revealed ? 'hasla-pulse' : ''}`}
+            className="object-contain"
             style={{
               opacity: revealed ? 1 : 0,
-              transform: revealed ? 'scale(1)' : 'scale(0.98)',
-              transition: `opacity ${TRANSITION_MS}ms ${EASE}, transform ${TRANSITION_MS}ms ${EASE}`,
+              transition: `opacity ${TRANSITION_MS}ms ${EASE}`,
             }}
           />
         </div>
