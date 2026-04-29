@@ -46,16 +46,17 @@ export default function ZonePageClient({ zone }: Props) {
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/30 to-black" />
-        <div className="absolute left-0 right-0 top-0 flex items-center justify-between px-5 pt-5">
-          <Link href="/map" className="rounded-full bg-black/50 px-3 py-1.5 text-[12px] text-white backdrop-blur-sm">
-            {t.navMap}
-          </Link>
-          {L.element && (
-            <div className="rounded-full bg-black/50 px-3 py-1.5 text-[11px] tracking-[0.25em] text-white backdrop-blur-sm">
-              {L.element}
-            </div>
-          )}
-        </div>
+        <Link
+          href="/map"
+          className="absolute left-5 top-5 rounded-full bg-black/50 px-3 py-1.5 text-[12px] text-white backdrop-blur-sm"
+        >
+          {t.navMap}
+        </Link>
+        {L.element && (
+          <div className="absolute right-5 top-16 rounded-full bg-black/50 px-3 py-1.5 text-[11px] tracking-[0.25em] text-white backdrop-blur-sm">
+            {L.element}
+          </div>
+        )}
         <div className="absolute bottom-0 left-0 right-0 px-6 pb-6">
           <div className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-[10px] font-semibold tracking-[0.3em] text-black" style={{ backgroundColor: zone.accentColor }}>
             ZONE {zoneNumber(zone.id)}
