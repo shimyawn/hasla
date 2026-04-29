@@ -108,7 +108,7 @@ export default function AboutPage() {
                   <span className="font-display text-[12.5px] tracking-[0.32em] text-hasla-yellow/85">
                     {moon.element}
                   </span>
-                  <p className="mt-1.5 text-[13px] leading-[1.7] text-white/65">
+                  <p className="mt-1.5 font-clean text-[13px] leading-[1.7] text-white/65">
                     {moon.desc}
                   </p>
                 </li>
@@ -126,7 +126,7 @@ export default function AboutPage() {
         <Section label={c.s4Label}>
           {c.s4.map((line, i) => (
             <FadeInSection key={i} delay={0.06 * i}>
-              <p className="mb-4 last:mb-0 whitespace-pre-line font-display text-[15px] leading-[1.85] text-white/85">
+              <p className="mb-4 last:mb-0 whitespace-pre-line font-clean text-[15px] leading-[1.85] text-white/85">
                 {line}
               </p>
             </FadeInSection>
