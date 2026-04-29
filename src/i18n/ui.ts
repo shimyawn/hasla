@@ -81,10 +81,9 @@ export const UI: Record<Lang, UIStrings> = {
     notifySectionLabel: 'EARLY ACCESS',
     notifyHeading: '오픈 소식 & 한정 혜택을\n가장 먼저 받아보세요',
     notifyIntro:
-      '2026년 7월 그랜드 오픈을 기다리는 분들을 위한 HASLA의 작은 선물.\n달이 차오르듯, 빛나는 소식을 가장 먼저 보내드릴게요.',
+      '2026년 7월 그랜드 오픈을 기다리는 분들을 위한 작은 선물.\n달이 차오르듯, 빛나는 소식을 가장 먼저 보내드릴게요.',
     notifyBenefits: [
       '정식 그랜드 오픈 일정 알림',
-      '얼리버드 · 시즌 한정 혜택 안내',
       '한정 프리뷰 · 비공개 이벤트 초대',
     ],
     notifyEmailPlaceholder: '이메일 주소',
@@ -181,10 +180,9 @@ export const UI: Record<Lang, UIStrings> = {
     notifySectionLabel: 'EARLY ACCESS',
     notifyHeading: 'Be the first to receive\nopening news & exclusive benefits',
     notifyIntro:
-      "A small gift from HASLA for those awaiting our July 2026 grand opening.\nLike the moon waxing, we'll send the brightest news to you first.",
+      "A small gift for those awaiting our July 2026 grand opening.\nLike the moon waxing, we'll send the brightest news to you first.",
     notifyBenefits: [
       'Notice of the official grand opening',
-      'Early-bird & seasonal exclusive benefits',
       'Invitations to private previews and events',
     ],
     notifyEmailPlaceholder: 'Email address',
