@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { Zone } from '@/lib/types'
@@ -12,6 +12,8 @@ import type { Lang, LocalizedZone } from '@/i18n/types'
 interface Props {
   zones: Zone[]
 }
+
+type View = 'map' | 'list'
 
 function localized(z: Zone, lang: Lang): LocalizedZone {
   return (
@@ -28,9 +30,31 @@ function localized(z: Zone, lang: Lang): LocalizedZone {
   )
 }
 
+function readViewFromUrl(): View {
+  if (typeof window === 'undefined') return 'map'
+  return new URLSearchParams(window.location.search).get('view') === 'list' ? 'list' : 'map'
+}
+
 export default function MapPageClient({ zones }: Props) {
-  const [view, setView] = useState<'map' | 'list'>('map')
+  const [view, setViewState] = useState<View>(readViewFromUrl)
   const { t, lang } = useLang()
+
+  // Update URL when toggling so back-from-zone returns to the same view
+  const setView = (v: View) => {
+    setViewState(v)
+    if (typeof window !== 'undefined') {
+      const url = v === 'list' ? '/map?view=list' : '/map'
+      // replaceState — doesn't add a history entry, just updates the URL
+      window.history.replaceState(null, '', url)
+    }
+  }
+
+  // When the user navigates back (popstate), sync state with URL
+  useEffect(() => {
+    const onPopState = () => setViewState(readViewFromUrl())
+    window.addEventListener('popstate', onPopState)
+    return () => window.removeEventListener('popstate', onPopState)
+  }, [])
 
   return (
     <main className="min-h-dvh bg-black pb-32">
