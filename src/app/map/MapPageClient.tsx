@@ -115,24 +115,25 @@ function MapView({ zones, lang, t }: { zones: Zone[]; lang: Lang; t: ReturnType<
                 top: z.mapPin.cy,
                 width: z.mapPin.w,
                 height: z.mapPin.h,
+                ['--glow' as string]: `${z.accentColor}cc`,
               }}
             >
-              {/* Subtle breathing icon — dims + tiny scale loop, staggered per zone */}
-              <Image
-                src={`/icons/${z.id}.png`}
-                alt=""
-                fill
-                sizes="22vw"
-                className="icon-breathe object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06] group-active:scale-[1.06]"
-                style={{
-                  filter: `drop-shadow(0 0 8px ${z.accentColor}aa)`,
-                  animationDelay: `${(i * 0.65) % 5.5}s`,
-                }}
-              />
-              {/* Bloom on hover/tap */}
+              {/* Outer wrapper: hover scale (transition-only, no animation conflict) */}
+              <div className="relative h-full w-full transition-transform duration-500 ease-out group-hover:scale-[1.07] group-active:scale-[1.07]">
+                {/* Inner Image: breathing animation (opacity + scale + glow), uses --glow */}
+                <Image
+                  src={`/icons/${z.id}.png`}
+                  alt=""
+                  fill
+                  sizes="22vw"
+                  className="icon-glow object-cover"
+                  style={{ animationDelay: `${(i * 0.65) % 5.5}s` }}
+                />
+              </div>
+              {/* Bloom on hover/tap (separate element, doesn't share transform with breathing icon) */}
               <span
                 aria-hidden
-                className="absolute inset-[-12%] rounded-[40%] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-active:opacity-100"
+                className="pointer-events-none absolute inset-[-15%] rounded-[40%] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-active:opacity-100"
                 style={{
                   background: `radial-gradient(ellipse at center, ${z.accentColor}66 0%, transparent 65%)`,
                   mixBlendMode: 'screen',
