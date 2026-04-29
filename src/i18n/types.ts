@@ -46,6 +46,17 @@ export interface UIStrings {
   concept: string
   // Language toggle
   langToggleLabel: string
+  // Info / operating hours
+  infoButtonLabel: string
+  infoSheetTitle: string
+  infoPreOpenLabel: string
+  infoPreOpenLineShort: string
+  infoSessionsHeading: string
+  infoSessionsNote: string
+  infoGrandOpenLabel: string
+  infoGrandOpenWhen: string
+  infoCloseLabel: string
+  splashStatusBanner: string
 }
 
 export interface LocalizedZone {

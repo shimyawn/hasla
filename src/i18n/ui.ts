@@ -46,6 +46,17 @@ export const UI: Record<Lang, UIStrings> = {
     concept: '다섯 개의 달이 뜬 밤, 고대 하슬라의 모습이 재현된다.',
 
     langToggleLabel: 'LANGUAGE',
+
+    infoButtonLabel: 'INFO',
+    infoSheetTitle: '운영 안내',
+    infoPreOpenLabel: '가오픈 기간',
+    infoPreOpenLineShort: '지금은 가오픈 기간입니다',
+    infoSessionsHeading: '송출 시간',
+    infoSessionsNote: '매일 19:30부터 21:30까지, 30분 간격 4회 송출됩니다.',
+    infoGrandOpenLabel: '그랜드 오픈',
+    infoGrandOpenWhen: '2026년 7월 중순 예정',
+    infoCloseLabel: '닫기',
+    splashStatusBanner: '지금은 가오픈 기간입니다 · 1일 4타임 송출 · 그랜드 오픈 2026년 7월 중순 예정',
   },
 
   en: {
@@ -93,5 +104,16 @@ export const UI: Record<Lang, UIStrings> = {
     concept: 'When five moons rise, the world of ancient Hasla returns.',
 
     langToggleLabel: 'LANGUAGE',
+
+    infoButtonLabel: 'INFO',
+    infoSheetTitle: 'Operating Information',
+    infoPreOpenLabel: 'Soft Open Period',
+    infoPreOpenLineShort: 'Currently in soft-open period',
+    infoSessionsHeading: 'Show Times',
+    infoSessionsNote: 'Daily, four 30-minute sessions between 19:30 and 21:30.',
+    infoGrandOpenLabel: 'Grand Opening',
+    infoGrandOpenWhen: 'Mid-July 2026 (planned)',
+    infoCloseLabel: 'Close',
+    splashStatusBanner: 'Currently in soft-open · 4 sessions/day · Grand opening mid-July 2026',
   },
 }

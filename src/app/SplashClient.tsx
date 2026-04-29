@@ -23,6 +23,9 @@ export default function SplashClient() {
       const target = e.target as HTMLElement | null
       if (target?.closest('a[data-cta]')) return
       if (target?.closest('button[data-lang]')) return
+      if (target?.closest('button[data-info]')) return
+      // Also skip taps inside the info sheet (role=dialog)
+      if (target?.closest('[role="dialog"]')) return
       setRevealed((prev) => !prev)
     }
     window.addEventListener('pointerdown', onTap)
@@ -108,6 +111,13 @@ export default function SplashClient() {
       </div>
 
       <footer className="flex w-full max-w-md flex-col items-center gap-3 px-6">
+        {/* Pre-open status banner */}
+        <p
+          className="mb-1 max-w-xs text-center font-display text-[11.5px] leading-relaxed text-white/65"
+          style={{ opacity: navigating ? 0 : 1, transition: `opacity ${TRANSITION_MS}ms ${EASE}` }}
+        >
+          {t.splashStatusBanner}
+        </p>
         <a
           href="/map"
           data-cta
