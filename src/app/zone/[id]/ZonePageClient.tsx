@@ -125,8 +125,8 @@ export default function ZonePageClient({ zone }: Props) {
         </section>
       )}
 
-      {/* Floating prev arrow — vertically centered, edge-pinned */}
-      {prev ? (
+      {/* Floating prev arrow — only when there's a previous zone */}
+      {prev && (
         <Link
           href={`/zone/${prev.id}`}
           aria-label="Previous zone"
@@ -136,19 +136,10 @@ export default function ZonePageClient({ zone }: Props) {
             <path d="M15 18l-6-6 6-6" />
           </svg>
         </Link>
-      ) : (
-        <span
-          aria-hidden
-          className="fixed left-1.5 top-[60%] z-30 flex h-14 w-9 -translate-y-1/2 items-center justify-center rounded-r-2xl bg-black/30 text-white/15 backdrop-blur-md"
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
-            <path d="M15 18l-6-6 6-6" />
-          </svg>
-        </span>
       )}
 
-      {/* Floating next arrow */}
-      {next ? (
+      {/* Floating next arrow — only when there's a next zone */}
+      {next && (
         <Link
           href={`/zone/${next.id}`}
           aria-label="Next zone"
@@ -156,17 +147,6 @@ export default function ZonePageClient({ zone }: Props) {
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
             <path d="M9 18l6-6-6-6" />
-          </svg>
-        </Link>
-      ) : (
-        <Link
-          href="/map"
-          aria-label="Back to map"
-          className="fixed right-1.5 top-[60%] z-30 flex h-14 w-9 -translate-y-1/2 items-center justify-center rounded-l-2xl bg-black/40 text-white opacity-50 backdrop-blur-md transition-opacity duration-300 hover:opacity-100"
-        >
-          {/* close-style icon for last zone */}
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
-            <path d="M3 12h18M21 12l-4 4M21 12l-4-4" />
           </svg>
         </Link>
       )}
