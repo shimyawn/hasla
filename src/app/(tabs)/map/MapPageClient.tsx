@@ -42,16 +42,20 @@ export default function MapPageClient({ zones }: Props) {
   return (
     <main className="min-h-dvh bg-black pb-28">
       <section className="mx-auto mt-8 max-w-md px-4">
-        {/* Map */}
-        <div className="relative aspect-[1600/1748] w-full overflow-hidden rounded-2xl border border-border bg-card">
-          <Image
-            src="/images/map.jpg"
-            alt={t.metaTitle}
-            fill
-            priority
-            sizes="(max-width: 448px) 100vw, 448px"
-            className="object-cover"
-          />
+        {/* Map — outer wrapper has no overflow clip so zone-icon drop-shadows
+            can bloom past the rounded edges; inner div clips just the
+            background image to the rounded shape. */}
+        <div className="relative aspect-[1600/1748] w-full">
+          <div className="absolute inset-0 overflow-hidden rounded-2xl border border-border bg-card">
+            <Image
+              src="/images/map.jpg"
+              alt={t.metaTitle}
+              fill
+              priority
+              sizes="(max-width: 448px) 100vw, 448px"
+              className="object-cover"
+            />
+          </div>
           {zones.map((z, i) => {
             const L = localized(z, lang)
             const isSelected = selectedId === z.id
@@ -110,16 +114,18 @@ export default function MapPageClient({ zones }: Props) {
           })}
         </div>
 
-        {/* Below-map area: caption when nothing selected, glowing zone display otherwise */}
-        <div className="mt-5 flex min-h-[120px] flex-col items-center justify-center px-1">
+        {/* Below-map area: caption when nothing selected, glowing zone display
+            otherwise. Single-row layout — number+title left-aligned, hint
+            right-aligned. Sits right under the map (small mt). */}
+        <div className="mt-3 flex min-h-[52px] items-center px-2">
           {selectedZone && selectedL ? (
             <Link
               href={`/zone/${selectedZone.id}`}
-              className="flex flex-col items-center gap-2 rounded-2xl px-4 py-3 transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between gap-3 rounded-xl py-2 transition-transform active:scale-[0.98]"
               style={{ ['--glow' as string]: selectedZone.accentColor }}
             >
-              {/* Number + title on a single line */}
-              <div className="flex items-center gap-2.5">
+              {/* Number + title — left side */}
+              <div className="flex min-w-0 items-center gap-2.5">
                 <span
                   className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full font-display text-[11.5px] font-medium text-black"
                   style={{
@@ -130,7 +136,7 @@ export default function MapPageClient({ zones }: Props) {
                   {String(selectedIdx + 1).padStart(2, '0')}
                 </span>
                 <h2
-                  className="font-display text-[19px] font-medium leading-tight"
+                  className="truncate font-display text-[19px] font-medium leading-tight"
                   style={{
                     color: selectedZone.accentColor,
                     textShadow: `0 0 12px ${selectedZone.accentColor}cc, 0 0 26px ${selectedZone.accentColor}55`,
@@ -139,16 +145,16 @@ export default function MapPageClient({ zones }: Props) {
                   {selectedL.title}
                 </h2>
               </div>
-              {/* Hint sits to the side, on its own line below */}
+              {/* Hint — right side, same row */}
               <span
-                className="self-end font-clean text-[11.5px] tracking-[0.05em] text-white/50"
+                className="shrink-0 font-clean text-[11.5px] tracking-[0.05em] text-white/55"
                 aria-hidden
               >
                 {t.viewDetail}
               </span>
             </Link>
           ) : (
-            <p className="text-center font-clean text-[13.5px] leading-[1.65] text-white/60">
+            <p className="w-full text-center font-clean text-[13.5px] leading-[1.65] text-white/60">
               {t.mapCaption}
             </p>
           )}
