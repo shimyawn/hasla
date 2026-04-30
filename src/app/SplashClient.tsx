@@ -99,8 +99,8 @@ export default function SplashClient() {
               transition: `opacity ${SLOW_FADE_MS}ms ${EASE}`,
             }}
           />
-          {/* Flare sweep — fires once after moon-rise completes */}
-          <span aria-hidden className="moon-flare absolute inset-0" />
+          {/* Flare sweep — clipped to logo silhouette via mask-image */}
+          <span aria-hidden className="moon-flare-logo absolute inset-0" />
         </div>
 
         <p
