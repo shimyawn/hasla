@@ -109,7 +109,7 @@ export default function SplashClient() {
               // happens BELOW the wrapper's bottom edge (both wordmarks clipped
               // out of frame at that moment — no visible overlap)
               transform: `translateY(${revealed ? '0%' : '130%'})`,
-              transition: `transform ${hasInteracted ? TRANSITION_MS : 3500}ms cubic-bezier(0.25, 0.1, 0.25, 1)`,
+              transition: `transform ${hasInteracted ? TRANSITION_MS : 4200}ms cubic-bezier(0.25, 0.1, 0.25, 1)`,
             }}
           />
           {/* Black silhouette — z-index 1 (FRONT). Slides DOWN out of the
@@ -128,7 +128,7 @@ export default function SplashClient() {
             style={{
               zIndex: 1,
               transform: `translateY(${revealed ? '100%' : '0%'})`,
-              transition: `transform ${hasInteracted ? TRANSITION_MS : 3500}ms cubic-bezier(0.25, 0.1, 0.25, 1)`,
+              transition: `transform ${hasInteracted ? TRANSITION_MS : 4200}ms cubic-bezier(0.25, 0.1, 0.25, 1)`,
             }}
           />
           {/* Flare sweep — clipped to logo silhouette via mask-image. Re-mounts
