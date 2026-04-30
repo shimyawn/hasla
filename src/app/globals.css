@@ -138,24 +138,26 @@ html, body {
   animation: moonRiseMask 4.2s 0.3s cubic-bezier(0.33, 0.05, 0.45, 1) forwards;
 }
 
-/* Logo variant — same mask sweep PLUS a small upward translation so the moon
-   actually rises into place + a soft glow finale once it settles */
+/* Logo variant — bottom→top dissolve, but with an 80% soft-edge so the
+   directional bias is gentle: the entire logo essentially fades in uniformly
+   with a slight 'rising' lean. Combined with translateY for the actual rise
+   motion + a glow finale once it settles. */
 .moon-rise {
-  --moon-rise: -15%;
+  --moon-rise: -80%;
   -webkit-mask-image: linear-gradient(
     to top,
     black var(--moon-rise),
-    transparent calc(var(--moon-rise) + 14%)
+    transparent calc(var(--moon-rise) + 80%)
   );
   mask-image: linear-gradient(
     to top,
     black var(--moon-rise),
-    transparent calc(var(--moon-rise) + 14%)
+    transparent calc(var(--moon-rise) + 80%)
   );
   transform: translateY(14%);
   animation:
     moonRiseFull 4.2s 0.3s cubic-bezier(0.33, 0.05, 0.45, 1) forwards,
-    moonGlow 1.6s 4.3s ease-out forwards;
+    moonGlow 1.6s 4.5s ease-out forwards;
 }
 
 @keyframes moonRiseMask {
@@ -165,11 +167,11 @@ html, body {
 
 @keyframes moonRiseFull {
   from {
-    --moon-rise: -15%;
+    --moon-rise: -80%;
     transform: translateY(14%);
   }
   to {
-    --moon-rise: 115%;
+    --moon-rise: 100%;
     transform: translateY(0);
   }
 }
