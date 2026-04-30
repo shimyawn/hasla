@@ -263,6 +263,27 @@ html, body {
   will-change: opacity, transform;
 }
 
+/* Map zone icons — stronger glow when this zone is selected, dimmed when
+   some other zone is selected. Replaces the icon-glow keyframe animation
+   with a static brighter/dimmer state + smooth transitions. */
+.icon-selected {
+  animation: none;
+  opacity: 1;
+  transform: scale(1.18);
+  filter:
+    drop-shadow(0 0 12px var(--glow, rgba(255,255,255,0.75)))
+    drop-shadow(0 0 28px var(--glow, rgba(255,255,255,0.5)));
+  transition: opacity 280ms ease, transform 280ms ease, filter 280ms ease;
+}
+
+.icon-dim {
+  animation: none;
+  opacity: 0.28;
+  transform: scale(0.94);
+  filter: drop-shadow(0 0 2px var(--glow, rgba(255,255,255,0.2)));
+  transition: opacity 280ms ease, transform 280ms ease, filter 280ms ease;
+}
+
 /* Map icons — combines opacity, scale, and drop-shadow pulse using CSS variable for color */
 @keyframes icon-glow {
   0%, 100% {

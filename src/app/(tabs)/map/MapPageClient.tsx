@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { Zone } from '@/lib/types'
@@ -29,15 +30,18 @@ function localized(z: Zone, lang: Lang): LocalizedZone {
 
 export default function MapPageClient({ zones }: Props) {
   const { t, lang } = useLang()
+  // Two-step zone interaction: first tap selects a zone (icon glows brighter,
+  // others dim, info shows below the map). Second tap on the same icon — or
+  // a tap on the title displayed below — navigates to the zone detail page.
+  const [selectedId, setSelectedId] = useState<string | null>(null)
+
+  const selectedZone = selectedId ? zones.find((z) => z.id === selectedId) : null
+  const selectedIdx = selectedId ? zones.findIndex((z) => z.id === selectedId) : -1
+  const selectedL = selectedZone ? localized(selectedZone, lang) : null
 
   return (
     <main className="min-h-dvh bg-black pb-28">
       <section className="mx-auto mt-8 max-w-md px-4">
-        {/* Caption block — sits above the map */}
-        <p className="mb-4 px-1 text-center font-clean text-[13.5px] leading-[1.65] text-white/60">
-          {t.mapCaption}
-        </p>
-
         {/* Map */}
         <div className="relative aspect-[1600/1748] w-full overflow-hidden rounded-2xl border border-border bg-card">
           <Image
@@ -50,11 +54,27 @@ export default function MapPageClient({ zones }: Props) {
           />
           {zones.map((z, i) => {
             const L = localized(z, lang)
+            const isSelected = selectedId === z.id
+            const isDimmed = selectedId !== null && selectedId !== z.id
+            const iconClass = isSelected
+              ? 'icon-selected object-cover'
+              : isDimmed
+                ? 'icon-dim object-cover'
+                : 'icon-glow object-cover'
             return (
               <Link
                 key={z.id}
                 href={`/zone/${z.id}`}
                 aria-label={L.title}
+                aria-current={isSelected ? 'true' : undefined}
+                onClick={(e) => {
+                  // First tap: prevent navigation, select the zone.
+                  // Tap on already-selected zone: let the Link navigate.
+                  if (selectedId !== z.id) {
+                    e.preventDefault()
+                    setSelectedId(z.id)
+                  }
+                }}
                 className="group absolute -translate-x-1/2 -translate-y-1/2"
                 style={{
                   left: z.mapPin.cx,
@@ -64,22 +84,22 @@ export default function MapPageClient({ zones }: Props) {
                   ['--glow' as string]: `${z.accentColor}cc`,
                 }}
               >
-                {/* Outer wrapper: hover scale (transition-only, no animation conflict) */}
-                <div className="relative h-full w-full transition-transform duration-500 ease-out group-hover:scale-[1.07] group-active:scale-[1.07]">
-                  {/* Inner Image: breathing animation (opacity + scale + glow) */}
+                <div className="relative h-full w-full">
                   <Image
                     src={`/icons/${z.id}.png`}
                     alt=""
                     fill
                     sizes="22vw"
-                    className="icon-glow object-cover"
-                    style={{ animationDelay: `${(i * 0.65) % 5.5}s` }}
+                    className={iconClass}
+                    style={isSelected || isDimmed ? undefined : { animationDelay: `${(i * 0.65) % 5.5}s` }}
                   />
                 </div>
-                {/* Bloom on hover/tap */}
+                {/* Bloom on hover/tap (always-on for selected) */}
                 <span
                   aria-hidden
-                  className="pointer-events-none absolute inset-[-15%] rounded-[40%] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-active:opacity-100"
+                  className={`pointer-events-none absolute inset-[-15%] rounded-[40%] transition-opacity duration-300 ${
+                    isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100 group-active:opacity-100'
+                  }`}
                   style={{
                     background: `radial-gradient(ellipse at center, ${z.accentColor}66 0%, transparent 65%)`,
                     mixBlendMode: 'screen',
@@ -88,6 +108,47 @@ export default function MapPageClient({ zones }: Props) {
               </Link>
             )
           })}
+        </div>
+
+        {/* Below-map area: caption when nothing selected, glowing zone display otherwise */}
+        <div className="mt-5 flex min-h-[120px] flex-col items-center justify-center px-1">
+          {selectedZone && selectedL ? (
+            <Link
+              href={`/zone/${selectedZone.id}`}
+              className="flex flex-col items-center gap-3 rounded-2xl px-4 py-3 transition-transform active:scale-[0.98]"
+              style={{ ['--glow' as string]: selectedZone.accentColor }}
+            >
+              {/* Zone number in a glowing circle */}
+              <div
+                className="flex h-9 w-9 items-center justify-center rounded-full font-display text-[13px] font-medium text-black"
+                style={{
+                  background: selectedZone.accentColor,
+                  boxShadow: `0 0 14px ${selectedZone.accentColor}aa, 0 0 28px ${selectedZone.accentColor}55`,
+                }}
+              >
+                {String(selectedIdx + 1).padStart(2, '0')}
+              </div>
+              <h2
+                className="font-display text-[24px] font-medium leading-tight"
+                style={{
+                  color: selectedZone.accentColor,
+                  textShadow: `0 0 14px ${selectedZone.accentColor}cc, 0 0 32px ${selectedZone.accentColor}66`,
+                }}
+              >
+                {selectedL.title}
+              </h2>
+              <span
+                className="font-clean text-[12px] tracking-[0.05em] text-white/55"
+                aria-hidden
+              >
+                {t.viewDetail}
+              </span>
+            </Link>
+          ) : (
+            <p className="text-center font-clean text-[13.5px] leading-[1.65] text-white/60">
+              {t.mapCaption}
+            </p>
+          )}
         </div>
       </section>
 
