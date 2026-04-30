@@ -115,30 +115,33 @@ export default function MapPageClient({ zones }: Props) {
           {selectedZone && selectedL ? (
             <Link
               href={`/zone/${selectedZone.id}`}
-              className="flex flex-col items-center gap-3 rounded-2xl px-4 py-3 transition-transform active:scale-[0.98]"
+              className="flex flex-col items-center gap-2 rounded-2xl px-4 py-3 transition-transform active:scale-[0.98]"
               style={{ ['--glow' as string]: selectedZone.accentColor }}
             >
-              {/* Zone number in a glowing circle */}
-              <div
-                className="flex h-9 w-9 items-center justify-center rounded-full font-display text-[13px] font-medium text-black"
-                style={{
-                  background: selectedZone.accentColor,
-                  boxShadow: `0 0 14px ${selectedZone.accentColor}aa, 0 0 28px ${selectedZone.accentColor}55`,
-                }}
-              >
-                {String(selectedIdx + 1).padStart(2, '0')}
+              {/* Number + title on a single line */}
+              <div className="flex items-center gap-2.5">
+                <span
+                  className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full font-display text-[11.5px] font-medium text-black"
+                  style={{
+                    background: selectedZone.accentColor,
+                    boxShadow: `0 0 10px ${selectedZone.accentColor}aa, 0 0 22px ${selectedZone.accentColor}55`,
+                  }}
+                >
+                  {String(selectedIdx + 1).padStart(2, '0')}
+                </span>
+                <h2
+                  className="font-display text-[19px] font-medium leading-tight"
+                  style={{
+                    color: selectedZone.accentColor,
+                    textShadow: `0 0 12px ${selectedZone.accentColor}cc, 0 0 26px ${selectedZone.accentColor}55`,
+                  }}
+                >
+                  {selectedL.title}
+                </h2>
               </div>
-              <h2
-                className="font-display text-[24px] font-medium leading-tight"
-                style={{
-                  color: selectedZone.accentColor,
-                  textShadow: `0 0 14px ${selectedZone.accentColor}cc, 0 0 32px ${selectedZone.accentColor}66`,
-                }}
-              >
-                {selectedL.title}
-              </h2>
+              {/* Hint sits to the side, on its own line below */}
               <span
-                className="font-clean text-[12px] tracking-[0.05em] text-white/55"
+                className="self-end font-clean text-[11.5px] tracking-[0.05em] text-white/50"
                 aria-hidden
               >
                 {t.viewDetail}
