@@ -83,11 +83,13 @@ export default function SplashClient() {
           {t.splashLabel}
         </p>
 
-        {/* Black silhouette logo stays as the floor; color logo rises on top of
-            it (translates up + mask dissolve), then a flare sweeps once. Tap
-            toggles only the color logo's opacity so users can flip back to the
-            silhouette state. */}
-        <div className="relative aspect-[3/1] w-[88%] max-w-[420px] icon-breathe">
+        {/* Moon-rise composition — black silhouette settles down + fades, while
+            the color logo emerges from below it (clipped by the wrapper's
+            overflow-hidden so it appears to crest a horizon). Color rise is
+            slightly slower than the silhouette's fade so the moon visibly
+            climbs after the silhouette has dissolved. */}
+        <div className="relative aspect-[3/1] w-[88%] max-w-[420px] overflow-hidden icon-breathe">
+          {/* Black silhouette — sinks 6% + slight scale-down + fade out */}
           <Image
             src="/images/logo_black.png"
             alt="HASLA"
@@ -95,7 +97,15 @@ export default function SplashClient() {
             priority
             sizes="(max-width: 640px) 88vw, 420px"
             className="object-contain"
+            style={{
+              opacity: revealed ? 0 : 1,
+              transform: `translateY(${revealed ? '6%' : '0%'}) scale(${revealed ? 0.97 : 1})`,
+              transition: `opacity ${hasInteracted ? TRANSITION_MS : 2800}ms ${EASE}, transform ${hasInteracted ? TRANSITION_MS : 2800}ms ${EASE}`,
+            }}
           />
+          {/* Color logo — rises 25% from below the silhouette, slight scale-up
+              + fade in. Slower duration + small delay so it visibly emerges
+              after the silhouette starts settling. */}
           <Image
             src="/images/logo_full.png"
             alt="HASLA — Gangneung Immersive Art Show"
@@ -105,7 +115,8 @@ export default function SplashClient() {
             className="moon-rise object-contain"
             style={{
               opacity: revealed ? 1 : 0,
-              transition: `opacity ${hasInteracted ? TRANSITION_MS : SLOW_FADE_MS}ms ${EASE}`,
+              transform: `translateY(${revealed ? '0%' : '28%'}) scale(${revealed ? 1 : 0.96})`,
+              transition: `opacity ${hasInteracted ? TRANSITION_MS : SLOW_FADE_MS}ms ${EASE} ${hasInteracted ? '0' : '400'}ms, transform ${hasInteracted ? TRANSITION_MS : SLOW_FADE_MS}ms ${EASE} ${hasInteracted ? '0' : '400'}ms`,
             }}
           />
           {/* Flare sweep — clipped to logo silhouette via mask-image. Re-mounts

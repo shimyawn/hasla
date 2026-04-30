@@ -144,24 +144,16 @@ html, body {
   animation: moonRiseMask 4.2s 0.3s cubic-bezier(0.33, 0.05, 0.45, 1) forwards;
 }
 
-/* Logo variant — slow upward translation (the moon rises into place) plus a
-   soft glow finale once it settles. Opacity dissolve is handled by the host
-   element's inline transition so the entire logo fades in uniformly. */
+/* Color logo — rise + fade are now driven by the host element's inline
+   styles (so tap toggles work naturally). This class only carries the
+   one-time moonGlow finale that fires after the moon has settled. */
 .moon-rise {
-  transform: translateY(14%);
-  animation:
-    moonRiseUp 4.2s 0.3s cubic-bezier(0.33, 0.05, 0.45, 1) forwards,
-    moonGlow 1.6s 4.5s ease-out forwards;
+  animation: moonGlow 1.6s 4.5s ease-out forwards;
 }
 
 @keyframes moonRiseMask {
   from { --moon-rise: -1%; }
   to   { --moon-rise: 100%; }
-}
-
-@keyframes moonRiseUp {
-  from { transform: translateY(14%); }
-  to   { transform: translateY(0); }
 }
 
 /* Soft moonlight halo that breathes once after the rise — no brightness pulse */
