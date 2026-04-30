@@ -219,12 +219,12 @@ const en: Record<string, LocalizedZone> = {
     description:
       'A roughly 8m LED wall set among the pines transforms the forest into an endless expanse. Light and sound combine in an immersive walk through a mystical world. Five moons rise one by one, finally uniting in the climactic Hasla Moonlight Show.',
     direction: [
-      'EVERGREEN MOON (Wood) — Blue moonlight bathes the forest as deer and mountain ranges appear.',
-      'SOLAR MOON (Fire) — Sun and moon cross paths and red flames rise.',
-      'AMBER MOON (Earth) — Embers turn to ochre soil and new seeds sprout.',
-      'STARLIGHT MOON (Metal) — Gems born in the earth ascend to the sky as stars.',
-      'CLOUD MOON (Water) — Clouds sweep through starlight and rain falls upon the forest.',
-      'THE NEW MOON (Union) — Five lights merge into one new moon, etching a star-chart pattern across the sky.',
+      'Wood — Blue moonlight bathes the forest as deer and mountain ranges appear.',
+      'Fire — Sun and moon cross paths and red flames rise.',
+      'Earth — Embers turn to ochre soil and new seeds sprout.',
+      'Metal — Gems born in the earth ascend to the sky as stars.',
+      'Water — Clouds sweep through starlight and rain falls upon the forest.',
+      'Full Moon — Five lights merge into one and etch a star-chart pattern across the sky.',
     ],
     media: ['Large LED wall (7.4m)', 'LED bars', 'Full lighting rig', 'Fog machines', 'Sound system'],
     element: UI.en.elementEarth,
