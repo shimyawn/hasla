@@ -73,9 +73,10 @@ export default function SplashClient() {
           {t.splashLabel}
         </p>
 
-        {/* Stacked logos — opacity cross-fade for tap-toggle, plus moon-rise mask
-            on the color logo so it dissolves in bottom→top on first paint, and
-            a diagonal flare sheen passes once after it settles. */}
+        {/* Black silhouette logo stays as the floor; color logo rises on top of
+            it (translates up + mask dissolve), then a flare sweeps once. Tap
+            toggles only the color logo's opacity so users can flip back to the
+            silhouette state. */}
         <div className="relative aspect-[3/1] w-[88%] max-w-[420px] icon-breathe">
           <Image
             src="/images/logo_black.png"
@@ -84,10 +85,6 @@ export default function SplashClient() {
             priority
             sizes="(max-width: 640px) 88vw, 420px"
             className="object-contain"
-            style={{
-              opacity: revealed ? 0 : 1,
-              transition: `opacity ${TRANSITION_MS}ms ${EASE}`,
-            }}
           />
           <Image
             src="/images/logo_full.png"
@@ -140,8 +137,9 @@ export default function SplashClient() {
           <p>{t.infoGrandOpenLabel} · {t.infoGrandOpenWhen}</p>
         </div>
 
-        {/* CTA — gradient fill rides up like a moon (mask-revealed); border + label
-            stay on top of the gradient layer so the frame is visible the whole time. */}
+        {/* CTA — border stays put as a constant frame; the gradient fill
+            sweeps up from inside (mask-revealed) like the moon settling on
+            the path. Text stays white on top throughout. */}
         <a
           href="/map"
           data-cta
@@ -150,16 +148,16 @@ export default function SplashClient() {
           className={`relative isolate block w-full overflow-hidden rounded-full border px-6 py-4 text-center font-display text-[15px] font-medium ${
             navigating
               ? 'border-white bg-white text-black pointer-events-none'
-              : revealed
-                ? 'border-transparent text-white shadow-[0_8px_28px_rgba(255,99,132,0.25)]'
-                : 'border-white/30 bg-transparent text-white/60'
+              : 'border-white/45 text-white shadow-[0_8px_28px_rgba(255,99,132,0.18)]'
           }`}
-          style={{ transition: `color ${DISSOLVE_MS}ms ${EASE}, border-color ${TRANSITION_MS}ms ${EASE}` }}
+          style={{
+            transition: `color ${DISSOLVE_MS}ms ${EASE}, background-color ${DISSOLVE_MS}ms ${EASE}, border-color ${TRANSITION_MS}ms ${EASE}`,
+          }}
         >
-          {/* Gradient fill — masked from bottom→top on first paint */}
+          {/* Gradient fill layer — mask-revealed bottom→top on first paint */}
           <span
             aria-hidden
-            className="hasla-button moon-rise absolute inset-0 -z-10 rounded-full"
+            className="hasla-button moon-mask absolute inset-0 -z-10 rounded-full"
             style={{
               opacity: navigating ? 0 : 1,
               transition: `opacity ${DISSOLVE_MS}ms ${EASE}`,
