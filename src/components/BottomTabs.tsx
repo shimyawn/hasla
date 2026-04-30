@@ -78,7 +78,7 @@ export default function BottomTabs() {
               >
                 <Icon name={tab.icon} active={active} />
                 <span
-                  className={`whitespace-nowrap text-center font-display text-[10.5px] tracking-tight ${
+                  className={`whitespace-nowrap text-center font-display text-[11.5px] tracking-tight ${
                     active ? 'font-medium text-neutral-900' : 'font-normal text-neutral-500'
                   }`}
                 >

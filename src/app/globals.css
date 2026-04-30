@@ -44,6 +44,10 @@ html, body {
   font-family: var(--font-body), 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
+  /* Prevent iOS rubber-band overscroll bounce that causes the
+     'jerky' feel near the top/bottom edges, and stop scroll
+     chains from propagating to outer scroll containers. */
+  overscroll-behavior-y: none;
 }
 
 /* Display — 윤머리정체 (제목·슬로건·hero) */

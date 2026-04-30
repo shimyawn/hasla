@@ -108,7 +108,7 @@ export default function FeedbackPage() {
           <h2 className="mt-5 whitespace-pre-line font-display text-[22px] font-medium leading-[1.4] text-white">
             {t.notifyHeading}
           </h2>
-          <p className="mt-3 whitespace-pre-line font-clean text-[13.5px] leading-[1.8] text-white/65">
+          <p className="mt-3 whitespace-pre-line font-clean text-[14.5px] leading-[1.8] text-white/65">
             {t.notifyIntro}
           </p>
 
@@ -120,7 +120,7 @@ export default function FeedbackPage() {
                   aria-hidden
                   className="mt-[7px] inline-block h-1 w-1 shrink-0 rounded-full bg-hasla-yellow/85"
                 />
-                <span className="font-clean text-[13.5px] leading-[1.7] text-white/80">
+                <span className="font-clean text-[14.5px] leading-[1.7] text-white/80">
                   {b}
                 </span>
               </li>
@@ -166,7 +166,7 @@ export default function FeedbackPage() {
                   className="mt-[3px] h-4 w-4 shrink-0 cursor-pointer accent-hasla-yellow"
                   aria-required="true"
                 />
-                <span className="font-clean text-[13px] leading-[1.6] text-white/85">
+                <span className="font-clean text-[14px] leading-[1.6] text-white/85">
                   {t.notifyConsent}
                 </span>
               </label>
@@ -174,7 +174,7 @@ export default function FeedbackPage() {
               <button
                 type="button"
                 onClick={() => setShowConsentDetail((v) => !v)}
-                className="mt-3 flex items-center gap-1.5 font-clean text-[11.5px] tracking-[0.05em] text-white/45 transition-colors hover:text-white/75"
+                className="mt-3 flex items-center gap-1.5 font-clean text-[12.5px] tracking-[0.05em] text-white/45 transition-colors hover:text-white/75"
                 aria-expanded={showConsentDetail}
               >
                 {showConsentDetail ? '자세히 닫기' : '자세히 보기'}
@@ -189,7 +189,7 @@ export default function FeedbackPage() {
               </button>
 
               {showConsentDetail && (
-                <div className="mt-3 whitespace-pre-line rounded-lg bg-white/[0.03] p-3 font-clean text-[11.5px] leading-[1.75] text-white/55">
+                <div className="mt-3 whitespace-pre-line rounded-lg bg-white/[0.03] p-3 font-clean text-[12.5px] leading-[1.75] text-white/55">
                   {t.notifyConsentDetail}
                 </div>
               )}
@@ -208,7 +208,7 @@ export default function FeedbackPage() {
             {status === 'success' && (
               <div
                 role="status"
-                className="mt-2 rounded-xl border border-emerald-300/30 bg-emerald-300/10 px-4 py-3 font-clean text-[13px] leading-[1.65] text-emerald-200"
+                className="mt-2 rounded-xl border border-emerald-300/30 bg-emerald-300/10 px-4 py-3 font-clean text-[14px] leading-[1.65] text-emerald-200"
               >
                 {t.notifySuccess}
               </div>
@@ -216,7 +216,7 @@ export default function FeedbackPage() {
             {status === 'error' && (
               <div
                 role="alert"
-                className="mt-2 rounded-xl border border-rose-300/30 bg-rose-300/10 px-4 py-3 font-clean text-[13px] leading-[1.65] text-rose-200"
+                className="mt-2 rounded-xl border border-rose-300/30 bg-rose-300/10 px-4 py-3 font-clean text-[14px] leading-[1.65] text-rose-200"
               >
                 {errorMsg || t.notifyError}
               </div>

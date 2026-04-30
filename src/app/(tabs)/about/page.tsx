@@ -108,7 +108,7 @@ export default function AboutPage() {
                   <span className="font-display text-[12.5px] tracking-[0.32em] text-hasla-yellow/85">
                     {moon.element}
                   </span>
-                  <p className="mt-1.5 font-clean text-[13px] leading-[1.7] text-white/65">
+                  <p className="mt-1.5 font-clean text-[14px] leading-[1.7] text-white/65">
                     {moon.desc}
                   </p>
                 </li>

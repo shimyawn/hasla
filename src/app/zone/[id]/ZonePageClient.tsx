@@ -117,7 +117,7 @@ export default function ZonePageClient({ zone }: Props) {
               <FadeInSection key={i} delay={0.04 * i}>
                 <li className="flex items-start gap-3">
                   <span className="mt-2 inline-block h-1 w-1 shrink-0 rounded-full" style={{ backgroundColor: zone.accentColor }} aria-hidden />
-                  <p className="text-[13.5px] leading-[1.75] text-foreground/85">{d}</p>
+                  <p className="text-[14.5px] leading-[1.75] text-foreground/85">{d}</p>
                 </li>
               </FadeInSection>
             ))}
@@ -145,7 +145,7 @@ export default function ZonePageClient({ zone }: Props) {
                 </div>
               ))}
             </div>
-            <p className="mt-3 whitespace-pre-line text-[12.5px] leading-relaxed text-white/55">
+            <p className="mt-3 whitespace-pre-line text-[13.5px] leading-relaxed text-white/55">
               {t.infoSessionsNote}
             </p>
           </FadeInSection>

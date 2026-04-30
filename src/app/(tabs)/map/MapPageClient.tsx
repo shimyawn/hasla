@@ -34,7 +34,7 @@ export default function MapPageClient({ zones }: Props) {
     <main className="min-h-dvh bg-black pb-28">
       <section className="mx-auto mt-8 max-w-md px-4">
         {/* Caption block — sits above the map */}
-        <p className="mb-4 px-1 text-center font-clean text-[12.5px] leading-[1.65] text-white/60">
+        <p className="mb-4 px-1 text-center font-clean text-[13.5px] leading-[1.65] text-white/60">
           {t.mapCaption}
         </p>
 

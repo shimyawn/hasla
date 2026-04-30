@@ -61,7 +61,7 @@ export default function ContactBlock() {
               href="https://naver.me/xy7JAsef"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 font-clean text-[13px] text-white/85 transition-colors hover:border-hasla-yellow/60 hover:text-white"
+              className="mt-2 inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 font-clean text-[14px] text-white/85 transition-colors hover:border-hasla-yellow/60 hover:text-white"
             >
               {t.contactPlaceCta}
               <span aria-hidden>↗</span>
