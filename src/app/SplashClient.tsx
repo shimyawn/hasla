@@ -89,9 +89,10 @@ export default function SplashClient() {
             the rising moon appears to crest a horizon. DOM order matters here:
             color first (behind), black second (in front). */}
         <div className="relative aspect-[3/1] w-[88%] max-w-[420px] overflow-hidden icon-breathe">
-          {/* Color logo — rises from well below the silhouette and fades in
-              gradually so it clearly looks like it's emerging from behind.
-              ease-out on both so the rise decelerates gracefully into place. */}
+          {/* Color moon — explicit z-index 0 (BEHIND). Opacity stays at 0
+              for the first 1100ms (delay) so the silhouette holds the
+              foreground entirely, then rises + brightens. Filter blur softens
+              the moon further during ascent for atmospheric depth. */}
           <Image
             src="/images/logo_full.png"
             alt="HASLA — Gangneung Immersive Art Show"
@@ -100,18 +101,19 @@ export default function SplashClient() {
             sizes="(max-width: 640px) 88vw, 420px"
             className="moon-rise object-contain"
             style={{
+              zIndex: 0,
               opacity: revealed ? 1 : 0,
               transform: `translateY(${revealed ? '0%' : '38%'}) scale(${revealed ? 1 : 0.96})`,
+              filter: revealed ? 'blur(0px)' : 'blur(3px)',
               transition: hasInteracted
-                ? `opacity ${TRANSITION_MS}ms ${EASE}, transform ${TRANSITION_MS}ms ${EASE}`
-                : `opacity 3800ms cubic-bezier(0.4, 0.05, 0.3, 1), transform 3800ms cubic-bezier(0.25, 0.1, 0.25, 1)`,
+                ? `opacity ${TRANSITION_MS}ms ${EASE}, transform ${TRANSITION_MS}ms ${EASE}, filter ${TRANSITION_MS}ms ${EASE}`
+                : `opacity 2800ms cubic-bezier(0.4, 0, 0.4, 1) 1100ms, transform 3500ms cubic-bezier(0.25, 0.1, 0.25, 1) 800ms, filter 2400ms ease-out 1400ms`,
             }}
           />
-          {/* Black silhouette — in front. Holds opacity at full for most of
-              the reveal (heavy ease-in) so the silhouette clearly dominates
-              the foreground while the color moon rises behind it; only at
-              the very end does the black quickly dissolve away.
-              Sink + scale-down accompany the fade. */}
+          {/* Black silhouette — explicit z-index 1 (FRONT). Heavy ease-in on
+              opacity so it holds at full for most of the reveal then
+              dissolves quickly near the end, allowing the color moon (which
+              has already started rising behind) to take over. */}
           <Image
             src="/images/logo_black.png"
             alt="HASLA"
@@ -120,13 +122,12 @@ export default function SplashClient() {
             sizes="(max-width: 640px) 88vw, 420px"
             className="object-contain"
             style={{
+              zIndex: 1,
               opacity: revealed ? 0 : 1,
               transform: `translateY(${revealed ? '6%' : '0%'}) scale(${revealed ? 0.97 : 1})`,
-              // ease-in heavy on opacity so it holds near 1 for most of the
-              // reveal then fades fast at the end. transform stays smooth.
               transition: hasInteracted
                 ? `opacity ${TRANSITION_MS}ms ${EASE}, transform ${TRANSITION_MS}ms ${EASE}`
-                : `opacity 3200ms cubic-bezier(0.75, 0, 0.95, 0.45), transform 3200ms ${EASE}`,
+                : `opacity 2400ms cubic-bezier(0.7, 0, 0.85, 0.4), transform 3000ms ${EASE}`,
             }}
           />
           {/* Flare sweep — clipped to logo silhouette via mask-image. Re-mounts
