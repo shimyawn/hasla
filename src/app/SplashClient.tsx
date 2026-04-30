@@ -19,6 +19,13 @@ export default function SplashClient() {
   // triggers the mask animation (moon rising). Subsequent taps still toggle freely.
   const [revealed, setRevealed] = useState(false)
   const [navigating, setNavigating] = useState(false)
+  // hasInteracted: false until the user's first tap. Used to keep the
+  // 'TAP TO AWAKEN' hint hidden during the auto-reveal, and to switch the
+  // logo's opacity transition from cinematic-slow (initial) to snappy (taps).
+  const [hasInteracted, setHasInteracted] = useState(false)
+  // flareKey: bumped on every tap so the flare span remounts and replays its
+  // animation. 0 means 'no tap yet' (still on the auto/initial flare).
+  const [flareKey, setFlareKey] = useState(0)
 
   // Auto-reveal on first paint — kicks off the moon-rise mask animation in sync
   // with the existing opacity cross-fade.
@@ -37,6 +44,8 @@ export default function SplashClient() {
       // Also skip taps inside the info sheet (role=dialog)
       if (target?.closest('[role="dialog"]')) return
       setRevealed((prev) => !prev)
+      setHasInteracted(true)
+      setFlareKey((k) => k + 1)
     }
     window.addEventListener('pointerdown', onTap)
     return () => window.removeEventListener('pointerdown', onTap)
@@ -96,11 +105,16 @@ export default function SplashClient() {
             className="moon-rise object-contain"
             style={{
               opacity: revealed ? 1 : 0,
-              transition: `opacity ${SLOW_FADE_MS}ms ${EASE}`,
+              transition: `opacity ${hasInteracted ? TRANSITION_MS : SLOW_FADE_MS}ms ${EASE}`,
             }}
           />
-          {/* Flare sweep — clipped to logo silhouette via mask-image */}
-          <span aria-hidden className="moon-flare-logo absolute inset-0" />
+          {/* Flare sweep — clipped to logo silhouette via mask-image. Re-mounts
+              on every tap (flareKey changes) so the animation plays again. */}
+          <span
+            key={flareKey}
+            aria-hidden
+            className={`${flareKey === 0 ? 'moon-flare-logo' : 'moon-flare-logo-tap'} absolute inset-0`}
+          />
         </div>
 
         <p
@@ -116,8 +130,11 @@ export default function SplashClient() {
           aria-hidden
           className="mt-4 inline-block text-[11px] tracking-[0.3em] text-white/45"
           style={{
-            opacity: revealed ? 0 : 1,
-            transform: revealed ? 'translateY(6px)' : 'translateY(0)',
+            // Stay hidden during the auto-reveal — only show after the user
+            // has interacted at least once and is currently in the silhouette
+            // (revealed=false) state, hinting they can tap to bring back color.
+            opacity: hasInteracted && !revealed ? 1 : 0,
+            transform: hasInteracted && !revealed ? 'translateY(0)' : 'translateY(6px)',
             transition: `opacity ${TRANSITION_MS}ms ${EASE}, transform ${TRANSITION_MS}ms ${EASE}`,
             willChange: 'opacity, transform',
             isolation: 'isolate',

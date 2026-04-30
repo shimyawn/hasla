@@ -126,18 +126,20 @@ html, body {
   inherits: false;
 }
 
-/* Base mask sweep — used by the button's gradient fill (in-place reveal) */
+/* Base mask sweep — used by the button's gradient fill. Hard edge (1%
+   transition zone) so the fill reads as a crisp horizontal line rising
+   through the pill, no blur/blending. */
 .moon-mask {
-  --moon-rise: -15%;
+  --moon-rise: -1%;
   -webkit-mask-image: linear-gradient(
     to top,
     black var(--moon-rise),
-    transparent calc(var(--moon-rise) + 14%)
+    transparent calc(var(--moon-rise) + 1%)
   );
   mask-image: linear-gradient(
     to top,
     black var(--moon-rise),
-    transparent calc(var(--moon-rise) + 14%)
+    transparent calc(var(--moon-rise) + 1%)
   );
   animation: moonRiseMask 4.2s 0.3s cubic-bezier(0.33, 0.05, 0.45, 1) forwards;
 }
@@ -153,8 +155,8 @@ html, body {
 }
 
 @keyframes moonRiseMask {
-  from { --moon-rise: -15%; }
-  to   { --moon-rise: 115%; }
+  from { --moon-rise: -1%; }
+  to   { --moon-rise: 100%; }
 }
 
 @keyframes moonRiseUp {
@@ -194,10 +196,13 @@ html, body {
   100% { opacity: 0;   background-position: 160% 50%; }
 }
 
-/* Logo flare — small soft radial bloom traveling diagonally, clipped to the
-   color-logo silhouette via mask-image so transparent areas of the wordmark
-   don't show as a hard rectangle. Blurred to keep edges natural. */
-.moon-flare-logo {
+/* Logo flare base — small soft radial bloom traveling diagonally, clipped to
+   the color-logo silhouette via mask-image so transparent areas of the
+   wordmark don't show as a hard rectangle. Blurred to keep edges natural.
+   Two variants: --auto fires once after the initial moon-rise (4.5s delay),
+   --tap fires immediately on user tap (no delay, slightly quicker sweep). */
+.moon-flare-logo,
+.moon-flare-logo-tap {
   pointer-events: none;
   background: radial-gradient(
     ellipse,
@@ -219,7 +224,14 @@ html, body {
   filter: blur(3px);
   mix-blend-mode: screen;
   opacity: 0;
+}
+
+.moon-flare-logo {
   animation: moonFlareLogo 2.2s 4.5s cubic-bezier(0.33, 0, 0.67, 1) forwards;
+}
+
+.moon-flare-logo-tap {
+  animation: moonFlareLogo 1.4s 0s cubic-bezier(0.33, 0, 0.67, 1) forwards;
 }
 
 @keyframes moonFlareLogo {
