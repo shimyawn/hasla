@@ -14,8 +14,17 @@ const EASE = 'cubic-bezier(0.45, 0.05, 0.55, 0.95)'
 export default function SplashClient() {
   const router = useRouter()
   const { t } = useLang()
+  // Start revealed=false so the black logo shows briefly, then auto-reveal on mount
+  // triggers the mask animation (moon rising). Subsequent taps still toggle freely.
   const [revealed, setRevealed] = useState(false)
   const [navigating, setNavigating] = useState(false)
+
+  // Auto-reveal on first paint — kicks off the moon-rise mask animation in sync
+  // with the existing opacity cross-fade.
+  useEffect(() => {
+    const id = window.setTimeout(() => setRevealed(true), 80)
+    return () => window.clearTimeout(id)
+  }, [])
 
   useEffect(() => {
     const onTap = (e: PointerEvent) => {
@@ -64,7 +73,8 @@ export default function SplashClient() {
           {t.splashLabel}
         </p>
 
-        {/* Stacked logos — pure opacity cross-fade. Breathing wrapped on parent so it never conflicts. */}
+        {/* Stacked logos — opacity cross-fade for tap-toggle, plus moon-rise mask
+            on the color logo so it dissolves in bottom→top on first paint. */}
         <div className="relative aspect-[3/1] w-[88%] max-w-[420px] icon-breathe">
           <Image
             src="/images/logo_black.png"
@@ -84,7 +94,7 @@ export default function SplashClient() {
             fill
             priority
             sizes="(max-width: 640px) 88vw, 420px"
-            className="object-contain"
+            className="moon-rise object-contain"
             style={{
               opacity: revealed ? 1 : 0,
               transition: `opacity ${TRANSITION_MS}ms ${EASE}`,
@@ -126,21 +136,33 @@ export default function SplashClient() {
           <p>{t.infoPreOpenLineShort}.</p>
           <p>{t.infoGrandOpenLabel} · {t.infoGrandOpenWhen}</p>
         </div>
+
+        {/* CTA — gradient fill rides up like a moon (mask-revealed); border + label
+            stay on top of the gradient layer so the frame is visible the whole time. */}
         <a
           href="/map"
           data-cta
           onClick={handleEnter}
           aria-disabled={navigating}
-          className={`block w-full rounded-full border px-6 py-4 text-center font-display text-[15px] font-medium ${
+          className={`relative isolate block w-full overflow-hidden rounded-full border px-6 py-4 text-center font-display text-[15px] font-medium ${
             navigating
               ? 'border-white bg-white text-black pointer-events-none'
               : revealed
-                ? 'hasla-button border-transparent text-white shadow-[0_8px_28px_rgba(255,99,132,0.25)]'
+                ? 'border-transparent text-white shadow-[0_8px_28px_rgba(255,99,132,0.25)]'
                 : 'border-white/30 bg-transparent text-white/60'
           }`}
-          style={{ transition: `background-color ${DISSOLVE_MS}ms ${EASE}, color ${DISSOLVE_MS}ms ${EASE}, border-color ${TRANSITION_MS}ms ${EASE}` }}
+          style={{ transition: `color ${DISSOLVE_MS}ms ${EASE}, border-color ${TRANSITION_MS}ms ${EASE}` }}
         >
-          {t.splashCta}
+          {/* Gradient fill — masked from bottom→top on first paint */}
+          <span
+            aria-hidden
+            className="hasla-button moon-rise absolute inset-0 -z-10 rounded-full"
+            style={{
+              opacity: navigating ? 0 : 1,
+              transition: `opacity ${DISSOLVE_MS}ms ${EASE}`,
+            }}
+          />
+          <span className="relative">{t.splashCta}</span>
         </a>
       </footer>
 
