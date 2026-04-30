@@ -6,6 +6,7 @@ import type { Zone } from '@/lib/types'
 import { useLang } from '@/i18n/LanguageContext'
 import { localizeZone } from '@/i18n/zones'
 import type { Lang, LocalizedZone } from '@/i18n/types'
+import ContactBlock from '@/components/ContactBlock'
 
 interface Props {
   zones: Zone[]
@@ -88,6 +89,11 @@ export default function MapPageClient({ zones }: Props) {
             )
           })}
         </div>
+      </section>
+
+      {/* Contact info — venue / phone / address / Naver Place */}
+      <section className="mx-auto mt-4 max-w-md px-6">
+        <ContactBlock />
       </section>
     </main>
   )

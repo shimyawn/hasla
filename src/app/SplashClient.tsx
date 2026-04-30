@@ -128,9 +128,9 @@ export default function SplashClient() {
       </div>
 
       <footer className="flex w-full max-w-md flex-col items-center gap-3 px-6">
-        {/* Pre-open status banner — 3 lines */}
+        {/* Pre-open status banner — 2 lines (Noto Sans for readability) */}
         <div
-          className="mb-1 max-w-xs text-center font-display text-[11.5px] leading-[1.7] text-white/35"
+          className="mb-1 max-w-xs text-center font-clean text-[11.5px] leading-[1.7] text-white/45"
           style={{ opacity: navigating ? 0 : 1, transition: `opacity ${TRANSITION_MS}ms ${EASE}` }}
         >
           <p>{t.infoPreOpenLineShort}.</p>
