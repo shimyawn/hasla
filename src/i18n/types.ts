@@ -68,6 +68,13 @@ export interface UIStrings {
   aboutTeaserLabel: string
   aboutTeaserHeading: string
   aboutTeaserNote: string
+  // Contact (about page bottom)
+  contactSectionLabel: string
+  contactName: string
+  contactPhoneLabel: string
+  contactAddressLabel: string
+  contactPlaceLabel: string
+  contactPlaceCta: string
   // Reviews
   reviewsIntro: string
   reviewsCta: string

@@ -3,7 +3,7 @@
 import { FormEvent, useState } from 'react'
 import { useLang } from '@/i18n/LanguageContext'
 
-const REVIEW_URL = 'https://works.do/FU3IvNs'
+const REVIEW_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSf-e7f5OBXj6X2vnboWs8Lj4PjaGC_vF8YVsnZLh5iywzFTqg/viewform?pli=1'
 const NOTIFY_ENDPOINT = process.env.NEXT_PUBLIC_NOTIFY_ENDPOINT ?? ''
 
 type SubmitStatus = 'idle' | 'submitting' | 'success' | 'error'

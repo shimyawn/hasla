@@ -132,7 +132,7 @@ export default function AboutPage() {
           ))}
         </Section>
 
-        {/* Teaser — placeholder, will host embedded video */}
+        {/* Teaser — vertical video */}
         <Section label={t.aboutTeaserLabel}>
           <FadeInSection>
             <p className="mb-5 font-display text-[15px] leading-[1.85] text-white/85">
@@ -140,16 +140,69 @@ export default function AboutPage() {
             </p>
           </FadeInSection>
           <FadeInSection delay={0.06}>
-            <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-white/8 bg-white/[0.03]">
-              {/* TODO: replace with <iframe src="<youtube/vimeo url>"/> when teaser ships */}
-              <div className="flex h-full w-full flex-col items-center justify-center gap-2">
-                <span className="font-display text-[10px] tracking-[0.5em] text-hasla-yellow/85">
-                  {t.comingSoonLabel}
-                </span>
-                <p className="text-[13px] text-white/55">{t.aboutTeaserNote}</p>
-              </div>
+            <div className="relative mx-auto aspect-[9/16] w-full max-w-[320px] overflow-hidden rounded-2xl border border-white/8 bg-black">
+              <video
+                src="/videos/teaser.mp4"
+                controls
+                playsInline
+                preload="metadata"
+                className="h-full w-full object-cover"
+              />
             </div>
           </FadeInSection>
+        </Section>
+
+        {/* Contact */}
+        <Section label={t.contactSectionLabel}>
+          <FadeInSection>
+            <h2 className="font-display text-[18px] font-medium leading-[1.4] text-white">
+              {t.contactName}
+            </h2>
+          </FadeInSection>
+
+          <ul className="mt-6 flex flex-col gap-5">
+            <FadeInSection delay={0.04}>
+              <li>
+                <div className="font-display text-[10px] tracking-[0.4em] text-hasla-yellow/85">
+                  {t.contactPhoneLabel}
+                </div>
+                <a
+                  href="tel:0507-1322-4508"
+                  className="mt-1.5 inline-flex items-center gap-2 font-clean text-[16px] tracking-[0.02em] text-white transition-colors hover:text-hasla-yellow"
+                >
+                  0507-1322-4508
+                </a>
+              </li>
+            </FadeInSection>
+
+            <FadeInSection delay={0.08}>
+              <li>
+                <div className="font-display text-[10px] tracking-[0.4em] text-hasla-yellow/85">
+                  {t.contactAddressLabel}
+                </div>
+                <p className="mt-1.5 font-clean text-[14px] leading-[1.7] text-white/85">
+                  강원 강릉시 초당동 474-4
+                </p>
+              </li>
+            </FadeInSection>
+
+            <FadeInSection delay={0.12}>
+              <li>
+                <div className="font-display text-[10px] tracking-[0.4em] text-hasla-yellow/85">
+                  {t.contactPlaceLabel}
+                </div>
+                <a
+                  href="https://naver.me/xy7JAsef"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 font-clean text-[13px] text-white/85 transition-colors hover:border-hasla-yellow/60 hover:text-white"
+                >
+                  {t.contactPlaceCta}
+                  <span aria-hidden>↗</span>
+                </a>
+              </li>
+            </FadeInSection>
+          </ul>
         </Section>
       </div>
     </main>

@@ -46,19 +46,19 @@ export const UI: Record<Lang, UIStrings> = {
     infoPreOpenLabel: '공지',
     infoPreOpenLineShort: '지금은 가오픈 기간입니다',
     infoNoticeParagraphs: [
-      '현재 HASLA는 정식 개관을 앞둔 가오픈 기간입니다.',
+      '현재 HASLA는 가오픈 기간입니다.',
       '시스템 최적화를 위한 시운영 단계로,\n일부 관람 및 이용이 제한될 수 있습니다.\n방문객 여러분의 너른 양해 부탁드립니다.',
-      '2026년 7월 중순, 그랜드 오픈 예정인 HASLA는\n더욱 완벽한 모습으로 정식 인사드리겠습니다.',
+      '운영 시간은 계절과 일몰 시각에 따라\n탄력적으로 변경됩니다.\n방문 전 운영 시간을 확인해 주세요.',
       'HASLA에 많은 관심과 기대 부탁드립니다.\n감사합니다.',
     ],
     infoSessionsHeading: '인피니티 포레스트 조명쇼 타임테이블',
     infoSessionsNote:
-      '매일 19:30부터 21:30까지, 30분 간격 4회 송출됩니다.\n7월 정식 오픈 이후 시간표가 변경될 예정입니다.',
-    infoGrandOpenLabel: '그랜드 오픈',
-    infoGrandOpenWhen: '2026년 7월 중순 예정',
+      '현재 매일 19:30부터 21:30까지, 30분 간격 4회 송출됩니다.\n운영 시간은 계절과 일몰 시각에 따라 변경될 수 있습니다.',
+    infoGrandOpenLabel: '정식 운영',
+    infoGrandOpenWhen: '계절·일몰에 따라 탄력 운영',
     infoCloseLabel: '닫기',
     infoPerDayLabel: '1일 4타임',
-    splashStatusBanner: '지금은 가오픈 기간입니다 · 1일 4타임 송출 · 그랜드 오픈 2026년 7월 중순 예정',
+    splashStatusBanner: '지금은 가오픈 기간입니다 · 1일 4타임 송출 · 운영 시간은 계절·일몰에 따라 변동',
 
     tabHome: '메인',
     tabAbout: 'HASLA 소개',
@@ -75,6 +75,13 @@ export const UI: Record<Lang, UIStrings> = {
     aboutTeaserHeading: '한 발 앞서 만나는 하슬라의 밤',
     aboutTeaserNote: '티저 영상은 곧 공개됩니다.',
 
+    contactSectionLabel: '문의',
+    contactName: '하슬라 강릉 이머시브 아트쇼',
+    contactPhoneLabel: '대표 전화',
+    contactAddressLabel: '주소',
+    contactPlaceLabel: '네이버 플레이스',
+    contactPlaceCta: '네이버 플레이스에서 보기',
+
     reviewsIntro:
       '관람 후 느낀 점을 편하게 들려주세요.\n여러분의 한 마디가 강릉을 지키는 다섯 개의 달에 빛을 더합니다.',
     reviewsCta: '리뷰 작성하러 가기',
@@ -82,16 +89,16 @@ export const UI: Record<Lang, UIStrings> = {
     notifySectionLabel: 'EARLY ACCESS',
     notifyHeading: '오픈 소식 & 한정 혜택을\n가장 먼저 받아보세요',
     notifyIntro:
-      '2026년 7월 그랜드 오픈을 기다리는 분들을 위한 작은 선물.\n달이 차오르듯, 빛나는 소식을 가장 먼저 보내드릴게요.',
+      'HASLA를 기다리는 분들을 위한 작은 선물.\n달이 차오르듯, 빛나는 소식을 가장 먼저 보내드릴게요.',
     notifyBenefits: [
-      '정식 그랜드 오픈 일정 알림',
+      '정식 운영 시작 안내',
       '한정 프리뷰 · 비공개 이벤트 초대',
     ],
     notifyEmailPlaceholder: '이메일 주소',
     notifyPhonePlaceholder: '전화번호',
     notifyConsent: '[필수] 개인정보 수집·이용에 동의합니다',
     notifyConsentDetail:
-      '· 수집 항목: 이메일 또는 전화번호\n· 수집·이용 목적: 정식 오픈 소식 및 한정 혜택 안내\n· 보유·이용 기간: 수집일로부터 1년 (동의 철회 요청 시 즉시 파기)\n· 동의 거부 권리: 동의를 거부할 수 있으며, 거부 시 알림 신청 서비스 이용이 제한됩니다.',
+      '· 수집 항목: 이메일 또는 전화번호\n· 수집·이용 목적: 운영 소식 및 한정 혜택 안내\n· 보유·이용 기간: 수집일로부터 1년 (동의 철회 요청 시 즉시 파기)\n· 동의 거부 권리: 동의를 거부할 수 있으며, 거부 시 알림 신청 서비스 이용이 제한됩니다.',
     notifyConsentRequired: '개인정보 수집·이용에 동의해 주세요.',
     notifySubmit: '신청하기',
     notifySubmitting: '신청 중…',
@@ -146,19 +153,19 @@ export const UI: Record<Lang, UIStrings> = {
     infoPreOpenLabel: 'Notice',
     infoPreOpenLineShort: 'SOFT OPEN',
     infoNoticeParagraphs: [
-      "HASLA is currently in soft-open ahead of its official grand opening.",
+      'HASLA is currently in soft-open.',
       'During this fine-tuning phase,\nsome areas and services may be limited.\nThank you for your patience and understanding.',
-      'HASLA opens fully in mid-July 2026,\nand we look forward to welcoming you in our complete form.',
+      'Hours flex with the season and sunset.\nPlease check the latest schedule before your visit.',
       'Thank you for your continued interest and support.',
     ],
     infoSessionsHeading: 'Infinity Forest · Show Schedule',
     infoSessionsNote:
-      'Daily — four shows every 30 minutes from 19:30 to 21:30.\nSchedule may change after the official July opening.',
-    infoGrandOpenLabel: 'Grand Opening',
-    infoGrandOpenWhen: 'Planned for mid-July 2026',
+      'Currently — four shows every 30 minutes from 19:30 to 21:30.\nHours flex with the season and sunset.',
+    infoGrandOpenLabel: 'Full Schedule',
+    infoGrandOpenWhen: 'Flexible — varies with season & sunset',
     infoCloseLabel: 'Close',
     infoPerDayLabel: '4 shows daily',
-    splashStatusBanner: 'Soft open · 4 shows daily · Grand opening July 2026',
+    splashStatusBanner: 'Soft open · 4 shows daily · Hours flex with season & sunset',
 
     tabHome: 'Home',
     tabAbout: 'About HASLA',
@@ -175,6 +182,13 @@ export const UI: Record<Lang, UIStrings> = {
     aboutTeaserHeading: 'A glimpse of the Hasla night',
     aboutTeaserNote: 'Teaser video coming soon.',
 
+    contactSectionLabel: 'CONTACT',
+    contactName: 'Hasla Gangneung Immersive Art Show',
+    contactPhoneLabel: 'Phone',
+    contactAddressLabel: 'Address',
+    contactPlaceLabel: 'Naver Place',
+    contactPlaceCta: 'Open in Naver Place',
+
     reviewsIntro:
       "Tell us what you felt — there's no wrong way to say it.\nYour words add light to the five moons watching over Gangneung.",
     reviewsCta: 'Leave a review',
@@ -182,16 +196,16 @@ export const UI: Record<Lang, UIStrings> = {
     notifySectionLabel: 'EARLY ACCESS',
     notifyHeading: 'Be first to know about\nopening news & exclusive perks',
     notifyIntro:
-      "A little something for those awaiting our July 2026 grand opening.\nAs the moon grows full, we'll send our brightest news your way.",
+      "A little something for those awaiting HASLA.\nAs the moon grows full, we'll send our brightest news your way.",
     notifyBenefits: [
-      'Official grand-opening announcement',
+      'Notice when full operations begin',
       'Invitations to private previews and events',
     ],
     notifyEmailPlaceholder: 'Email address',
     notifyPhonePlaceholder: 'Phone number',
     notifyConsent: '[Required] I agree to the collection and use of my personal information',
     notifyConsentDetail:
-      '· Information collected: email or phone number\n· Purpose: opening news and exclusive perk announcements\n· Retention: 1 year from collection (deleted immediately upon request)\n· Right to refuse: You may decline; in that case, we cannot provide the notification service.',
+      '· Information collected: email or phone number\n· Purpose: operations updates and exclusive perk announcements\n· Retention: 1 year from collection (deleted immediately upon request)\n· Right to refuse: You may decline; in that case, we cannot provide the notification service.',
     notifyConsentRequired: 'Please agree to the personal information policy to continue.',
     notifySubmit: 'Sign up',
     notifySubmitting: 'Submitting…',
