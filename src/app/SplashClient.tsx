@@ -88,46 +88,47 @@ export default function SplashClient() {
             logo rises into view from below it. Wrapper has overflow-hidden so
             the rising moon appears to crest a horizon. DOM order matters here:
             color first (behind), black second (in front). */}
-        <div className="relative aspect-[3/1] w-[88%] max-w-[420px] overflow-hidden icon-breathe">
-          {/* Color moon — explicit z-index 0 (BEHIND). Opacity stays at 0
-              for the first 1100ms (delay) so the silhouette holds the
-              foreground entirely, then rises + brightens. Filter blur softens
-              the moon further during ascent for atmospheric depth. */}
+        <div className="relative aspect-[3/1] w-[88%] max-w-[420px] overflow-hidden">
+          {/* Color moon — z-index 0 (BEHIND). Slides UP from completely below
+              the wrapper into final centered position. Pure transform —
+              opacity/filter untouched so it cannot 'cross-fade' with the
+              silhouette. The wrapper's overflow-hidden masks everything below
+              the bottom edge, so until the moon crosses the horizon it isn't
+              visible at all. */}
           <Image
             src="/images/logo_full.png"
             alt="HASLA — Gangneung Immersive Art Show"
             fill
             priority
+            unoptimized
             sizes="(max-width: 640px) 88vw, 420px"
             className="moon-rise object-contain"
             style={{
               zIndex: 0,
-              opacity: revealed ? 1 : 0,
-              transform: `translateY(${revealed ? '0%' : '38%'}) scale(${revealed ? 1 : 0.96})`,
-              filter: revealed ? 'blur(0px)' : 'blur(3px)',
-              transition: hasInteracted
-                ? `opacity ${TRANSITION_MS}ms ${EASE}, transform ${TRANSITION_MS}ms ${EASE}, filter ${TRANSITION_MS}ms ${EASE}`
-                : `opacity 2800ms cubic-bezier(0.4, 0, 0.4, 1) 1100ms, transform 3500ms cubic-bezier(0.25, 0.1, 0.25, 1) 800ms, filter 2400ms ease-out 1400ms`,
+              // 130% off-screen so the crossover with the descending silhouette
+              // happens BELOW the wrapper's bottom edge (both wordmarks clipped
+              // out of frame at that moment — no visible overlap)
+              transform: `translateY(${revealed ? '0%' : '130%'})`,
+              transition: `transform ${hasInteracted ? TRANSITION_MS : 3500}ms cubic-bezier(0.25, 0.1, 0.25, 1)`,
             }}
           />
-          {/* Black silhouette — explicit z-index 1 (FRONT). Heavy ease-in on
-              opacity so it holds at full for most of the reveal then
-              dissolves quickly near the end, allowing the color moon (which
-              has already started rising behind) to take over. */}
+          {/* Black silhouette — z-index 1 (FRONT). Slides DOWN out of the
+              wrapper at the same time. Same duration + easing as the color
+              moon so they move in mirrored sync — silhouette descends below
+              the bottom edge, moon ascends from below into place. No fade,
+              just translation. */}
           <Image
             src="/images/logo_black.png"
             alt="HASLA"
             fill
             priority
+            unoptimized
             sizes="(max-width: 640px) 88vw, 420px"
             className="object-contain"
             style={{
               zIndex: 1,
-              opacity: revealed ? 0 : 1,
-              transform: `translateY(${revealed ? '6%' : '0%'}) scale(${revealed ? 0.97 : 1})`,
-              transition: hasInteracted
-                ? `opacity ${TRANSITION_MS}ms ${EASE}, transform ${TRANSITION_MS}ms ${EASE}`
-                : `opacity 2400ms cubic-bezier(0.7, 0, 0.85, 0.4), transform 3000ms ${EASE}`,
+              transform: `translateY(${revealed ? '100%' : '0%'})`,
+              transition: `transform ${hasInteracted ? TRANSITION_MS : 3500}ms cubic-bezier(0.25, 0.1, 0.25, 1)`,
             }}
           />
           {/* Flare sweep — clipped to logo silhouette via mask-image. Re-mounts
