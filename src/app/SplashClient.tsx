@@ -74,7 +74,8 @@ export default function SplashClient() {
         </p>
 
         {/* Stacked logos — opacity cross-fade for tap-toggle, plus moon-rise mask
-            on the color logo so it dissolves in bottom→top on first paint. */}
+            on the color logo so it dissolves in bottom→top on first paint, and
+            a diagonal flare sheen passes once after it settles. */}
         <div className="relative aspect-[3/1] w-[88%] max-w-[420px] icon-breathe">
           <Image
             src="/images/logo_black.png"
@@ -100,6 +101,8 @@ export default function SplashClient() {
               transition: `opacity ${TRANSITION_MS}ms ${EASE}`,
             }}
           />
+          {/* Flare sweep — fires once after moon-rise completes */}
+          <span aria-hidden className="moon-flare absolute inset-0" />
         </div>
 
         <p

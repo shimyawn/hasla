@@ -47,9 +47,8 @@ export const UI: Record<Lang, UIStrings> = {
     infoPreOpenLineShort: '지금은 가오픈 기간입니다',
     infoNoticeParagraphs: [
       '현재 HASLA는 가오픈 기간입니다.',
-      '시스템 최적화를 위한 시운영 단계로,\n일부 관람 및 이용이 제한될 수 있습니다.\n방문객 여러분의 너른 양해 부탁드립니다.',
-      '운영 시간은 계절과 일몰 시각에 따라\n탄력적으로 변경됩니다.\n방문 전 운영 시간을 확인해 주세요.',
-      'HASLA에 많은 관심과 기대 부탁드립니다.\n감사합니다.',
+      '운영 시간은 계절과 일몰 시각에 따라\n탄력적으로 변경될 수 있습니다.',
+      '방문객 여러분의 너른 양해 부탁드립니다.',
     ],
     infoSessionsHeading: '인피니티 포레스트 조명쇼 타임테이블',
     infoSessionsNote:
@@ -154,9 +153,8 @@ export const UI: Record<Lang, UIStrings> = {
     infoPreOpenLineShort: 'SOFT OPEN',
     infoNoticeParagraphs: [
       'HASLA is currently in soft-open.',
-      'During this fine-tuning phase,\nsome areas and services may be limited.\nThank you for your patience and understanding.',
-      'Hours flex with the season and sunset.\nPlease check the latest schedule before your visit.',
-      'Thank you for your continued interest and support.',
+      'Hours may flex with the season and sunset.',
+      'Thank you for your patience and understanding.',
     ],
     infoSessionsHeading: 'Infinity Forest · Show Schedule',
     infoSessionsNote:
