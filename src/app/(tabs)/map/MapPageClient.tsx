@@ -117,40 +117,43 @@ export default function MapPageClient({ zones }: Props) {
         {/* Below-map area: caption when nothing selected, glowing zone display
             otherwise. Single-row layout — number+title left-aligned, hint
             right-aligned. Sits right under the map (small mt). */}
-        <div className="mt-3 flex min-h-[52px] items-center px-2">
+        <div className="mt-3 flex min-h-[64px] items-center px-2">
           {selectedZone && selectedL ? (
             <Link
               href={`/zone/${selectedZone.id}`}
               className="flex w-full items-center justify-between gap-3 rounded-xl py-2 transition-transform active:scale-[0.98]"
               style={{ ['--glow' as string]: selectedZone.accentColor }}
             >
-              {/* Number + title — left side */}
-              <div className="flex min-w-0 items-center gap-2.5">
+              {/* Number + title — left side. flex-1 + min-w-0 so the title
+                  gets all remaining horizontal space and only truncates at
+                  the absolute edge. */}
+              <div className="flex min-w-0 flex-1 items-center gap-3">
                 <span
-                  className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full font-display text-[11.5px] font-medium text-black"
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full font-display text-[15px] font-medium text-black"
                   style={{
                     background: selectedZone.accentColor,
-                    boxShadow: `0 0 10px ${selectedZone.accentColor}aa, 0 0 22px ${selectedZone.accentColor}55`,
+                    boxShadow: `0 0 12px ${selectedZone.accentColor}aa, 0 0 26px ${selectedZone.accentColor}55`,
                   }}
                 >
                   {String(selectedIdx + 1).padStart(2, '0')}
                 </span>
                 <h2
-                  className="truncate font-display text-[19px] font-medium leading-tight"
+                  className="font-display text-[32px] font-medium leading-[1.05]"
                   style={{
                     color: selectedZone.accentColor,
-                    textShadow: `0 0 12px ${selectedZone.accentColor}cc, 0 0 26px ${selectedZone.accentColor}55`,
+                    textShadow: `0 0 14px ${selectedZone.accentColor}cc, 0 0 30px ${selectedZone.accentColor}55`,
                   }}
                 >
                   {selectedL.title}
                 </h2>
               </div>
-              {/* Hint — right side, same row */}
+              {/* Hint — right side. Arrow-only so the title gets maximum room;
+                  full text exposed via aria-label for screen readers. */}
               <span
-                className="shrink-0 font-clean text-[11.5px] tracking-[0.05em] text-white/55"
-                aria-hidden
+                className="shrink-0 font-display text-[22px] leading-none text-white/55"
+                aria-label={t.viewDetail}
               >
-                {t.viewDetail}
+                →
               </span>
             </Link>
           ) : (

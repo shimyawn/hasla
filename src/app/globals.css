@@ -265,23 +265,29 @@ html, body {
 
 /* Map zone icons — stronger glow when this zone is selected, dimmed when
    some other zone is selected. Replaces the icon-glow keyframe animation
-   with a static brighter/dimmer state + smooth transitions. */
+   with a static brighter/dimmer state + smooth transitions.
+   `will-change` is required: without it, browsers (esp. Blink/iOS) drop
+   the GPU compositor layer once the transition ends and the drop-shadow
+   filter falls back to bounding-box rendering — making the round alpha
+   glow snap to a sharp rectangle a beat after the click. */
 .icon-selected {
   animation: none;
   opacity: 1;
-  transform: scale(1.18);
+  transform: scale(1.18) translateZ(0);
   filter:
     drop-shadow(0 0 12px var(--glow, rgba(255,255,255,0.75)))
     drop-shadow(0 0 28px var(--glow, rgba(255,255,255,0.5)));
   transition: opacity 280ms ease, transform 280ms ease, filter 280ms ease;
+  will-change: filter, transform, opacity;
 }
 
 .icon-dim {
   animation: none;
   opacity: 0.28;
-  transform: scale(0.94);
+  transform: scale(0.94) translateZ(0);
   filter: drop-shadow(0 0 2px var(--glow, rgba(255,255,255,0.2)));
   transition: opacity 280ms ease, transform 280ms ease, filter 280ms ease;
+  will-change: filter, transform, opacity;
 }
 
 /* Map icons — combines opacity, scale, and drop-shadow pulse using CSS variable for color */
