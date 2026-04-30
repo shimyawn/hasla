@@ -7,6 +7,7 @@ export interface UIStrings {
   splashSloganLine2: string
   splashHint: string
   splashCta: string
+  splashOpenDate: string
   copyrightSuffix: string
   // Header / nav
   navHome: string

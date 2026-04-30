@@ -149,23 +149,41 @@ export default function SplashClient() {
           {t.splashSloganLine2}
         </p>
 
-        <p
-          aria-hidden
-          className="mt-4 inline-block text-[11px] tracking-[0.3em] text-white/45"
-          style={{
-            // Stay hidden during the auto-reveal — only show after the user
-            // has interacted at least once and is currently in the silhouette
-            // (revealed=false) state, hinting they can tap to bring back color.
-            opacity: hasInteracted && !revealed ? 1 : 0,
-            transform: hasInteracted && !revealed ? 'translateY(0)' : 'translateY(6px)',
-            transition: `opacity ${TRANSITION_MS}ms ${EASE}, transform ${TRANSITION_MS}ms ${EASE}`,
-            willChange: 'opacity, transform',
-            isolation: 'isolate',
-            backfaceVisibility: 'hidden',
-          }}
-        >
-          {t.splashHint}
-        </p>
+        {/* Below-slogan hint area — single line of vertical space shared by:
+            · TAP TO AWAKEN  (silhouette state, after first interaction)
+            · soft-open date (color state)
+            Both absolutely positioned so they overlap into the same line. */}
+        {/* Hint area — both lines absolutely positioned, full width with
+            text-align: center for safe horizontal centering (no transform-x
+            conflict). They share the same vertical strip and toggle by
+            opacity based on reveal state. */}
+        <div className="relative mt-5 h-4 w-full">
+          <p
+            aria-hidden
+            className="absolute left-0 right-0 text-center text-[11px] tracking-[0.3em] text-white/45"
+            style={{
+              opacity: hasInteracted && !revealed ? 1 : 0,
+              transform: hasInteracted && !revealed ? 'translateY(0)' : 'translateY(6px)',
+              transition: `opacity ${TRANSITION_MS}ms ${EASE}, transform ${TRANSITION_MS}ms ${EASE}`,
+              willChange: 'opacity, transform',
+              backfaceVisibility: 'hidden',
+            }}
+          >
+            {t.splashHint}
+          </p>
+          <p
+            aria-hidden
+            className="absolute left-0 right-0 text-center text-[11.5px] tracking-[0.18em]"
+            style={{
+              opacity: revealed ? 1 : 0,
+              color: 'rgba(255, 196, 220, 0.55)',
+              transform: revealed ? 'translateY(0)' : 'translateY(6px)',
+              transition: `opacity ${TRANSITION_MS}ms ${EASE}, transform ${TRANSITION_MS}ms ${EASE}`,
+            }}
+          >
+            {t.splashOpenDate}
+          </p>
+        </div>
       </div>
 
       <footer className="flex w-full max-w-md flex-col items-center gap-3 px-6">
