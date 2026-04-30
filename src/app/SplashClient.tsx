@@ -83,29 +83,16 @@ export default function SplashClient() {
           {t.splashLabel}
         </p>
 
-        {/* Moon-rise composition — black silhouette settles down + fades, while
-            the color logo emerges from below it (clipped by the wrapper's
-            overflow-hidden so it appears to crest a horizon). Color rise is
-            slightly slower than the silhouette's fade so the moon visibly
-            climbs after the silhouette has dissolved. */}
+        {/* Moon-rise composition — color logo (the moon) sits BEHIND the black
+            silhouette. As the silhouette settles down + fades out, the color
+            logo rises into view from below it. Wrapper has overflow-hidden so
+            the rising moon appears to crest a horizon. DOM order matters here:
+            color first (behind), black second (in front). */}
         <div className="relative aspect-[3/1] w-[88%] max-w-[420px] overflow-hidden icon-breathe">
-          {/* Black silhouette — sinks 6% + slight scale-down + fade out */}
-          <Image
-            src="/images/logo_black.png"
-            alt="HASLA"
-            fill
-            priority
-            sizes="(max-width: 640px) 88vw, 420px"
-            className="object-contain"
-            style={{
-              opacity: revealed ? 0 : 1,
-              transform: `translateY(${revealed ? '6%' : '0%'}) scale(${revealed ? 0.97 : 1})`,
-              transition: `opacity ${hasInteracted ? TRANSITION_MS : 2800}ms ${EASE}, transform ${hasInteracted ? TRANSITION_MS : 2800}ms ${EASE}`,
-            }}
-          />
-          {/* Color logo — rises 25% from below the silhouette, slight scale-up
-              + fade in. Slower duration + small delay so it visibly emerges
-              after the silhouette starts settling. */}
+          {/* Color logo — rises from below behind the silhouette. translateY
+              28% → 0 + slight scale-up + opacity fade in. 400ms delay so the
+              silhouette starts dissolving first; the moon visibly emerges
+              from behind it. */}
           <Image
             src="/images/logo_full.png"
             alt="HASLA — Gangneung Immersive Art Show"
@@ -117,6 +104,21 @@ export default function SplashClient() {
               opacity: revealed ? 1 : 0,
               transform: `translateY(${revealed ? '0%' : '28%'}) scale(${revealed ? 1 : 0.96})`,
               transition: `opacity ${hasInteracted ? TRANSITION_MS : SLOW_FADE_MS}ms ${EASE} ${hasInteracted ? '0' : '400'}ms, transform ${hasInteracted ? TRANSITION_MS : SLOW_FADE_MS}ms ${EASE} ${hasInteracted ? '0' : '400'}ms`,
+            }}
+          />
+          {/* Black silhouette — in front. Sinks 6% + slight scale-down + fade
+              out, revealing the rising moon behind. */}
+          <Image
+            src="/images/logo_black.png"
+            alt="HASLA"
+            fill
+            priority
+            sizes="(max-width: 640px) 88vw, 420px"
+            className="object-contain"
+            style={{
+              opacity: revealed ? 0 : 1,
+              transform: `translateY(${revealed ? '6%' : '0%'}) scale(${revealed ? 0.97 : 1})`,
+              transition: `opacity ${hasInteracted ? TRANSITION_MS : 2800}ms ${EASE}, transform ${hasInteracted ? TRANSITION_MS : 2800}ms ${EASE}`,
             }}
           />
           {/* Flare sweep — clipped to logo silhouette via mask-image. Re-mounts
