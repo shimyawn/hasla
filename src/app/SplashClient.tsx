@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { useLang } from '@/i18n/LanguageContext'
 
 const TRANSITION_MS = 1500
+const SLOW_FADE_MS = 3500 // cinematic fade-in for the moon-rise color logo
 const NAV_TOTAL_MS = 1500
 const DISSOLVE_MS = 1100
 // Smooth symmetric ease for buttery cross-fades
@@ -95,7 +96,7 @@ export default function SplashClient() {
             className="moon-rise object-contain"
             style={{
               opacity: revealed ? 1 : 0,
-              transition: `opacity ${TRANSITION_MS}ms ${EASE}`,
+              transition: `opacity ${SLOW_FADE_MS}ms ${EASE}`,
             }}
           />
           {/* Flare sweep — fires once after moon-rise completes */}
@@ -163,6 +164,8 @@ export default function SplashClient() {
               transition: `opacity ${DISSOLVE_MS}ms ${EASE}`,
             }}
           />
+          {/* Flare sweep — fires once after the gradient pools in, matching the logo's flare */}
+          <span aria-hidden className="moon-flare absolute inset-0 rounded-full" />
           <span className="relative">{t.splashCta}</span>
         </a>
       </footer>
