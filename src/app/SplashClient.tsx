@@ -178,7 +178,12 @@ export default function SplashClient() {
               opacity: revealed ? 1 : 0,
               color: 'rgba(255, 196, 220, 0.55)',
               transform: revealed ? 'translateY(0)' : 'translateY(6px)',
-              transition: `opacity ${TRANSITION_MS}ms ${EASE}, transform ${TRANSITION_MS}ms ${EASE}`,
+              // Initial reveal: long delay (4s) + slow fade (3s) so the date
+              // emerges quietly after the moon has settled and the flare has
+              // passed. Subsequent toggles use the snappy default.
+              transition: hasInteracted
+                ? `opacity ${TRANSITION_MS}ms ${EASE}, transform ${TRANSITION_MS}ms ${EASE}`
+                : `opacity 3000ms ${EASE} 4000ms, transform 3000ms ${EASE} 4000ms`,
             }}
           >
             {t.splashOpenDate}

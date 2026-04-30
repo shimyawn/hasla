@@ -304,8 +304,18 @@ html, body {
   }
 }
 
+/* Idle map zone icon. Base values match the 0%/100% keyframe of the
+   icon-glow animation, so when an icon transitions from .icon-selected
+   or .icon-dim back into .icon-glow the property values smoothly
+   interpolate to the base before the keyframe animation kicks in.
+   The 500ms animation-delay leaves room for the transition to play
+   before the breathing pulse starts again. */
 .icon-glow {
-  animation: icon-glow 5.5s ease-in-out infinite;
+  opacity: 0.85;
+  transform: scale(1);
+  filter: drop-shadow(0 0 3px var(--glow, rgba(255,255,255,0.4)));
+  transition: opacity 500ms ease, transform 500ms ease, filter 500ms ease;
+  animation: icon-glow 5.5s ease-in-out infinite 500ms;
   will-change: opacity, transform, filter;
 }
 
