@@ -7,6 +7,30 @@ export const runtime = 'nodejs'
 // Always evaluate fresh; never cache POST responses.
 export const dynamic = 'force-dynamic'
 
+/** Normalise GOOGLE_PRIVATE_KEY across the various ways users paste it
+ *  into Vercel: literal \n escapes, surrounding quotes, base64 encoding. */
+function normalizePrivateKey(raw: string | undefined): string | undefined {
+  if (!raw) return undefined
+  let key = raw.trim()
+  // Strip surrounding quotes if user copied them too
+  if ((key.startsWith('"') && key.endsWith('"')) ||
+      (key.startsWith("'") && key.endsWith("'"))) {
+    key = key.slice(1, -1)
+  }
+  // Literal \n → real newline
+  key = key.replace(/\\n/g, '\n')
+  // If it looks like base64 (no BEGIN block) try decoding
+  if (!key.includes('BEGIN PRIVATE KEY') && /^[A-Za-z0-9+/=\s]+$/.test(key)) {
+    try {
+      const decoded = Buffer.from(key, 'base64').toString('utf8')
+      if (decoded.includes('BEGIN PRIVATE KEY')) key = decoded
+    } catch {
+      /* fall through */
+    }
+  }
+  return key
+}
+
 interface NotifyPayload {
   email?: string
   phone?: string
@@ -44,7 +68,7 @@ export async function POST(req: NextRequest) {
 
   const sheetId = process.env.GOOGLE_SHEET_ID
   const clientEmail = process.env.GOOGLE_CLIENT_EMAIL
-  const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n')
+  const privateKey = normalizePrivateKey(process.env.GOOGLE_PRIVATE_KEY)
   const tabName = process.env.GOOGLE_SHEET_TAB_NAME || 'Sheet1'
 
   if (!sheetId || !clientEmail || !privateKey) {
@@ -101,20 +125,37 @@ export async function POST(req: NextRequest) {
 export async function GET() {
   const sheetId = process.env.GOOGLE_SHEET_ID
   const clientEmail = process.env.GOOGLE_CLIENT_EMAIL
-  const hasKey = !!process.env.GOOGLE_PRIVATE_KEY
+  const rawKey = process.env.GOOGLE_PRIVATE_KEY
+  const privateKey = normalizePrivateKey(rawKey)
   const tabName = process.env.GOOGLE_SHEET_TAB_NAME || 'Sheet1'
 
   const env = {
     GOOGLE_SHEET_ID: sheetId ? `set (${sheetId.slice(0, 6)}…)` : 'MISSING',
     GOOGLE_CLIENT_EMAIL: clientEmail ?? 'MISSING',
-    GOOGLE_PRIVATE_KEY: hasKey ? 'set' : 'MISSING',
+    GOOGLE_PRIVATE_KEY: rawKey ? 'set' : 'MISSING',
     GOOGLE_SHEET_TAB_NAME: process.env.GOOGLE_SHEET_TAB_NAME ?? 'Sheet1 (default)',
   }
 
-  if (!sheetId || !clientEmail || !hasKey) {
+  // Diagnose private_key shape so format problems are obvious
+  const pkDiag = rawKey
+    ? {
+        rawLength: rawKey.length,
+        normalizedLength: privateKey?.length,
+        startsWithBegin: privateKey?.startsWith('-----BEGIN PRIVATE KEY-----'),
+        endsWithEnd: privateKey?.trimEnd().endsWith('-----END PRIVATE KEY-----'),
+        hasRealNewlines: privateKey?.includes('\n') ?? false,
+        rawHadEscapedNewlines: rawKey.includes('\\n'),
+        rawHadSurroundingQuotes:
+          (rawKey.startsWith('"') && rawKey.endsWith('"')) ||
+          (rawKey.startsWith("'") && rawKey.endsWith("'")),
+      }
+    : null
+
+  if (!sheetId || !clientEmail || !privateKey) {
     return NextResponse.json({
       ok: false,
       env,
+      privateKeyDiag: pkDiag,
       sheetTest: { ok: false, reason: 'env_missing — fill the env vars first' },
     })
   }
@@ -123,7 +164,7 @@ export async function GET() {
   try {
     const auth = new google.auth.JWT({
       email: clientEmail,
-      key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+      key: privateKey,
       scopes: ['https://www.googleapis.com/auth/spreadsheets'],
     })
     const sheets = google.sheets({ version: 'v4', auth })
@@ -158,10 +199,13 @@ export async function GET() {
       hint = 'GOOGLE_PRIVATE_KEY looks malformed. Re-copy the private_key value from the JSON file (the entire string including the BEGIN/END lines).'
     } else if (message.includes('SERVICE_DISABLED') || message.includes('has not been used')) {
       hint = 'Google Sheets API is not enabled for the project. Open Google Cloud Console → APIs & Services → Library → search "Google Sheets API" → Enable.'
+    } else if (message.includes('DECODER routines') || message.includes('unsupported')) {
+      hint = 'GOOGLE_PRIVATE_KEY 형식 문제 — JSON에서 복사할 때 escape 문자가 깨졌습니다. 권장: JSON의 private_key 값을 base64로 인코딩해서 다시 등록하세요. 또는 대안: 따옴표 없이, 한 줄짜리 형태로 (\\n 그대로 포함) 정확히 다시 붙여넣어 주세요.'
     }
     return NextResponse.json({
       ok: false,
       env,
+      privateKeyDiag: pkDiag,
       sheetTest: { ok: false, error: message, hint },
     })
   }
