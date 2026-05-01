@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { Zone } from '@/lib/types'
@@ -8,6 +8,9 @@ import { useLang } from '@/i18n/LanguageContext'
 import { localizeZone } from '@/i18n/zones'
 import type { Lang, LocalizedZone } from '@/i18n/types'
 import ContactBlock from '@/components/ContactBlock'
+
+// useLayoutEffect on client (no flash before paint) / no-op on server
+const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
 interface Props {
   zones: Zone[]
@@ -34,6 +37,17 @@ export default function MapPageClient({ zones }: Props) {
   // others dim, info shows below the map). Second tap on the same icon — or
   // a tap on the title displayed below — navigates to the zone detail page.
   const [selectedId, setSelectedId] = useState<string | null>(null)
+  // Fade-in overlay when arriving from the splash CTA — continues the white
+  // dissolve from splash and fades out to reveal the map smoothly.
+  const [fadeIn, setFadeIn] = useState(false)
+  useIsoLayoutEffect(() => {
+    try {
+      if (sessionStorage.getItem('hasla-from-splash') === '1') {
+        sessionStorage.removeItem('hasla-from-splash')
+        setFadeIn(true)
+      }
+    } catch {}
+  }, [])
 
   const selectedZone = selectedId ? zones.find((z) => z.id === selectedId) : null
   const selectedIdx = selectedId ? zones.findIndex((z) => z.id === selectedId) : -1
@@ -41,6 +55,14 @@ export default function MapPageClient({ zones }: Props) {
 
   return (
     <main className="min-h-dvh bg-black pb-28">
+      {/* White veil that fades out — only when arriving from the splash CTA */}
+      {fadeIn && (
+        <div
+          aria-hidden
+          className="splash-fade-out fixed inset-0 z-[100] bg-white"
+          onAnimationEnd={() => setFadeIn(false)}
+        />
+      )}
       <section className="mx-auto mt-8 max-w-md px-4">
         {/* Map — outer wrapper has no overflow clip so zone-icon drop-shadows
             can bloom past the rounded edges; inner div clips just the

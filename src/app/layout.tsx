@@ -42,13 +42,19 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko" className={`${yoonMeoli.variable} ${notoSans.variable} h-full antialiased`}>
-      <body className="min-h-dvh bg-background text-foreground">
-        <LanguageProvider>
-          <div className="fixed right-4 top-3 z-50">
-            <LanguageButton />
-          </div>
-          {children}
-        </LanguageProvider>
+      <body className="root-fixed bg-background text-foreground">
+        {/* Inner scroll container — body itself is fixed (no rubber-band)
+            and all scrolling happens here. Sticky headers inside child
+            pages stick relative to this container; fixed elements still
+            position to the viewport. */}
+        <div className="root-scroll">
+          <LanguageProvider>
+            <div className="fixed right-4 top-3 z-50">
+              <LanguageButton />
+            </div>
+            {children}
+          </LanguageProvider>
+        </div>
       </body>
     </html>
   )

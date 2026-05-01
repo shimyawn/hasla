@@ -59,7 +59,13 @@ export default function SplashClient() {
     if (!revealed) setRevealed(true)
     // White dissolve fades in immediately on click — hold ~0.4s solid white before navigation
     setTimeout(() => setNavigating(true), 50)
-    setTimeout(() => router.push('/map'), NAV_TOTAL_MS)
+    setTimeout(() => {
+      // Flag for the destination page to render its own white veil that
+      // fades out — keeps the white-to-content transition continuous
+      // instead of snapping straight to the map.
+      try { sessionStorage.setItem('hasla-from-splash', '1') } catch {}
+      router.push('/map')
+    }, NAV_TOTAL_MS)
   }
 
   return (

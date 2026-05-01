@@ -44,10 +44,28 @@ html, body {
   font-family: var(--font-body), 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
-  /* Prevent iOS rubber-band overscroll bounce that causes the
-     'jerky' feel near the top/bottom edges, and stop scroll
-     chains from propagating to outer scroll containers. */
-  overscroll-behavior-y: none;
+  overscroll-behavior: none;
+}
+
+/* iOS rubber-band fix — pin <body> to the viewport and let an inner
+   wrapper handle all scrolling. overscroll-behavior alone doesn't
+   reliably stop the bounce in iOS Safari, but a fixed body does. */
+.root-fixed {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.root-scroll {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Display — 윤머리정체 (제목·슬로건·hero) */
@@ -319,12 +337,21 @@ html, body {
   will-change: opacity, transform, filter;
 }
 
+/* Splash → tab page transition — paints a white veil that fades out so the
+   destination page emerges smoothly instead of snapping in. The element
+   self-removes via onAnimationEnd. */
+.splash-fade-out {
+  pointer-events: none;
+  animation: splashFadeOut 900ms ease forwards;
+}
+@keyframes splashFadeOut {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+
 /* prevent overscroll color flash on iOS */
 html { background: var(--background); }
 
-body {
-  min-height: 100dvh;
-}
-
-/* avoid horizontal scroll on small screens */
-html, body { overflow-x: hidden; }
+/* avoid horizontal scroll on small screens (only on html — body is
+   handled by .root-fixed which already has overflow: hidden) */
+html { overflow-x: hidden; }
