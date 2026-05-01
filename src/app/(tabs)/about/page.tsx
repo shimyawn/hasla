@@ -68,7 +68,7 @@ export default function AboutPage() {
   const c = lang === 'en' ? en : ko
 
   return (
-    <main className="min-h-dvh bg-black pb-32 pt-2">
+    <main className="min-h-dvh bg-black pb-32 pt-2 lg:pb-16">
       <div className="mx-auto max-w-md px-6 lg:max-w-2xl">
         <div className="mt-4">
           <PreOpenBanner />

@@ -45,7 +45,7 @@ export default function ZonePageClient({ zone }: Props) {
   }, [router])
 
   return (
-    <main className="min-h-dvh bg-black pb-32">
+    <main className="min-h-dvh bg-black pb-32 lg:pb-16">
       {/* Hero */}
       <div className="relative h-[58vh] min-h-[320px] w-full overflow-hidden lg:mx-auto lg:max-w-3xl">
         <Image

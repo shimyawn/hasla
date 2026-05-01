@@ -55,7 +55,7 @@ export default function BottomTabs() {
   return (
     <nav
       aria-label="primary"
-      className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-2xl"
+      className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-2xl lg:hidden"
       style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
     >
       {/* Top hairline — HASLA pastel gradient */}

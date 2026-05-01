@@ -54,7 +54,7 @@ export default function MapPageClient({ zones }: Props) {
   const selectedL = selectedZone ? localized(selectedZone, lang) : null
 
   return (
-    <main className="min-h-dvh bg-black pb-28">
+    <main className="min-h-dvh bg-black pb-28 lg:pb-16">
       {/* White veil that fades out — only when arriving from the splash CTA */}
       {fadeIn && (
         <div
@@ -63,7 +63,9 @@ export default function MapPageClient({ zones }: Props) {
           onAnimationEnd={() => setFadeIn(false)}
         />
       )}
-      <section className="mx-auto mt-8 max-w-md px-4 lg:max-w-2xl">
+      <section className="mx-auto mt-8 max-w-md px-4 lg:mt-10 lg:max-w-6xl lg:px-8 lg:flex lg:items-start lg:gap-10">
+        {/* Map column — full width on mobile, fixed-width left column on PC */}
+        <div className="lg:w-[600px] lg:shrink-0">
         {/* Map — outer wrapper has no overflow clip so zone-icon drop-shadows
             can bloom past the rounded edges; inner div clips just the
             background image to the rounded shape. Clicking the empty map
@@ -144,10 +146,9 @@ export default function MapPageClient({ zones }: Props) {
           })}
         </div>
 
-        {/* Below-map area: caption when nothing selected, glowing zone display
-            otherwise. Single-row layout — number+title left-aligned, hint
-            right-aligned. Sits right under the map (small mt). */}
-        <div className="mt-3 flex min-h-[64px] items-center px-2">
+        {/* Below-map area — MOBILE only. PC uses the right-side panel
+            outside this column. */}
+        <div className="mt-3 flex min-h-[64px] items-center px-2 lg:hidden">
           {selectedZone && selectedL ? (
             <Link
               href={`/zone/${selectedZone.id}`}
@@ -192,6 +193,105 @@ export default function MapPageClient({ zones }: Props) {
             </p>
           )}
         </div>
+        </div>
+
+        {/* PC right panel — caption when nothing selected, full zone detail
+            when a zone is picked. Hidden on mobile (mobile already has the
+            below-map card). */}
+        <aside className="hidden lg:block lg:flex-1 lg:min-w-0 lg:pt-2">
+          {selectedZone && selectedL ? (
+            <div className="flex flex-col gap-5">
+              {/* Zone number + title */}
+              <div className="flex items-center gap-3">
+                <span
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full font-display text-[15px] font-medium text-black"
+                  style={{
+                    background: selectedZone.accentColor,
+                    boxShadow: `0 0 12px ${selectedZone.accentColor}aa, 0 0 26px ${selectedZone.accentColor}55`,
+                  }}
+                >
+                  {String(selectedIdx + 1).padStart(2, '0')}
+                </span>
+                <h2
+                  className="font-display text-[32px] font-medium leading-[1.1]"
+                  style={{
+                    color: selectedZone.accentColor,
+                    textShadow: `0 0 14px ${selectedZone.accentColor}cc, 0 0 30px ${selectedZone.accentColor}55`,
+                  }}
+                >
+                  {selectedL.title}
+                </h2>
+              </div>
+
+              {selectedL.subtitle && (
+                <p className="font-display text-[15px] leading-[1.5] text-white/65">
+                  {selectedL.subtitle}
+                </p>
+              )}
+
+              {selectedL.tagline && (
+                <p
+                  className="font-display text-[15.5px] italic leading-[1.7]"
+                  style={{ color: selectedZone.accentColor }}
+                >
+                  &ldquo;{selectedL.tagline}&rdquo;
+                </p>
+              )}
+
+              <div className="mt-1 inline-block h-px w-10" style={{ backgroundColor: selectedZone.accentColor }} aria-hidden />
+
+              <p className="font-clean text-[14.5px] leading-[1.85] text-foreground/90">
+                {selectedL.story}
+              </p>
+
+              {selectedL.description && (
+                <p className="font-clean text-[14px] leading-[1.85] text-foreground/80">
+                  {selectedL.description}
+                </p>
+              )}
+
+              {selectedL.direction.length > 0 && (
+                <ul className="mt-1 flex flex-col gap-2">
+                  {selectedL.direction.map((d, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <span
+                        aria-hidden
+                        className="mt-2 inline-block h-1 w-1 shrink-0 rounded-full"
+                        style={{ backgroundColor: selectedZone.accentColor }}
+                      />
+                      <p className="text-[13.5px] leading-[1.7] text-foreground/80">{d}</p>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              <Link
+                href={`/zone/${selectedZone.id}`}
+                className="mt-3 inline-flex w-fit items-center gap-2 rounded-full border px-5 py-2.5 font-display text-[13px] tracking-[0.05em] transition-colors"
+                style={{
+                  borderColor: `${selectedZone.accentColor}80`,
+                  color: selectedZone.accentColor,
+                }}
+              >
+                {t.viewDetail}
+              </Link>
+            </div>
+          ) : (
+            <div className="flex flex-col gap-3 py-8">
+              <span className="font-display text-[10px] tracking-[0.45em] text-hasla-yellow/85">
+                EXPLORE
+              </span>
+              <h2 className="font-display text-[26px] font-medium leading-[1.3] text-white/85">
+                빛나는 영역을 클릭해보세요
+              </h2>
+              <p className="font-clean text-[14px] leading-[1.7] text-white/55">
+                {t.mapCaption}
+                <br />
+                선택한 ZONE의 안내가 이곳에 표시됩니다.
+              </p>
+            </div>
+          )}
+        </aside>
       </section>
 
       {/* Contact info — venue / phone / address / Naver Place */}

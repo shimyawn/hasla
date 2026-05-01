@@ -49,7 +49,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             position to the viewport. */}
         <div className="root-scroll">
           <LanguageProvider>
-            <div className="fixed right-4 top-3 z-50">
+            {/* Mobile: floats top-right. PC: hidden (HeaderBar has its own copy). */}
+            <div className="fixed right-4 top-3 z-50 lg:hidden">
               <LanguageButton />
             </div>
             {children}
