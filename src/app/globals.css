@@ -293,14 +293,14 @@ html, body {
 /* Map icons — combines opacity, scale, and drop-shadow pulse using CSS variable for color */
 @keyframes icon-glow {
   0%, 100% {
-    opacity: 0.85;
+    opacity: 0.78;
     transform: scale(1);
-    filter: drop-shadow(0 0 3px var(--glow, rgba(255,255,255,0.4)));
+    filter: drop-shadow(0 0 2px var(--glow, rgba(255,255,255,0.3)));
   }
   50% {
     opacity: 1;
-    transform: scale(1.025);
-    filter: drop-shadow(0 0 14px var(--glow, rgba(255,255,255,0.7)));
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 18px var(--glow, rgba(255,255,255,0.85)));
   }
 }
 
@@ -311,11 +311,11 @@ html, body {
    The 500ms animation-delay leaves room for the transition to play
    before the breathing pulse starts again. */
 .icon-glow {
-  opacity: 0.85;
+  opacity: 0.78;
   transform: scale(1);
-  filter: drop-shadow(0 0 3px var(--glow, rgba(255,255,255,0.4)));
+  filter: drop-shadow(0 0 2px var(--glow, rgba(255,255,255,0.3)));
   transition: opacity 500ms ease, transform 500ms ease, filter 500ms ease;
-  animation: icon-glow 5.5s ease-in-out infinite 500ms;
+  animation: icon-glow 4s ease-in-out infinite;
   will-change: opacity, transform, filter;
 }
 

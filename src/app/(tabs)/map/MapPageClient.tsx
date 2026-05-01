@@ -103,7 +103,7 @@ export default function MapPageClient({ zones }: Props) {
                     fill
                     sizes="22vw"
                     className={iconClass}
-                    style={isSelected || isDimmed ? undefined : { animationDelay: `${i * 0.15}s` }}
+                    style={isSelected || isDimmed ? undefined : { animationDelay: `${i * 0.4}s` }}
                   />
                 </div>
                 {/* Bloom on hover/tap (always-on for selected) */}
