@@ -4,7 +4,9 @@ import { FormEvent, useState } from 'react'
 import { useLang } from '@/i18n/LanguageContext'
 
 const REVIEW_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSf-e7f5OBXj6X2vnboWs8Lj4PjaGC_vF8YVsnZLh5iywzFTqg/viewform?pli=1'
-const NOTIFY_ENDPOINT = process.env.NEXT_PUBLIC_NOTIFY_ENDPOINT ?? ''
+// Submits to our own /api/notify endpoint, which writes the row to
+// Google Sheets via a service account. No CORS hacks needed.
+const NOTIFY_ENDPOINT = '/api/notify'
 
 type SubmitStatus = 'idle' | 'submitting' | 'success' | 'error'
 
@@ -31,30 +33,33 @@ export default function FeedbackPage() {
       setErrorMsg(t.notifyConsentRequired)
       return
     }
-    if (!NOTIFY_ENDPOINT) {
-      setStatus('error')
-      setErrorMsg(t.notifyComingSoon)
-      return
-    }
     setStatus('submitting')
     setErrorMsg('')
     try {
-      // text/plain body avoids CORS preflight; Apps Script parses JSON server-side.
-      // mode:'no-cors' yields an opaque response — we treat any non-throw as success.
-      await fetch(NOTIFY_ENDPOINT, {
+      const res = await fetch(NOTIFY_ENDPOINT, {
         method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email: trimmedEmail,
           phone: trimmedPhone,
           lang,
           consent: true,
           consentVersion: '2026-04-29',
-          timestamp: new Date().toISOString(),
           source: 'mobile-leaflet',
         }),
       })
+      const data = (await res.json().catch(() => null)) as
+        | { ok: boolean; error?: string }
+        | null
+      if (!res.ok || !data?.ok) {
+        // sheets_env_missing → server isn't configured yet; show coming-soon
+        if (data?.error === 'sheets_env_missing') {
+          setStatus('error')
+          setErrorMsg(t.notifyComingSoon)
+          return
+        }
+        throw new Error(data?.error ?? `http_${res.status}`)
+      }
       setStatus('success')
       setEmail('')
       setPhone('')
