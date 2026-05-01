@@ -8,7 +8,7 @@ export default function HeaderBar() {
   const { t } = useLang()
   return (
     <header className="sticky top-0 z-20 border-b border-white/8 bg-black/85 backdrop-blur-md">
-      <div className="mx-auto flex max-w-md items-center justify-between px-5 py-3">
+      <div className="mx-auto flex max-w-md items-center justify-between px-5 py-3 lg:max-w-3xl">
         {/* Home icon (left) — jumps to main map/list */}
         <Link
           href="/map"

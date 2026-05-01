@@ -94,7 +94,7 @@ export default function SplashClient() {
             logo rises into view from below it. Wrapper has overflow-hidden so
             the rising moon appears to crest a horizon. DOM order matters here:
             color first (behind), black second (in front). */}
-        <div className="relative aspect-[3/1] w-[88%] max-w-[420px] overflow-hidden">
+        <div className="relative aspect-[3/1] w-[88%] max-w-[420px] overflow-hidden lg:max-w-[560px]">
           {/* Color moon — z-index 0 (BEHIND). Slides UP from completely below
               the wrapper into final centered position. Pure transform —
               opacity/filter untouched so it cannot 'cross-fade' with the

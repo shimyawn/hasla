@@ -47,7 +47,7 @@ export default function ZonePageClient({ zone }: Props) {
   return (
     <main className="min-h-dvh bg-black pb-32">
       {/* Hero */}
-      <div className="relative h-[58vh] min-h-[320px] w-full overflow-hidden">
+      <div className="relative h-[58vh] min-h-[320px] w-full overflow-hidden lg:mx-auto lg:max-w-3xl">
         <Image
           src={zone.assets.mainImage}
           alt={L.title}
@@ -83,7 +83,7 @@ export default function ZonePageClient({ zone }: Props) {
 
       {/* Tagline */}
       {L.tagline && (
-        <section className="mx-auto max-w-md px-6 pt-6">
+        <section className="mx-auto max-w-md px-6 lg:max-w-2xl pt-6">
           <FadeInSection>
             <p className="font-display text-[16px] leading-[1.7]" style={{ color: zone.accentColor }}>
               “{L.tagline}”
@@ -93,7 +93,7 @@ export default function ZonePageClient({ zone }: Props) {
       )}
 
       {/* Story */}
-      <section className="mx-auto max-w-md px-6 pt-6">
+      <section className="mx-auto max-w-md px-6 lg:max-w-2xl pt-6">
         <FadeInSection>
           <div className="mb-3 inline-block h-px w-10" style={{ backgroundColor: zone.accentColor }} aria-hidden />
           <p className="text-[15px] leading-[1.85] text-foreground/90">{L.story}</p>
@@ -102,7 +102,7 @@ export default function ZonePageClient({ zone }: Props) {
 
       {/* Description */}
       {L.description && (
-        <section className="mx-auto max-w-md px-6 pt-5">
+        <section className="mx-auto max-w-md px-6 lg:max-w-2xl pt-5">
           <FadeInSection>
             <p className="text-[15px] leading-[1.85] text-foreground/85">{L.description}</p>
           </FadeInSection>
@@ -111,7 +111,7 @@ export default function ZonePageClient({ zone }: Props) {
 
       {/* Direction list */}
       {L.direction.length > 0 && (
-        <section className="mx-auto max-w-md px-6 pt-9">
+        <section className="mx-auto max-w-md px-6 lg:max-w-2xl pt-9">
           <ul className="flex flex-col gap-2.5">
             {L.direction.map((d, i) => (
               <FadeInSection key={i} delay={0.04 * i}>
@@ -127,7 +127,7 @@ export default function ZonePageClient({ zone }: Props) {
 
       {/* Timetable — only for Infinity Forest (zone6) */}
       {zone.id === 'zone6' && (
-        <section className="mx-auto max-w-md px-6 pt-12">
+        <section className="mx-auto max-w-md px-6 lg:max-w-2xl pt-12">
           <FadeInSection>
             <div className="mb-3 flex items-center gap-3">
               <span aria-hidden className="h-px w-8" style={{ backgroundColor: zone.accentColor }} />

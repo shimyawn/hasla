@@ -61,7 +61,7 @@ export default function BottomTabs() {
       {/* Top hairline — HASLA pastel gradient */}
       <div aria-hidden className="h-[2px] hasla-gradient" />
 
-      <ul className="grid grid-cols-4">
+      <ul className="mx-auto grid max-w-md grid-cols-4 lg:max-w-3xl">
         {TABS.map((tab) => {
           const active =
             tab.path === '/map'

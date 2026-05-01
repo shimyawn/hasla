@@ -69,7 +69,7 @@ export default function AboutPage() {
 
   return (
     <main className="min-h-dvh bg-black pb-32 pt-2">
-      <div className="mx-auto max-w-md px-6">
+      <div className="mx-auto max-w-md px-6 lg:max-w-2xl">
         <div className="mt-4">
           <PreOpenBanner />
         </div>

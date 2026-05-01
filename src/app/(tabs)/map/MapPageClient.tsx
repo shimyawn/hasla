@@ -63,7 +63,7 @@ export default function MapPageClient({ zones }: Props) {
           onAnimationEnd={() => setFadeIn(false)}
         />
       )}
-      <section className="mx-auto mt-8 max-w-md px-4">
+      <section className="mx-auto mt-8 max-w-md px-4 lg:max-w-2xl">
         {/* Map — outer wrapper has no overflow clip so zone-icon drop-shadows
             can bloom past the rounded edges; inner div clips just the
             background image to the rounded shape. Clicking the empty map
@@ -195,7 +195,7 @@ export default function MapPageClient({ zones }: Props) {
       </section>
 
       {/* Contact info — venue / phone / address / Naver Place */}
-      <section className="mx-auto mt-4 max-w-md px-6">
+      <section className="mx-auto mt-4 max-w-md px-6 lg:max-w-2xl">
         <ContactBlock />
       </section>
     </main>

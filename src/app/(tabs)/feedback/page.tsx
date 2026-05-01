@@ -92,7 +92,7 @@ export default function FeedbackPage() {
 
   return (
     <main className="min-h-dvh bg-black pb-32 pt-2">
-      <div className="mx-auto max-w-md px-6">
+      <div className="mx-auto max-w-md px-6 lg:max-w-2xl">
         <h1 className="mt-8 font-display text-[26px] font-medium text-white">
           {t.reviewsPageTitle}
         </h1>
