@@ -96,20 +96,73 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// Convenient health check — visit /api/notify directly to verify the
-// route is wired up and env vars are present (does NOT verify auth or
-// sheet access).
+// Health check — env presence + actually try to read the sheet so we know
+// auth and sharing are correct. Visit /api/notify directly in the browser.
 export async function GET() {
   const sheetId = process.env.GOOGLE_SHEET_ID
   const clientEmail = process.env.GOOGLE_CLIENT_EMAIL
   const hasKey = !!process.env.GOOGLE_PRIVATE_KEY
-  return NextResponse.json({
-    ok: true,
-    env: {
-      GOOGLE_SHEET_ID: sheetId ? `set (${sheetId.slice(0, 6)}…)` : 'MISSING',
-      GOOGLE_CLIENT_EMAIL: clientEmail ?? 'MISSING',
-      GOOGLE_PRIVATE_KEY: hasKey ? 'set' : 'MISSING',
-      GOOGLE_SHEET_TAB_NAME: process.env.GOOGLE_SHEET_TAB_NAME ?? 'Sheet1 (default)',
-    },
-  })
+  const tabName = process.env.GOOGLE_SHEET_TAB_NAME || 'Sheet1'
+
+  const env = {
+    GOOGLE_SHEET_ID: sheetId ? `set (${sheetId.slice(0, 6)}…)` : 'MISSING',
+    GOOGLE_CLIENT_EMAIL: clientEmail ?? 'MISSING',
+    GOOGLE_PRIVATE_KEY: hasKey ? 'set' : 'MISSING',
+    GOOGLE_SHEET_TAB_NAME: process.env.GOOGLE_SHEET_TAB_NAME ?? 'Sheet1 (default)',
+  }
+
+  if (!sheetId || !clientEmail || !hasKey) {
+    return NextResponse.json({
+      ok: false,
+      env,
+      sheetTest: { ok: false, reason: 'env_missing — fill the env vars first' },
+    })
+  }
+
+  // Try to actually reach the sheet
+  try {
+    const auth = new google.auth.JWT({
+      email: clientEmail,
+      key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+    })
+    const sheets = google.sheets({ version: 'v4', auth })
+    const meta = await sheets.spreadsheets.get({
+      spreadsheetId: sheetId,
+      fields: 'properties.title,sheets.properties.title',
+    })
+    const tabs = meta.data.sheets?.map((s) => s.properties?.title).filter(Boolean) as string[]
+    const tabExists = tabs?.includes(tabName)
+    return NextResponse.json({
+      ok: true,
+      env,
+      sheetTest: {
+        ok: true,
+        spreadsheetTitle: meta.data.properties?.title,
+        availableTabs: tabs,
+        configuredTab: tabName,
+        tabExists,
+        hint: tabExists
+          ? '✓ All checks passed — submitting the form should work.'
+          : `⚠ The tab '${tabName}' was not found. Available tabs: ${tabs?.join(', ')}. Update GOOGLE_SHEET_TAB_NAME env var to one of these (or rename your tab to '${tabName}').`,
+      },
+    })
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'unknown'
+    let hint = 'Check the docs/notify-form-setup.md.'
+    if (message.includes('PERMISSION_DENIED') || message.includes('does not have permission')) {
+      hint = `Service account doesn't have access to the sheet. Open the sheet → Share button → add '${clientEmail}' as Editor (with bell icon UNCHECKED).`
+    } else if (message.includes('Requested entity was not found')) {
+      hint = 'GOOGLE_SHEET_ID is wrong or the sheet was deleted. Double-check the ID in Vercel env vars.'
+    } else if (message.includes('invalid_grant') || message.includes('Invalid JWT')) {
+      hint = 'GOOGLE_PRIVATE_KEY looks malformed. Re-copy the private_key value from the JSON file (the entire string including the BEGIN/END lines).'
+    } else if (message.includes('SERVICE_DISABLED') || message.includes('has not been used')) {
+      hint = 'Google Sheets API is not enabled for the project. Open Google Cloud Console → APIs & Services → Library → search "Google Sheets API" → Enable.'
+    }
+    return NextResponse.json({
+      ok: false,
+      env,
+      sheetTest: { ok: false, error: message, hint },
+    })
+  }
 }
