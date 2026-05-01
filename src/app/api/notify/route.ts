@@ -38,6 +38,64 @@ interface NotifyPayload {
   consent?: boolean
   consentVersion?: string
   source?: string
+  honeypot?: string        // bot trap — must be empty string
+  formStartedAt?: number   // client epoch ms when form became interactive
+}
+
+// --- Per-IP rate limit (in-memory, per serverless instance) ----------------
+// Good enough for soft-open scale. For massive bursts swap in Vercel KV.
+const RATE_WINDOW_MS = 60 * 1000
+const RATE_MAX_REQUESTS = 5
+const ipRequestLog = new Map<string, number[]>()
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now()
+  const log = ipRequestLog.get(ip) ?? []
+  const recent = log.filter((t) => now - t < RATE_WINDOW_MS)
+  if (recent.length >= RATE_MAX_REQUESTS) {
+    ipRequestLog.set(ip, recent) // refresh sliding window
+    return true
+  }
+  recent.push(now)
+  ipRequestLog.set(ip, recent)
+  // Occasional cleanup so the map doesn't grow forever
+  if (Math.random() < 0.05) {
+    for (const [k, v] of ipRequestLog) {
+      const stillRecent = v.filter((t) => now - t < RATE_WINDOW_MS)
+      if (stillRecent.length === 0) ipRequestLog.delete(k)
+      else ipRequestLog.set(k, stillRecent)
+    }
+  }
+  return false
+}
+
+function getClientIp(req: NextRequest): string {
+  const xff = req.headers.get('x-forwarded-for')
+  if (xff) return xff.split(',')[0]?.trim() ?? 'unknown'
+  return req.headers.get('x-real-ip') ?? 'unknown'
+}
+
+// Append with retry — handles Google API 429 / 5xx with brief backoff.
+async function appendWithRetry(
+  fn: () => Promise<unknown>,
+  attempts = 3,
+): Promise<void> {
+  let lastErr: unknown
+  for (let i = 0; i < attempts; i++) {
+    try {
+      await fn()
+      return
+    } catch (err) {
+      lastErr = err
+      const e = err as { code?: number; status?: number; response?: { status?: number } }
+      const code = e?.code ?? e?.status ?? e?.response?.status ?? 0
+      const isRetryable = code === 429 || (code >= 500 && code < 600)
+      if (!isRetryable || i === attempts - 1) throw err
+      // 600ms, 1.8s
+      await new Promise((r) => setTimeout(r, 600 * Math.pow(3, i)))
+    }
+  }
+  throw lastErr
 }
 
 function isMissing(v: string | undefined): v is undefined {
@@ -51,6 +109,33 @@ export async function POST(req: NextRequest) {
   } catch {
     return NextResponse.json({ ok: false, error: 'invalid_json' }, { status: 400 })
   }
+
+  // ── Bot defense layer ───────────────────────────────────────────
+  // 1) Honeypot — bots auto-fill every input. Real users can't see it.
+  if (payload.honeypot && payload.honeypot.trim() !== '') {
+    // Pretend success so the bot doesn't try a different attack vector.
+    return NextResponse.json({ ok: true })
+  }
+
+  // 2) Min submit time — humans take >2s to fill out the form.
+  const formStartedAt = typeof payload.formStartedAt === 'number' ? payload.formStartedAt : 0
+  if (formStartedAt > 0) {
+    const elapsed = Date.now() - formStartedAt
+    if (elapsed < 2000) {
+      // Pretend success — bot won't know the form was rejected.
+      return NextResponse.json({ ok: true })
+    }
+  }
+
+  // 3) IP rate limit — same IP capped at N requests / minute.
+  const ip = getClientIp(req)
+  if (isRateLimited(ip)) {
+    return NextResponse.json(
+      { ok: false, error: 'rate_limited' },
+      { status: 429 },
+    )
+  }
+  // ────────────────────────────────────────────────────────────────
 
   const email = payload.email?.trim() ?? ''
   const phone = payload.phone?.trim() ?? ''
@@ -86,25 +171,27 @@ export async function POST(req: NextRequest) {
     })
     const sheets = google.sheets({ version: 'v4', auth })
 
-    await sheets.spreadsheets.values.append({
-      spreadsheetId: sheetId,
-      range: `${tabName}!A:G`,
-      valueInputOption: 'RAW',
-      insertDataOption: 'INSERT_ROWS',
-      requestBody: {
-        values: [
-          [
-            new Date().toISOString(),
-            email,
-            phone,
-            lang,
-            source,
-            consent ? 'TRUE' : 'FALSE',
-            consentVersion,
+    await appendWithRetry(() =>
+      sheets.spreadsheets.values.append({
+        spreadsheetId: sheetId,
+        range: `${tabName}!A:G`,
+        valueInputOption: 'RAW',
+        insertDataOption: 'INSERT_ROWS',
+        requestBody: {
+          values: [
+            [
+              new Date().toISOString(),
+              email,
+              phone,
+              lang,
+              source,
+              consent ? 'TRUE' : 'FALSE',
+              consentVersion,
+            ],
           ],
-        ],
-      },
-    })
+        },
+      }),
+    )
 
     return NextResponse.json({ ok: true })
   } catch (err) {

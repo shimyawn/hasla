@@ -1,6 +1,6 @@
 'use client'
 
-import { FormEvent, useState } from 'react'
+import { FormEvent, useRef, useState } from 'react'
 import { useLang } from '@/i18n/LanguageContext'
 
 const REVIEW_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSf-e7f5OBXj6X2vnboWs8Lj4PjaGC_vF8YVsnZLh5iywzFTqg/viewform?pli=1'
@@ -18,6 +18,12 @@ export default function FeedbackPage() {
   const [showConsentDetail, setShowConsentDetail] = useState(false)
   const [status, setStatus] = useState<SubmitStatus>('idle')
   const [errorMsg, setErrorMsg] = useState('')
+  // Honeypot — hidden from real users, but auto-fill bots will populate it.
+  // Server treats any non-empty value as a bot submission.
+  const [honeypot, setHoneypot] = useState('')
+  // Min submit time — record when the form first becomes interactive so the
+  // server can reject impossibly-fast submissions.
+  const formStartedAt = useRef<number>(Date.now())
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -46,6 +52,8 @@ export default function FeedbackPage() {
           consent: true,
           consentVersion: '2026-04-29',
           source: 'mobile-leaflet',
+          honeypot,                       // bot trap (must be empty)
+          formStartedAt: formStartedAt.current, // min-submit-time check
         }),
       })
       const data = (await res.json().catch(() => null)) as
@@ -58,12 +66,20 @@ export default function FeedbackPage() {
           setErrorMsg(t.notifyComingSoon)
           return
         }
+        // Rate-limited — friendly message instead of generic error
+        if (data?.error === 'rate_limited') {
+          setStatus('error')
+          setErrorMsg('너무 많은 요청이 감지되었습니다. 잠시 후 다시 시도해 주세요.')
+          return
+        }
         throw new Error(data?.error ?? `http_${res.status}`)
       }
       setStatus('success')
       setEmail('')
       setPhone('')
       setConsent(false)
+      setHoneypot('')
+      formStartedAt.current = Date.now() // reset so a quick re-submit is also valid
     } catch {
       setStatus('error')
       setErrorMsg(t.notifyError)
@@ -133,6 +149,29 @@ export default function FeedbackPage() {
           </ul>
 
           <form onSubmit={onSubmit} className="mt-7 flex flex-col gap-3" noValidate>
+            {/* Honeypot — visually hidden but reachable by autofill bots.
+                Real users never see or interact with this. Server rejects
+                any submission with a non-empty value. */}
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              style={{
+                position: 'absolute',
+                width: '1px',
+                height: '1px',
+                padding: 0,
+                margin: '-1px',
+                overflow: 'hidden',
+                clip: 'rect(0, 0, 0, 0)',
+                whiteSpace: 'nowrap',
+                border: 0,
+              }}
+            />
             <input
               type="email"
               inputMode="email"
