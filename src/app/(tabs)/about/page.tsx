@@ -17,7 +17,7 @@ const ko = {
   s3Label: '오행, 다섯 빛의 순환',
   s3Intro: '다섯 개의 달은 각각 오행 —\n목·화·토·금·수의 힘을 품습니다.',
   s3Moons: [
-    { element: '목 (木)', desc: '푸른 달빛이 숲을 적시고, 사슴과 산맥이 모습을 드러냅니다.' },
+    { element: '목 (木)', desc: '푸른 달빛이 숲을 적시고, 숲과 동물들이 깨어납니다.' },
     { element: '화 (火)', desc: '태양과 달이 교차하며 붉은 불꽃이 피어오릅니다.' },
     { element: '토 (土)', desc: '불길의 재가 황토가 되어 새로운 씨앗이 움틉니다.' },
     { element: '금 (金)', desc: '흙 속에서 태어난 보석이 별이 되어 밤하늘을 물들입니다.' },
@@ -46,7 +46,7 @@ const en = {
   s3Label: 'Five Elements, the Cycle of Light',
   s3Intro: 'Each of the five moons holds one of the Five Elements —\nWood, Fire, Earth, Metal, Water.',
   s3Moons: [
-    { element: 'Wood', desc: 'Blue moonlight bathes the forest as deer and mountain ranges appear.' },
+    { element: 'Wood', desc: 'Blue moonlight bathes the forest as the woods and animals awaken.' },
     { element: 'Fire', desc: 'Sun and moon cross paths, and red flames rise.' },
     { element: 'Earth', desc: 'Embers turn to ochre soil, and new seeds sprout.' },
     { element: 'Metal', desc: 'Gems born in the earth ascend to the sky as stars.' },

@@ -85,27 +85,6 @@ export const UI: Record<Lang, UIStrings> = {
     reviewsIntro:
       '관람 후 느낀 점을 편하게 들려주세요.\n여러분의 한 마디가 강릉을 지키는 다섯 개의 달에 빛을 더합니다.',
     reviewsCta: '리뷰 작성하러 가기',
-
-    notifySectionLabel: 'EARLY ACCESS',
-    notifyHeading: '오픈 소식 & 한정 혜택을\n가장 먼저 받아보세요',
-    notifyIntro:
-      'HASLA를 기다리는 분들을 위한 작은 선물.\n달이 차오르듯, 빛나는 소식을 가장 먼저 보내드릴게요.',
-    notifyBenefits: [
-      '정식 운영 시작 안내',
-      '한정 프리뷰 · 비공개 이벤트 초대',
-    ],
-    notifyEmailPlaceholder: '이메일 주소',
-    notifyPhonePlaceholder: '전화번호',
-    notifyConsent: '[필수] 개인정보 수집·이용에 동의합니다',
-    notifyConsentDetail:
-      '· 수집 항목: 이메일 또는 전화번호\n· 수집·이용 목적: 운영 소식 및 한정 혜택 안내\n· 보유·이용 기간: 수집일로부터 1년 (동의 철회 요청 시 즉시 파기)\n· 동의 거부 권리: 동의를 거부할 수 있으며, 거부 시 알림 신청 서비스 이용이 제한됩니다.',
-    notifyConsentRequired: '개인정보 수집·이용에 동의해 주세요.',
-    notifySubmit: '신청하기',
-    notifySubmitting: '신청 중…',
-    notifySuccess: '신청 완료! 빛나는 소식이 도착하면 가장 먼저 보내드릴게요.',
-    notifyError: '신청에 실패했습니다. 잠시 후 다시 시도해 주세요.',
-    notifyValidation: '이메일이나 전화번호 중 하나를 입력해 주세요.',
-    notifyComingSoon: '신청 기능은 곧 활성화됩니다.',
   },
 
   en: {
@@ -192,26 +171,5 @@ export const UI: Record<Lang, UIStrings> = {
     reviewsIntro:
       "Tell us what you felt — there's no wrong way to say it.\nYour words add light to the five moons watching over Gangneung.",
     reviewsCta: 'Leave a review',
-
-    notifySectionLabel: 'EARLY ACCESS',
-    notifyHeading: 'Be first to know about\nopening news & exclusive perks',
-    notifyIntro:
-      "A little something for those awaiting HASLA.\nAs the moon grows full, we'll send our brightest news your way.",
-    notifyBenefits: [
-      'Notice when full operations begin',
-      'Invitations to private previews and events',
-    ],
-    notifyEmailPlaceholder: 'Email address',
-    notifyPhonePlaceholder: 'Phone number',
-    notifyConsent: '[Required] I agree to the collection and use of my personal information',
-    notifyConsentDetail:
-      '· Information collected: email or phone number\n· Purpose: operations updates and exclusive perk announcements\n· Retention: 1 year from collection (deleted immediately upon request)\n· Right to refuse: You may decline; in that case, we cannot provide the notification service.',
-    notifyConsentRequired: 'Please agree to the personal information policy to continue.',
-    notifySubmit: 'Sign up',
-    notifySubmitting: 'Submitting…',
-    notifySuccess: "You're in. We'll be in touch with our brightest news first.",
-    notifyError: 'Something went wrong. Please try again in a moment.',
-    notifyValidation: 'Please enter an email or phone number.',
-    notifyComingSoon: 'Sign-up coming soon.',
   },
 }

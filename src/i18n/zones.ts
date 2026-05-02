@@ -57,7 +57,7 @@ const ko: Record<string, LocalizedZone> = {
     story:
       '다섯 달빛을 집중적으로 받아 세상에서 가장 크게 자라난, 하슬라 숲의 심장입니다.',
     description:
-      '하슬라 시절 가장 큰 소나무가 있던 자리. 거대한 그루터기에서 다섯 줄기의 빛이 수직으로 솟아오르며 다섯 달을 상징합니다. 서치라이트 조명 연출이 잠들었던 하슬라의 부활을 알리고, 신비한 다섯개의 달빛은 하슬라 전역으로 퍼져 나갑니다 — 이 강력한 빛은 하슬라 생태계를 구성하는 모든 에너지의 근원입니다.',
+      '하슬라 시절 가장 큰 소나무가 있던 자리. 거대한 그루터기로 다섯개의 달빛이 쏟아지며 하슬라의 부활을 알리고, 이 신비한 달빛은 하슬라 전역으로 퍼져나갑니다.\n\n푸른 달빛이 숲을 적시고, 나무의 숨결로 숲속 잠든 생명력을 깨웁니다.',
     direction: [
       '서치라이트로 하슬라 대표 컨셉인 다섯 개의 달을 강조.',
       '높게 뜬 다섯 개의 달 연출을 통해 하슬라 세계관의 상징적 의미 전달.',
@@ -187,7 +187,7 @@ const en: Record<string, LocalizedZone> = {
     story:
       'The heart of the Hasla forest — grown to colossal size by the concentrated light of five moons.',
     description:
-      "Where the greatest pine of Hasla once stood. From the giant stump, five vertical beams rise to signify the five moons. Searchlights announce the rebirth of slumbering Hasla as the mystical moonlight radiates across the forest — the primal energy that sustains all of Hasla's ecology.",
+      "Where Hasla's greatest pine once stood. Five streams of moonlight pour onto the giant stump, announcing Hasla's rebirth as the mystic light spreads across the entire forest.\n\nBlue moonlight bathes the woods, and the breath of the trees awakens the sleeping life within.",
     direction: [
       "Searchlights highlight Hasla's signature concept — the Five Moons.",
       'Five moons rise high, conveying the symbolic core of the Hasla world.',
