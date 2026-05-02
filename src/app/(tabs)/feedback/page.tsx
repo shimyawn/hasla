@@ -2,6 +2,7 @@
 
 import { useLang } from '@/i18n/LanguageContext'
 import PreOpenBanner from '@/components/PreOpenBanner'
+import ContactBlock from '@/components/ContactBlock'
 
 const REVIEW_URL =
   'https://docs.google.com/forms/d/e/1FAIpQLSf-e7f5OBXj6X2vnboWs8Lj4PjaGC_vF8YVsnZLh5iywzFTqg/viewform?pli=1'
@@ -35,6 +36,8 @@ export default function FeedbackPage() {
             <span aria-hidden>→</span>
           </a>
         </div>
+
+        <ContactBlock />
       </div>
     </main>
   )
