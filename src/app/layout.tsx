@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import localFont from 'next/font/local'
 import { Noto_Sans_KR } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import './globals.css'
 import { LanguageProvider } from '@/i18n/LanguageContext'
@@ -158,8 +159,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </div>
         {/* Analytics — Vercel for first-party visitor counts; GA4 layered on
             top for richer behavior data. GA4 only mounts when NEXT_PUBLIC_GA_ID
-            is set so no broken script tag in dev/local. */}
+            is set so no broken script tag in dev/local.
+            Speed Insights collects Core Web Vitals (LCP, INP, CLS) per route
+            so we can spot perf regressions as we ship. */}
         <Analytics />
+        <SpeedInsights />
         {process.env.NEXT_PUBLIC_GA_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         )}
