@@ -81,6 +81,8 @@ export const UI: Record<Lang, UIStrings> = {
     contactAddressLabel: '주소',
     contactPlaceLabel: '네이버 플레이스',
     contactPlaceCta: '네이버 플레이스에서 보기',
+    contactInstagramLabel: '공식 인스타그램',
+    contactInstagramHandle: '@hasla_5moons',
 
     reviewsIntro:
       '관람 후 느낀 점을 편하게 들려주세요.\n여러분의 한 마디가 강릉을 지키는 다섯 개의 달에 빛을 더합니다.',
@@ -167,6 +169,8 @@ export const UI: Record<Lang, UIStrings> = {
     contactAddressLabel: 'Address',
     contactPlaceLabel: 'Naver Place',
     contactPlaceCta: 'Open in Naver Place',
+    contactInstagramLabel: 'Official Instagram',
+    contactInstagramHandle: '@hasla_5moons',
 
     reviewsIntro:
       "Tell us what you felt — there's no wrong way to say it.\nYour words add light to the five moons watching over Gangneung.",

@@ -68,6 +68,37 @@ export default function ContactBlock() {
             </a>
           </li>
         </FadeInSection>
+
+        <FadeInSection delay={0.16}>
+          <li>
+            <div className="font-display text-[10px] tracking-[0.4em] text-hasla-yellow/85">
+              {t.contactInstagramLabel}
+            </div>
+            <a
+              href="https://www.instagram.com/hasla_5moons/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 font-clean text-[14px] text-white/85 transition-colors hover:border-hasla-yellow/60 hover:text-white"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-4 w-4"
+                aria-hidden
+              >
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" />
+              </svg>
+              {t.contactInstagramHandle}
+              <span aria-hidden>↗</span>
+            </a>
+          </li>
+        </FadeInSection>
       </ul>
     </section>
   )

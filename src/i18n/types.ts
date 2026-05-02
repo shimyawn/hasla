@@ -76,6 +76,8 @@ export interface UIStrings {
   contactAddressLabel: string
   contactPlaceLabel: string
   contactPlaceCta: string
+  contactInstagramLabel: string
+  contactInstagramHandle: string
   // Reviews
   reviewsIntro: string
   reviewsCta: string
