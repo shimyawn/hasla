@@ -78,7 +78,11 @@ export default function MapPageClient({ zones }: Props) {
           <div className="absolute inset-0 overflow-hidden rounded-2xl border border-border bg-card">
             <Image
               src="/images/map.jpg"
-              alt={t.metaTitle}
+              alt={
+                lang === 'en'
+                  ? 'Map of HASLA Gangneung immersive media art show — 8 zones across the Gyeongpo Lake pine grove near Heo Nanseolheon Park'
+                  : '하슬라 강릉 이머시브 아트쇼 ZONE 지도 — 강릉 경포호 송림과 허난설헌공원 인근에서 펼쳐지는 야간 미디어아트 산책 8개 구역'
+              }
               fill
               priority
               sizes="(max-width: 448px) 100vw, 448px"

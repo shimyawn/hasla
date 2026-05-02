@@ -103,7 +103,7 @@ export default function SplashClient() {
               visible at all. */}
           <Image
             src="/images/logo_full.png"
-            alt="HASLA — Gangneung Immersive Art Show"
+            alt="HASLA 하슬라 — 강릉 경포 환상의 호수 야간 미디어아트 이머시브 아트쇼"
             fill
             priority
             unoptimized
@@ -125,7 +125,7 @@ export default function SplashClient() {
               just translation. */}
           <Image
             src="/images/logo_black.png"
-            alt="HASLA"
+            alt=""
             fill
             priority
             unoptimized

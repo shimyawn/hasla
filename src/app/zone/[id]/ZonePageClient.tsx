@@ -50,7 +50,11 @@ export default function ZonePageClient({ zone }: Props) {
       <div className="relative h-[58vh] min-h-[320px] w-full overflow-hidden lg:mx-auto lg:max-w-3xl">
         <Image
           src={zone.assets.mainImage}
-          alt={L.title}
+          alt={
+            lang === 'en'
+              ? `ZONE ${zoneNumber(zone.id)} · ${L.title} — HASLA Gangneung Gyeongpo Lake immersive media art zone`
+              : `ZONE ${zoneNumber(zone.id)} · ${L.title} — 하슬라 강릉 경포호 야간 미디어아트 ZONE 메인 이미지`
+          }
           fill
           priority
           sizes="(max-width: 640px) 100vw, 640px"

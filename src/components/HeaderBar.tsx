@@ -7,7 +7,7 @@ import { useLang } from '@/i18n/LanguageContext'
 import LanguageButton from './LanguageButton'
 
 export default function HeaderBar() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const pathname = usePathname() ?? ''
 
   const navItems = [
@@ -49,7 +49,11 @@ export default function HeaderBar() {
         >
           <Image
             src="/images/logo_full.png"
-            alt={t.metaTitle}
+            alt={
+              lang === 'en'
+                ? 'HASLA — Gangneung Gyeongpo Fantasy Lake immersive media art show logo'
+                : '하슬라 강릉 이머시브 아트쇼 — 경포 환상의 호수 로고'
+            }
             fill
             priority
             sizes="(min-width: 1024px) 112px, 96px"
