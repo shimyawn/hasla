@@ -33,10 +33,10 @@ export default function ContactBlock() {
               {t.contactPhoneLabel}
             </div>
             <a
-              href="tel:010-9819-0245"
+              href="tel:0507-1322-4508"
               className="mt-1.5 inline-flex items-center gap-2 font-clean text-[16px] tracking-[0.02em] text-white transition-colors hover:text-hasla-yellow"
             >
-              010-9819-0245
+              0507-1322-4508
             </a>
           </li>
         </FadeInSection>
