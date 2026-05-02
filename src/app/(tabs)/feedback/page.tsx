@@ -1,6 +1,7 @@
 'use client'
 
 import { useLang } from '@/i18n/LanguageContext'
+import PreOpenBanner from '@/components/PreOpenBanner'
 
 const REVIEW_URL =
   'https://docs.google.com/forms/d/e/1FAIpQLSf-e7f5OBXj6X2vnboWs8Lj4PjaGC_vF8YVsnZLh5iywzFTqg/viewform?pli=1'
@@ -10,6 +11,10 @@ export default function FeedbackPage() {
   return (
     <main className="min-h-dvh bg-black pb-32 pt-2 lg:pb-16">
       <div className="mx-auto max-w-md px-6 lg:max-w-2xl">
+        <div className="mt-4">
+          <PreOpenBanner />
+        </div>
+
         <h1 className="mt-8 font-display text-[26px] font-medium text-white">
           {t.reviewsPageTitle}
         </h1>
