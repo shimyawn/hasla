@@ -5,7 +5,8 @@ import path from 'path'
 // Run on the Node runtime so we can read the local font file from disk.
 export const runtime = 'nodejs'
 
-export const alt = '경포 환상의 호수 — 고대 하슬라의 밤'
+export const alt =
+  '하슬라강릉이머시브아트쇼 — 강릉 경포 환상의 호수, 다섯 개의 달이 뜨는 밤 (강릉 가볼만한곳 · 강릉 관광)'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 

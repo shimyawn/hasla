@@ -140,8 +140,8 @@ export default function AboutPageClient() {
           <FadeInSection>
             <p className="mb-4 font-clean text-[15px] leading-[1.85] text-white/85">
               {lang === 'en'
-                ? 'A nightly immersive media-art walk along Gyeongpo Lake in Gangneung — set in the pine grove near Heo Nanseolheon Park. The 8 zones light up at dusk, weaving sound, light, and the legend of the five moons of ancient Hasla.'
-                : '강릉 경포호 일원에서 펼쳐지는 야간 미디어아트 산책. 허난설헌공원 인근 송림에서 8개의 ZONE이 빛과 사운드로 깨어나, 다섯 개의 달이 떠오르는 고대 하슬라의 전설로 안내합니다.'}
+                ? 'Hasla Gangneung Immersive Art Show — a nightly immersive media-art walk along Gyeongpo Lake in Gangneung, set in the pine grove near Heo Nanseolheon Park. The 8 zones light up at dusk, weaving sound, light, and the legend of the five moons of ancient Hasla.'
+                : '하슬라강릉이머시브아트쇼 — 강릉 경포호 일원에서 펼쳐지는 야간 미디어아트 산책. 허난설헌공원 인근 송림에서 8개의 ZONE이 빛과 사운드로 깨어나, 다섯 개의 달이 떠오르는 고대 하슬라의 전설로 안내합니다. 강릉 가볼만한곳·강릉 관광·강릉 야간 명소로 추천드립니다.'}
             </p>
             <ul className="mt-4 flex flex-col gap-2.5">
               <li className="flex items-baseline gap-3">

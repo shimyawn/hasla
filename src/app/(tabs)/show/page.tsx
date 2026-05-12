@@ -4,10 +4,10 @@ import ShowPageClient from './ShowPageClient'
 export const metadata: Metadata = {
   title: '상영시간표 · 매일 4회 야간 송출',
   description:
-    '강릉 경포 환상의 호수 인피니티 포레스트 조명쇼 타임테이블 — 매일 19:30 ~ 21:30, 30분 간격 4회. 강릉 야간 미디어아트 운영 시간은 계절·일몰에 따라 탄력적으로 변경될 수 있습니다.',
+    '하슬라강릉이머시브아트쇼 인피니티 포레스트 조명쇼 타임테이블 — 매일 19:30 ~ 21:30, 30분 간격 4회. 강릉 야간 미디어아트 운영 시간은 계절·일몰에 따라 탄력적으로 변경될 수 있습니다. 강릉 가볼만한곳·강릉 관광·강릉 야간 데이트 코스.',
   alternates: { canonical: 'https://hasla-gangneung.vercel.app/show' },
   openGraph: {
-    title: '상영시간표 — 강릉 야간 미디어아트 매일 4회',
+    title: '상영시간표 — 하슬라강릉이머시브아트쇼 매일 4회',
     description:
       '강릉 경포호 인피니티 포레스트 조명쇼 — 매일 19:30 ~ 21:30, 30분 간격 4회.',
     url: 'https://hasla-gangneung.vercel.app/show',

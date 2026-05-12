@@ -51,8 +51,8 @@ export default function HeaderBar() {
             src="/images/logo_full.png"
             alt={
               lang === 'en'
-                ? 'HASLA — Gangneung Gyeongpo Fantasy Lake immersive media art show logo'
-                : '하슬라 강릉 이머시브 아트쇼 — 경포 환상의 호수 로고'
+                ? 'Hasla Gangneung Immersive Art Show — Gyeongpo Fantasy Lake logo'
+                : '하슬라강릉이머시브아트쇼 — 강릉 경포 환상의 호수 로고'
             }
             fill
             priority

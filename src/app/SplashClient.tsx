@@ -103,7 +103,7 @@ export default function SplashClient() {
               visible at all. */}
           <Image
             src="/images/logo_full.png"
-            alt="HASLA 하슬라 — 강릉 경포 환상의 호수 야간 미디어아트 이머시브 아트쇼"
+            alt="하슬라강릉이머시브아트쇼 — 강릉 경포 환상의 호수 야간 미디어아트 (강릉 가볼만한곳, 강릉 관광)"
             fill
             priority
             unoptimized

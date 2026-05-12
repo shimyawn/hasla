@@ -76,7 +76,7 @@ export const UI: Record<Lang, UIStrings> = {
     aboutTeaserNote: '티저 영상은 곧 공개됩니다.',
 
     contactSectionLabel: '문의',
-    contactName: '하슬라 강릉 이머시브 아트쇼',
+    contactName: '하슬라강릉이머시브아트쇼',
     contactPhoneLabel: '대표 전화',
     contactAddressLabel: '주소',
     contactPlaceLabel: '네이버 플레이스',

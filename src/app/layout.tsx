@@ -25,11 +25,12 @@ const notoSans = Noto_Sans_KR({
 })
 
 const SITE_URL = 'https://hasla-gangneung.vercel.app'
-// Title carries 강릉 + 하슬라 + format keyword up front so search engines
-// see the location and category in the most heavily-weighted SEO signal.
-const SITE_TITLE = '강릉 경포 환상의 호수 — 하슬라 야간 미디어아트 이머시브 전시'
+// Title carries the official brand 하슬라강릉이머시브아트쇼 (unspaced) +
+// 강릉 + venue + format up front so search engines see the brand, location,
+// and category in the most heavily-weighted SEO signal.
+const SITE_TITLE = '하슬라강릉이머시브아트쇼 — 강릉 경포 환상의 호수 야간 미디어아트'
 const SITE_DESCRIPTION =
-  '강릉 경포호 송림에서 펼쳐지는 야간 미디어아트 이머시브 전시. 다섯 개의 달이 뜬 밤, 고대 하슬라의 숲이 깨어납니다. 강릉 가볼만한곳·강릉 야간 데이트·강릉 여행 코스 추천.'
+  '하슬라강릉이머시브아트쇼 — 강릉 경포호 송림에서 펼쳐지는 야간 미디어아트 이머시브 전시. 다섯 개의 달이 뜬 밤, 고대 하슬라의 숲이 깨어납니다. 강릉, 강릉가볼만한곳, 강릉관광, 강릉 야간 데이트 코스 추천.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -38,23 +39,32 @@ export const metadata: Metadata = {
     // Every per-page title gets 강릉 + 하슬라 appended automatically, so even
     // sub-pages like '지도' surface as '지도 | 강릉 하슬라 — 경포 환상의 호수'
     // in Google results.
-    template: '%s | 강릉 하슬라 — 경포 환상의 호수',
+    template: '%s | 하슬라강릉이머시브아트쇼 · 강릉 경포 환상의 호수',
   },
   description: SITE_DESCRIPTION,
-  applicationName: '경포 환상의 호수',
+  applicationName: '하슬라강릉이머시브아트쇼',
   keywords: [
-    // Location anchors
+    // Brand — official full name (unspaced is canonical) + spaced fallback
+    '하슬라강릉이머시브아트쇼',
+    '하슬라 강릉 이머시브 아트쇼',
+    '하슬라',
+    'HASLA',
+    '하슬라강릉',
+    '하슬라 강릉',
+    // Top-priority location queries (user-targeted)
     '강릉',
+    '강릉가볼만한곳',
+    '강릉 가볼만한곳',
+    '강릉관광',
+    '강릉 관광',
+    '강릉관광지',
+    '강릉 관광지',
+    // Venue
     '강릉 경포호',
+    '경포호',
     '경포 환상의 호수',
     '경포호 송림',
     '허난설헌공원',
-    // Brand
-    '하슬라',
-    'HASLA',
-    '하슬라 강릉',
-    '하슬라 이머시브 아트쇼',
-    '경포 환상의 호수 강릉',
     // Format / genre
     '강릉 미디어아트',
     '강릉 야간 미디어아트',
@@ -66,20 +76,24 @@ export const metadata: Metadata = {
     '이머시브 아트',
     '야간 미디어아트',
     // Visitor-intent long tail
-    '강릉 가볼만한곳',
     '강릉 야간 명소',
     '강릉 야간 데이트',
     '강릉 데이트 코스',
     '강릉 여행',
     '강릉 여행 코스',
     '강릉 가족여행',
+    '강릉 주말',
+    '강릉 야경',
     // Show-specific
     '다섯 개의 달',
     '인피니티 포레스트',
     '오행 미디어아트',
     // English
-    'Gangneung Immersive Art Show',
+    'Hasla Gangneung Immersive Art Show',
     'HASLA Gangneung',
+    'Gangneung tourism',
+    'Gangneung must visit',
+    'Gangneung Immersive Art Show',
     'Gyeongpo Fantasy Lake',
     'Gangneung night attraction',
     'Gangneung media art',
@@ -98,7 +112,7 @@ export const metadata: Metadata = {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
-    siteName: '경포 환상의 호수',
+    siteName: '하슬라강릉이머시브아트쇼',
     locale: 'ko_KR',
     type: 'website',
     // og:image is auto-populated by app/opengraph-image.tsx
@@ -134,8 +148,11 @@ export const viewport: Viewport = {
 const eventJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Event',
-  name: '경포 환상의 호수 — 고대 하슬라의 밤',
-  alternateName: 'HASLA Gangneung Immersive Art Show',
+  name: '하슬라강릉이머시브아트쇼',
+  alternateName: [
+    '경포 환상의 호수',
+    'Hasla Gangneung Immersive Art Show',
+  ],
   description: SITE_DESCRIPTION,
   url: SITE_URL,
   image: `${SITE_URL}/opengraph-image`,
@@ -143,17 +160,23 @@ const eventJsonLd = {
   eventStatus: 'https://schema.org/EventScheduled',
   eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
   inLanguage: ['ko', 'en'],
+  // schema.org accepts a `keywords` field on Event — comma-separated list
+  // of phrases. Helps Naver's structured-data parser surface this as a
+  // "이런 검색에 어울리는 곳" candidate for top-priority queries.
+  keywords:
+    '강릉, 강릉가볼만한곳, 강릉관광, 강릉 야간 명소, 강릉 미디어아트, 강릉 전시, 강릉 데이트, 하슬라강릉이머시브아트쇼, 경포 환상의 호수, 다섯 개의 달',
   organizer: {
     '@type': 'Organization',
-    name: 'HASLA',
+    name: '하슬라강릉이머시브아트쇼',
     url: SITE_URL,
     sameAs: ['https://www.instagram.com/hasla_5moons/'],
   },
   location: {
     '@type': 'Place',
-    name: '경포호 일원 (강릉)',
+    name: '강릉 경포호 일원 (허난설헌공원 인근)',
     address: {
       '@type': 'PostalAddress',
+      streetAddress: '초당동 474-4',
       addressLocality: '강릉시',
       addressRegion: '강원특별자치도',
       addressCountry: 'KR',
@@ -163,7 +186,7 @@ const eventJsonLd = {
   isAccessibleForFree: true,
   performer: {
     '@type': 'Organization',
-    name: 'HASLA',
+    name: '하슬라강릉이머시브아트쇼',
   },
 }
 

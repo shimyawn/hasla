@@ -21,14 +21,14 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const baseDesc = zone.tagline ?? zone.story.slice(0, 140)
   return {
     title: `ZONE ${num} · ${zone.title}`,
-    description: `강릉 경포 환상의 호수 ZONE ${num} · ${zone.title}. ${baseDesc}`,
+    description: `하슬라강릉이머시브아트쇼 ZONE ${num} · ${zone.title} — 강릉 경포호 야간 미디어아트. ${baseDesc} 강릉 가볼만한곳·강릉 관광.`,
     alternates: { canonical: url },
     openGraph: {
-      title: `ZONE ${num} · ${zone.title} — 강릉 하슬라 야간 미디어아트`,
+      title: `ZONE ${num} · ${zone.title} — 하슬라강릉이머시브아트쇼`,
       description: `강릉 경포호 송림 ZONE ${num} · ${zone.title}. ${baseDesc}`,
       url,
       type: 'article',
-      images: [{ url: zone.assets.mainImage, width: 1200, height: 630, alt: `ZONE ${num} · ${zone.title} — 강릉 하슬라 이머시브 아트쇼` }],
+      images: [{ url: zone.assets.mainImage, width: 1200, height: 630, alt: `ZONE ${num} · ${zone.title} — 하슬라강릉이머시브아트쇼` }],
     },
   }
 }

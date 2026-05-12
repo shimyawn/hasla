@@ -52,8 +52,8 @@ export default function ZonePageClient({ zone }: Props) {
           src={zone.assets.mainImage}
           alt={
             lang === 'en'
-              ? `ZONE ${zoneNumber(zone.id)} · ${L.title} — HASLA Gangneung Gyeongpo Lake immersive media art zone`
-              : `ZONE ${zoneNumber(zone.id)} · ${L.title} — 하슬라 강릉 경포호 야간 미디어아트 ZONE 메인 이미지`
+              ? `ZONE ${zoneNumber(zone.id)} · ${L.title} — Hasla Gangneung Immersive Art Show, Gyeongpo Lake`
+              : `ZONE ${zoneNumber(zone.id)} · ${L.title} — 하슬라강릉이머시브아트쇼, 강릉 경포호 야간 미디어아트`
           }
           fill
           priority
