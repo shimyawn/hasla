@@ -8,10 +8,16 @@ import './globals.css'
 import { LanguageProvider } from '@/i18n/LanguageContext'
 import LanguageButton from '@/components/LanguageButton'
 
+// Source TTFs from the foundry had non-spec-compliant table directory ordering
+// + unsorted name records, which Chrome/Edge's OpenType Sanitizer rejected
+// (iOS Safari is more lenient — that's why mobile rendered correctly while PC
+// fell back to system fonts). We re-serialize them as WOFF1 via
+// `scripts/reserialize-fonts.py` which fixes the directory ordering and
+// re-sorts name records as a side effect of the round-trip.
 const yoonMeoli = localFont({
   src: [
-    { path: '../fonts/yoon-meoli-ultralight.ttf', weight: '200', style: 'normal' },
-    { path: '../fonts/yoon-meoli-light.ttf',      weight: '300', style: 'normal' },
+    { path: '../fonts/yoon-meoli-ultralight.woff', weight: '200', style: 'normal' },
+    { path: '../fonts/yoon-meoli-light.woff',      weight: '300', style: 'normal' },
   ],
   variable: '--font-yoon',
   display: 'swap',
