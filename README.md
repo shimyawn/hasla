@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# HASLA — 경포 환상의 호수
+
+강릉 경포호 일대에서 열리는 몰입형 미디어 아트쇼 **하슬라**의 모바일 리플렛 웹앱입니다.
+관람객이 야간에 8개 존을 걸으며 작품을 감상할 때, 스토리 · 지도 · 일정 · 피드백을 제공하는 디지털 가이드 역할을 합니다.
+
+**Live:** https://hasla-gangneung.vercel.app
+
+## Features
+
+- 8개 존별 작품 소개, 스토리, 동선 안내
+- 인터랙티브 지도 (존 아이콘 탭 → 상세 → 이동)
+- 한국어 / English 전환
+- 스플래시 문라이즈 애니메이션
+- 반응형 (모바일 우선 + PC 레이아웃)
+- SEO 최적화 (동적 OG 이미지, JSON-LD Event, 사이트맵)
+- Vercel Analytics + Speed Insights
+
+## Tech Stack
+
+- **Next.js 16** (App Router + Turbopack)
+- **React 19** · **TypeScript**
+- **Tailwind CSS v4**
+- **Framer Motion**
+- Vercel 자동 배포
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+http://localhost:3000 에서 확인할 수 있습니다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+  app/
+    page.tsx / SplashClient.tsx     # 스플래시 (문라이즈 애니메이션)
+    (tabs)/
+      map/                          # 인터랙티브 존 지도
+      about/                        # 전시 소개 + 관람 안내
+      show/                         # 전시 정보
+      feedback/                     # 피드백 + 연락처
+    zone/[id]/                      # 8개 존 상세 페이지
+  components/                       # HeaderBar, BottomTabs, ContactBlock 등
+  data/zones.json                   # 존 데이터 (핀 좌표 포함)
+  i18n/                             # 한/영 다국어 텍스트
+public/
+  images/                           # 로고, 지도, 존별 메인 이미지
+  videos/teaser.mp4                 # 티저 영상
+```
