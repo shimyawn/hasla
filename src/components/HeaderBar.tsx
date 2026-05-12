@@ -55,7 +55,12 @@ export default function HeaderBar() {
                 : '하슬라강릉이머시브아트쇼 — 강릉 경포 환상의 호수 로고'
             }
             fill
-            priority
+            // No `priority` — this is a tiny ~3 KB logo at the top of every
+            // tab page, but the page's actual LCP candidate is content
+            // further down (map background, zone hero, etc.). Marking
+            // multiple images priority dilutes the preload signal so the
+            // truly-LCP image lands later. Lazy is fine here; the header
+            // is small enough that the gap is invisible.
             sizes="(min-width: 1024px) 112px, 96px"
             className="object-contain"
           />

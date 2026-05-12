@@ -2,6 +2,7 @@
 
 import { useLang } from '@/i18n/LanguageContext'
 import PreOpenBanner from '@/components/PreOpenBanner'
+import { showTimes } from '@/data/schedule'
 
 export default function ShowPageClient() {
   const { t } = useLang()
@@ -21,7 +22,7 @@ export default function ShowPageClient() {
             {t.infoSessionsHeading}
           </div>
           <div className="mt-3 grid grid-cols-4 gap-2">
-            {['19:30', '20:00', '20:30', '21:00'].map((time) => (
+            {showTimes.map((time) => (
               <div
                 key={time}
                 className="rounded-md border border-white/15 py-3 text-center font-display text-[14px] text-white"

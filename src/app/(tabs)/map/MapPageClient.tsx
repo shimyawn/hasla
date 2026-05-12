@@ -4,9 +4,8 @@ import { useEffect, useLayoutEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { Zone } from '@/lib/types'
+import { localized } from '@/lib/zones'
 import { useLang } from '@/i18n/LanguageContext'
-import { localizeZone } from '@/i18n/zones'
-import type { Lang, LocalizedZone } from '@/i18n/types'
 import ContactBlock from '@/components/ContactBlock'
 
 // useLayoutEffect on client (no flash before paint) / no-op on server
@@ -14,21 +13,6 @@ const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : use
 
 interface Props {
   zones: Zone[]
-}
-
-function localized(z: Zone, lang: Lang): LocalizedZone {
-  return (
-    localizeZone(z.id, lang) ?? {
-      title: z.title,
-      subtitle: z.subtitle,
-      tagline: z.tagline ?? '',
-      story: z.story,
-      description: z.description ?? '',
-      direction: z.direction ?? [],
-      media: z.media ?? [],
-      element: z.element ?? '',
-    }
-  )
 }
 
 export default function MapPageClient({ zones }: Props) {
@@ -137,7 +121,10 @@ export default function MapPageClient({ zones }: Props) {
                     fill
                     sizes="22vw"
                     className={iconClass}
-                    style={isSelected || isDimmed ? undefined : { animationDelay: `${i * 0.4}s` }}
+                    // 0.15s stagger × 8 icons = ~1.05s total — keeps the
+                    // cascade readable but doesn't leave the last zones
+                    // visually 'asleep' for ~3 seconds after page load.
+                    style={isSelected || isDimmed ? undefined : { animationDelay: `${i * 0.15}s` }}
                   />
                 </div>
                 {/* Bloom on hover/tap (always-on for selected) */}

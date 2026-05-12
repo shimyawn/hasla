@@ -4,11 +4,15 @@ import { useLang } from '@/i18n/LanguageContext'
 import PreOpenBanner from '@/components/PreOpenBanner'
 import ContactBlock from '@/components/ContactBlock'
 
+// Default Google Forms URL — override via NEXT_PUBLIC_REVIEW_URL in Vercel
+// env vars when the form moves or a new season's form is needed, so we
+// don't have to redeploy code just to swap the link.
 const REVIEW_URL =
+  process.env.NEXT_PUBLIC_REVIEW_URL ??
   'https://docs.google.com/forms/d/e/1FAIpQLSf-e7f5OBXj6X2vnboWs8Lj4PjaGC_vF8YVsnZLh5iywzFTqg/viewform?pli=1'
 
 export default function FeedbackPageClient() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   return (
     <main className="min-h-dvh bg-black pb-32 pt-2 lg:pb-16">
       <div className="mx-auto max-w-md px-6 lg:max-w-2xl">
@@ -34,6 +38,12 @@ export default function FeedbackPageClient() {
           >
             {t.reviewsCta}
             <span aria-hidden>→</span>
+            {/* Screen-reader hint: announces that activating this link will
+                open a new tab (Google Forms in this case). Without it,
+                blind users land on an unexpected site with no context. */}
+            <span className="sr-only">
+              {lang === 'en' ? '(opens Google Forms in a new tab)' : '(새 탭으로 Google Forms 열림)'}
+            </span>
           </a>
         </div>
 

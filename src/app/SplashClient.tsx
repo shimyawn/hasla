@@ -38,10 +38,11 @@ export default function SplashClient() {
     const onTap = (e: PointerEvent) => {
       if (navigating) return
       const target = e.target as HTMLElement | null
+      // Skip taps that should hit their own handlers rather than toggle
+      // the moon. data-cta = the 'Enter the Forest' link, data-lang =
+      // the language toggle, role=dialog = any future modal/info sheet.
       if (target?.closest('a[data-cta]')) return
       if (target?.closest('button[data-lang]')) return
-      if (target?.closest('button[data-info]')) return
-      // Also skip taps inside the info sheet (role=dialog)
       if (target?.closest('[role="dialog"]')) return
       setRevealed((prev) => !prev)
       setHasInteracted(true)

@@ -5,10 +5,10 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useCallback } from 'react'
 import FadeInSection from '@/components/zone/FadeInSection'
-import { getAllZones, getNextZone, getPrevZone } from '@/lib/zones'
+import { getAllZones, getNextZone, getPrevZone, localized } from '@/lib/zones'
 import type { Zone } from '@/lib/types'
 import { useLang } from '@/i18n/LanguageContext'
-import { localizeZone } from '@/i18n/zones'
+import { showTimes } from '@/data/schedule'
 
 interface Props { zone: Zone }
 
@@ -24,16 +24,7 @@ export default function ZonePageClient({ zone }: Props) {
   const all = getAllZones()
   const idx = all.findIndex((z) => z.id === zone.id)
 
-  const L = localizeZone(zone.id, lang) ?? {
-    title: zone.title,
-    subtitle: zone.subtitle,
-    tagline: zone.tagline ?? '',
-    story: zone.story,
-    description: zone.description ?? '',
-    direction: zone.direction ?? [],
-    media: zone.media ?? [],
-    element: zone.element ?? '',
-  }
+  const L = localized(zone, lang)
 
   // Smart back: history.back if available, fallback to /map
   const goBack = useCallback(() => {
@@ -140,7 +131,7 @@ export default function ZonePageClient({ zone }: Props) {
               </span>
             </div>
             <div className="grid grid-cols-4 gap-2">
-              {['19:30', '20:00', '20:30', '21:00'].map((time) => (
+              {showTimes.map((time) => (
                 <div
                   key={time}
                   className="rounded-md border border-white/15 py-3 text-center font-display text-[14px] text-white"

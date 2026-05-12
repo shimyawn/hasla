@@ -8,7 +8,12 @@ import FadeInSection from './zone/FadeInSection'
  * Renders eyebrow + venue name + phone + address + Naver Place CTA.
  */
 export default function ContactBlock() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
+  // Localized aria/sr-only suffix announcing that a link opens in a new tab.
+  // Without this, screen readers say nothing about the context switch and
+  // users get teleported to Naver / Instagram with no warning.
+  const newTabHint =
+    lang === 'en' ? '(opens in a new tab)' : '(새 탭으로 열림)'
   return (
     <section className="mt-20">
       <FadeInSection>
@@ -65,6 +70,7 @@ export default function ContactBlock() {
             >
               {t.contactPlaceCta}
               <span aria-hidden>↗</span>
+              <span className="sr-only">{newTabHint}</span>
             </a>
           </li>
         </FadeInSection>
@@ -96,6 +102,7 @@ export default function ContactBlock() {
               </svg>
               {t.contactInstagramHandle}
               <span aria-hidden>↗</span>
+              <span className="sr-only">{newTabHint}</span>
             </a>
           </li>
         </FadeInSection>

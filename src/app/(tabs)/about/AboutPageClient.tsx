@@ -191,7 +191,11 @@ export default function AboutPageClient() {
                 src="/videos/teaser.mp4"
                 controls
                 playsInline
-                preload="metadata"
+                // preload="none" — don't fetch teaser metadata on every
+                // About-page view. Visitor pays nothing until they hit
+                // the ▶ button. Saves several hundred KB on mobile data
+                // and keeps the page's perceived load fast.
+                preload="none"
                 className="h-full w-full object-cover"
               />
             </div>
