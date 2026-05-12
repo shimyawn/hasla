@@ -33,6 +33,16 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
   }, [])
 
+  // Keep <html lang> in sync with the runtime locale. Without this, the
+  // attribute stays at the server-rendered 'ko' value forever and screen
+  // readers / search engines see Korean lang while body text is actually
+  // English (or vice versa). Spec compliance + correct TTS pronunciation.
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.lang = lang
+    }
+  }, [lang])
+
   const setLang = (l: Lang) => {
     setLangState(l)
     try {

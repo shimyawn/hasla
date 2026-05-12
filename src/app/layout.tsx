@@ -7,6 +7,7 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 import './globals.css'
 import { LanguageProvider } from '@/i18n/LanguageContext'
 import LanguageButton from '@/components/LanguageButton'
+import { LINKS } from '@/data/links'
 
 // Source TTFs from the foundry had non-spec-compliant table directory ordering
 // + unsorted name records, which Chrome/Edge's OpenType Sanitizer rejected
@@ -178,7 +179,7 @@ const eventJsonLd = {
     '@type': 'Organization',
     name: '하슬라강릉이머시브아트쇼',
     url: SITE_URL,
-    sameAs: ['https://www.instagram.com/hasla_5moons/'],
+    sameAs: [LINKS.instagram],
   },
   location: {
     '@type': 'Place',

@@ -1,7 +1,9 @@
 'use client'
 
 import { useLang } from '@/i18n/LanguageContext'
+import { LINKS } from '@/data/links'
 import FadeInSection from './zone/FadeInSection'
+import BrandedSection from './BrandedSection'
 
 /**
  * Contact information block — shared by /about and /map (main).
@@ -15,16 +17,7 @@ export default function ContactBlock() {
   const newTabHint =
     lang === 'en' ? '(opens in a new tab)' : '(새 탭으로 열림)'
   return (
-    <section className="mt-20">
-      <FadeInSection>
-        <div className="mb-5 flex items-center gap-3">
-          <span aria-hidden className="h-px w-8 bg-hasla-yellow/60" />
-          <span className="font-display text-[10.5px] tracking-[0.45em] text-hasla-yellow/85">
-            {t.contactSectionLabel}
-          </span>
-        </div>
-      </FadeInSection>
-
+    <BrandedSection label={t.contactSectionLabel}>
       <FadeInSection>
         <h2 className="font-display text-[18px] font-medium leading-[1.4] text-white">
           {t.contactName}
@@ -63,7 +56,7 @@ export default function ContactBlock() {
               {t.contactPlaceLabel}
             </div>
             <a
-              href="https://naver.me/xy7JAsef"
+              href={LINKS.naverPlace}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-2 inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 font-clean text-[14px] text-white/85 transition-colors hover:border-hasla-yellow/60 hover:text-white"
@@ -81,7 +74,7 @@ export default function ContactBlock() {
               {t.contactInstagramLabel}
             </div>
             <a
-              href="https://www.instagram.com/hasla_5moons/"
+              href={LINKS.instagram}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-2 inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 font-clean text-[14px] text-white/85 transition-colors hover:border-hasla-yellow/60 hover:text-white"
@@ -107,6 +100,6 @@ export default function ContactBlock() {
           </li>
         </FadeInSection>
       </ul>
-    </section>
+    </BrandedSection>
   )
 }
