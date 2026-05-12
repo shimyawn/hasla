@@ -25,31 +25,64 @@ const notoSans = Noto_Sans_KR({
 })
 
 const SITE_URL = 'https://hasla-gangneung.vercel.app'
-const SITE_TITLE = '경포 환상의 호수 — 고대 하슬라의 밤'
+// Title carries 강릉 + 하슬라 + format keyword up front so search engines
+// see the location and category in the most heavily-weighted SEO signal.
+const SITE_TITLE = '강릉 경포 환상의 호수 — 하슬라 야간 미디어아트 이머시브 전시'
 const SITE_DESCRIPTION =
-  '다섯 개의 달이 뜬 밤, 강릉 경포의 호수에 고대 하슬라의 숲이 깨어난다. 빛과 소리로 만나는 미디어아트 산책.'
+  '강릉 경포호 송림에서 펼쳐지는 야간 미디어아트 이머시브 전시. 다섯 개의 달이 뜬 밤, 고대 하슬라의 숲이 깨어납니다. 강릉 가볼만한곳·강릉 야간 데이트·강릉 여행 코스 추천.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: SITE_TITLE,
-    template: '%s | 경포 환상의 호수',
+    // Every per-page title gets 강릉 + 하슬라 appended automatically, so even
+    // sub-pages like '지도' surface as '지도 | 강릉 하슬라 — 경포 환상의 호수'
+    // in Google results.
+    template: '%s | 강릉 하슬라 — 경포 환상의 호수',
   },
   description: SITE_DESCRIPTION,
   applicationName: '경포 환상의 호수',
   keywords: [
-    '강릉 미디어아트',
+    // Location anchors
+    '강릉',
+    '강릉 경포호',
     '경포 환상의 호수',
+    '경포호 송림',
+    '허난설헌공원',
+    // Brand
     '하슬라',
     'HASLA',
+    '하슬라 강릉',
+    '하슬라 이머시브 아트쇼',
+    '경포 환상의 호수 강릉',
+    // Format / genre
+    '강릉 미디어아트',
+    '강릉 야간 미디어아트',
     '강릉 이머시브 아트쇼',
-    '강릉 야간 명소',
-    '강릉 가볼만한곳',
-    '경포 호수',
+    '강릉 전시',
+    '강릉 전시회',
+    '강릉 라이트쇼',
     '미디어아트 산책',
+    '이머시브 아트',
+    '야간 미디어아트',
+    // Visitor-intent long tail
+    '강릉 가볼만한곳',
+    '강릉 야간 명소',
+    '강릉 야간 데이트',
+    '강릉 데이트 코스',
+    '강릉 여행',
+    '강릉 여행 코스',
+    '강릉 가족여행',
+    // Show-specific
     '다섯 개의 달',
     '인피니티 포레스트',
+    '오행 미디어아트',
+    // English
     'Gangneung Immersive Art Show',
+    'HASLA Gangneung',
+    'Gyeongpo Fantasy Lake',
+    'Gangneung night attraction',
+    'Gangneung media art',
   ],
   authors: [{ name: 'HASLA' }],
   creator: 'HASLA',

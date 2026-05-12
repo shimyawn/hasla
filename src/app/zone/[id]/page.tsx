@@ -15,16 +15,20 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   if (!zone) return {}
   const num = id.replace('zone', '').padStart(2, '0')
   const url = `https://hasla-gangneung.vercel.app/zone/${id}`
+  // Zone descriptions get prefixed with location keyword so each zone page
+  // independently signals 강릉/하슬라 to crawlers — important since users may
+  // land directly on a zone page from image search or shared links.
+  const baseDesc = zone.tagline ?? zone.story.slice(0, 140)
   return {
     title: `ZONE ${num} · ${zone.title}`,
-    description: zone.tagline ?? zone.story.slice(0, 160),
+    description: `강릉 경포 환상의 호수 ZONE ${num} · ${zone.title}. ${baseDesc}`,
     alternates: { canonical: url },
     openGraph: {
-      title: `ZONE ${num} · ${zone.title} | 경포 환상의 호수`,
-      description: zone.tagline ?? zone.subtitle ?? zone.story.slice(0, 160),
+      title: `ZONE ${num} · ${zone.title} — 강릉 하슬라 야간 미디어아트`,
+      description: `강릉 경포호 송림 ZONE ${num} · ${zone.title}. ${baseDesc}`,
       url,
       type: 'article',
-      images: [{ url: zone.assets.mainImage, width: 1200, height: 630, alt: zone.title }],
+      images: [{ url: zone.assets.mainImage, width: 1200, height: 630, alt: `ZONE ${num} · ${zone.title} — 강릉 하슬라 이머시브 아트쇼` }],
     },
   }
 }
