@@ -25,12 +25,13 @@ const notoSans = Noto_Sans_KR({
 })
 
 const SITE_URL = 'https://hasla-gangneung.vercel.app'
-// Title carries the official brand 하슬라강릉이머시브아트쇼 (unspaced) +
-// 강릉 + venue + format up front so search engines see the brand, location,
-// and category in the most heavily-weighted SEO signal.
-const SITE_TITLE = '하슬라강릉이머시브아트쇼 — 강릉 경포 환상의 호수 야간 미디어아트'
+// Title — brand name + a single readable descriptor (no keyword stuffing).
+// The descriptor itself naturally contains the SEO anchors (강릉, 소나무숲,
+// 야간 미디어아트 쇼) so the snippet reads cleanly to humans while still
+// matching the priority queries.
+const SITE_TITLE = '하슬라강릉이머시브아트쇼 — 강릉 소나무숲의 야간 미디어아트 쇼'
 const SITE_DESCRIPTION =
-  '하슬라강릉이머시브아트쇼 — 강릉 경포호 송림에서 펼쳐지는 야간 미디어아트 이머시브 전시. 다섯 개의 달이 뜬 밤, 고대 하슬라의 숲이 깨어납니다. 강릉, 강릉가볼만한곳, 강릉관광, 강릉 야간 데이트 코스 추천.'
+  '강릉 경포호 소나무숲에서 펼쳐지는 야간 미디어아트 쇼. 다섯 개의 달이 뜬 밤, 잠들어 있던 고대 하슬라의 숲이 깨어납니다. 허난설헌공원 인근, 강릉 가볼만한곳·강릉 관광·강릉 야간 명소·강릉 데이트 코스.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -39,7 +40,9 @@ export const metadata: Metadata = {
     // Every per-page title gets 강릉 + 하슬라 appended automatically, so even
     // sub-pages like '지도' surface as '지도 | 강릉 하슬라 — 경포 환상의 호수'
     // in Google results.
-    template: '%s | 하슬라강릉이머시브아트쇼 · 강릉 경포 환상의 호수',
+    // Shorter template so sub-page titles stay within Naver/Google's ~32-char
+    // visible window (e.g. '지도 · 8개 ZONE 산책 코스 | 하슬라강릉이머시브아트쇼').
+    template: '%s | 하슬라강릉이머시브아트쇼',
   },
   description: SITE_DESCRIPTION,
   applicationName: '하슬라강릉이머시브아트쇼',
