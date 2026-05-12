@@ -16,6 +16,17 @@
   --hasla-deep: #2353A3;
   --hasla-silver: #DDDDDD;
 
+  /* Typography rhythm — the recurring tracking values that define the
+     editorial 'voice' of the site. Centralized so retuning one feels
+     coherent everywhere. */
+  --track-eyebrow: 0.45em;     /* section labels: EXPLORE, CONTACT, etc. */
+  --track-meta:    0.4em;      /* small uppercase metadata: PHONE, ADDRESS */
+  --track-body:    -0.005em;   /* display headings — slight tighten */
+
+  /* Standard moonlight halo color reused across .moon-flare / .moon-flare-logo /
+     animation keyframes. Single source so a brand re-tune touches one line. */
+  --moonlight: rgba(255, 243, 210, 0.55);
+
   /* Brand font: Yoon Meoli (머리정체) — local TTF, exposed by next/font as --font-yoon */
 }
 

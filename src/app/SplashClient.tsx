@@ -5,12 +5,19 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useLang } from '@/i18n/LanguageContext'
 
-const TRANSITION_MS = 1500
-const SLOW_FADE_MS = 3500 // cinematic fade-in for the moon-rise color logo
-const NAV_TOTAL_MS = 1500
-const DISSOLVE_MS = 1100
+// All splash timing constants in one place — easier to retune the
+// cinematic pacing without hunting through JSX inline styles.
+const TRANSITION_MS = 1500              // snappy duration for tap toggles
+const NAV_TOTAL_MS = 1500               // how long the CTA holds before navigating
+const DISSOLVE_MS = 1100                // white-dissolve fade time on CTA click
+const INITIAL_RISE_MS = 4200            // the slow first-paint moon-rise
+const OPEN_DATE_FADE_MS = 3000          // 'May 2, 2026' subtitle fade-in
+const OPEN_DATE_DELAY_MS = 4000         // delay before that subtitle starts
 // Smooth symmetric ease for buttery cross-fades
 const EASE = 'cubic-bezier(0.45, 0.05, 0.55, 0.95)'
+// Easing used by the moon's translateY rise — slightly more anticipatory
+// than the symmetric EASE; the moon decelerates as it 'settles'.
+const RISE_EASE = 'cubic-bezier(0.25, 0.1, 0.25, 1)'
 
 export default function SplashClient() {
   const router = useRouter()
@@ -122,7 +129,7 @@ export default function SplashClient() {
               // happens BELOW the wrapper's bottom edge (both wordmarks clipped
               // out of frame at that moment — no visible overlap)
               transform: `translateY(${revealed ? '0%' : '130%'})`,
-              transition: `transform ${hasInteracted ? TRANSITION_MS : 4200}ms cubic-bezier(0.25, 0.1, 0.25, 1)`,
+              transition: `transform ${hasInteracted ? TRANSITION_MS : INITIAL_RISE_MS}ms ${RISE_EASE}`,
             }}
           />
           {/* Black silhouette — z-index 1 (FRONT). Slides DOWN out of the
@@ -141,7 +148,7 @@ export default function SplashClient() {
             style={{
               zIndex: 1,
               transform: `translateY(${revealed ? '100%' : '0%'})`,
-              transition: `transform ${hasInteracted ? TRANSITION_MS : 4200}ms cubic-bezier(0.25, 0.1, 0.25, 1)`,
+              transition: `transform ${hasInteracted ? TRANSITION_MS : INITIAL_RISE_MS}ms ${RISE_EASE}`,
             }}
           />
           {/* Flare sweep — clipped to logo silhouette via mask-image. Re-mounts
@@ -196,7 +203,7 @@ export default function SplashClient() {
               // passed. Subsequent toggles use the snappy default.
               transition: hasInteracted
                 ? `opacity ${TRANSITION_MS}ms ${EASE}, transform ${TRANSITION_MS}ms ${EASE}`
-                : `opacity 3000ms ${EASE} 4000ms, transform 3000ms ${EASE} 4000ms`,
+                : `opacity ${OPEN_DATE_FADE_MS}ms ${EASE} ${OPEN_DATE_DELAY_MS}ms, transform ${OPEN_DATE_FADE_MS}ms ${EASE} ${OPEN_DATE_DELAY_MS}ms`,
             }}
           >
             {t.splashOpenDate}

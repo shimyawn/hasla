@@ -210,6 +210,31 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="root-fixed bg-background text-foreground">
+        {/* Graceful degradation when JS is off — most of the page
+            (animations, language toggle, two-step map selection) requires
+            JS, but visitors should still see *something* indicating they
+            reached the right place and how to contact us. */}
+        <noscript>
+          <div
+            style={{
+              padding: '24px 16px',
+              textAlign: 'center',
+              background: '#0F1320',
+              color: '#EDEFF2',
+              fontSize: 14,
+              lineHeight: 1.7,
+            }}
+          >
+            <strong>하슬라강릉이머시브아트쇼</strong>
+            <br />
+            강릉 경포 환상의 호수 야간 미디어아트
+            <br />
+            <br />
+            이 페이지는 JavaScript가 켜져 있어야 정상 표시됩니다.
+            <br />
+            문의: 0507-1322-4508 · @hasla_5moons
+          </div>
+        </noscript>
         {/* Inner scroll container — body itself is fixed (no rubber-band)
             and all scrolling happens here. Sticky headers inside child
             pages stick relative to this container; fixed elements still
