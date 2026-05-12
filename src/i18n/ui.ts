@@ -18,6 +18,9 @@ export const UI: Record<Lang, UIStrings> = {
     toggleList: '목록보기',
     mapPageTitle: 'HASLA 지도',
     mapCaption: '빛나는 영역을 탭하면 각 ZONE의 안내로 이동합니다.',
+    mapPCEmptyEyebrow: 'EXPLORE',
+    mapPCEmptyTitle: '빛나는 영역을 클릭해보세요',
+    mapPCEmptyHint: '선택한 ZONE의 안내가 이곳에 표시됩니다.',
 
     sectionDirection: '연출 방향',
     sectionMedia: '연출 매체',
@@ -106,6 +109,9 @@ export const UI: Record<Lang, UIStrings> = {
     toggleList: 'List',
     mapPageTitle: 'HASLA Map',
     mapCaption: 'Tap a glowing zone to view its details.',
+    mapPCEmptyEyebrow: 'EXPLORE',
+    mapPCEmptyTitle: 'Click a glowing zone to begin',
+    mapPCEmptyHint: 'The selected ZONE\'s details will appear here.',
 
     sectionDirection: 'Direction',
     sectionMedia: 'Production Media',

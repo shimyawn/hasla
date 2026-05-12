@@ -70,6 +70,12 @@ export default function SplashClient() {
 
   return (
     <main className="relative flex min-h-dvh flex-col items-center justify-between overflow-hidden bg-black pb-20">
+      {/* Visually-hidden brand H1 — gives the splash page a proper heading for
+          screen readers and search engines without disturbing the visual
+          composition (logo image is the actual visible 'title'). */}
+      <h1 className="sr-only">
+        하슬라강릉이머시브아트쇼 — 강릉 소나무숲의 야간 미디어아트 쇼
+      </h1>
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div
           className="absolute left-1/2 top-1/2 h-[120vh] w-[120vh] -translate-x-1/2 -translate-y-1/2 rounded-full hasla-gradient hasla-rotate blur-3xl"

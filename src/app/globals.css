@@ -349,9 +349,26 @@ html, body {
   100% { opacity: 0; }
 }
 
-/* prevent overscroll color flash on iOS */
-html { background: var(--background); }
+/* prevent overscroll color flash on iOS + avoid horizontal scroll on
+   small screens (body is handled by .root-fixed which already has
+   overflow: hidden) */
+html {
+  background: var(--background);
+  overflow-x: hidden;
+}
 
-/* avoid horizontal scroll on small screens (only on html — body is
-   handled by .root-fixed which already has overflow: hidden) */
-html { overflow-x: hidden; }
+/* Accessibility — respect the user's motion preferences. iOS / Windows /
+   Android all expose a 'Reduce Motion' OS setting; users with vestibular
+   disorders, migraines, or motion sensitivity rely on this. Collapsing all
+   transitions/animations to ~0ms (rather than disabling outright) keeps
+   state changes visible without the smooth interpolation. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -55,6 +55,12 @@ export default function MapPageClient({ zones }: Props) {
 
   return (
     <main className="min-h-dvh bg-black pb-28 lg:pb-16">
+      {/* Visually-hidden brand H1 — the map IS the page content (no visible
+          title bar), so we give crawlers and screen readers an explicit
+          heading without changing the visual layout. */}
+      <h1 className="sr-only">
+        하슬라강릉이머시브아트쇼 ZONE 지도 — 강릉 경포호 소나무숲 야간 미디어아트 8개 ZONE 산책 코스
+      </h1>
       {/* White veil that fades out — only when arriving from the splash CTA */}
       {fadeIn && (
         <div
@@ -283,15 +289,15 @@ export default function MapPageClient({ zones }: Props) {
           ) : (
             <div className="flex flex-col gap-3 py-8">
               <span className="font-display text-[10px] tracking-[0.45em] text-hasla-yellow/85">
-                EXPLORE
+                {t.mapPCEmptyEyebrow}
               </span>
               <h2 className="font-display text-[26px] font-medium leading-[1.3] text-white/85">
-                빛나는 영역을 클릭해보세요
+                {t.mapPCEmptyTitle}
               </h2>
               <p className="font-clean text-[14px] leading-[1.7] text-white/55">
                 {t.mapCaption}
                 <br />
-                선택한 ZONE의 안내가 이곳에 표시됩니다.
+                {t.mapPCEmptyHint}
               </p>
             </div>
           )}

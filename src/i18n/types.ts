@@ -18,6 +18,10 @@ export interface UIStrings {
   toggleList: string
   mapPageTitle: string
   mapCaption: string
+  // PC right-panel empty state (when no zone is selected)
+  mapPCEmptyEyebrow: string
+  mapPCEmptyTitle: string
+  mapPCEmptyHint: string
   // Zone detail
   sectionDirection: string
   sectionMedia: string
