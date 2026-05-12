@@ -349,6 +349,23 @@ html, body {
   100% { opacity: 0; }
 }
 
+/* In-view reveal — drives <FadeInSection>. Starts hidden + offset, lifts
+   on .is-visible (toggled by IntersectionObserver). Replaces ~50KB of
+   framer-motion. CSS variable `--reveal-delay` lets callers stagger their
+   FadeInSection siblings without inline-style arithmetic. */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 700ms cubic-bezier(0.25, 0.1, 0.25, 1) var(--reveal-delay, 0s),
+    transform 700ms cubic-bezier(0.25, 0.1, 0.25, 1) var(--reveal-delay, 0s);
+  will-change: opacity, transform;
+}
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Route-level loading.tsx fallback — soft pulsing dot, no spinner gimmick */
 .hasla-loader {
   animation: haslaLoader 1.4s ease-in-out infinite;
