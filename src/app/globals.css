@@ -349,6 +349,18 @@ html, body {
   100% { opacity: 0; }
 }
 
+/* Route-level loading.tsx fallback — soft pulsing dot, no spinner gimmick */
+.hasla-loader {
+  animation: haslaLoader 1.4s ease-in-out infinite;
+  box-shadow:
+    0 0 8px rgba(255, 208, 106, 0.55),
+    0 0 18px rgba(255, 208, 106, 0.25);
+}
+@keyframes haslaLoader {
+  0%, 100% { opacity: 0.45; transform: scale(0.9); }
+  50%      { opacity: 1;    transform: scale(1.15); }
+}
+
 /* prevent overscroll color flash on iOS + avoid horizontal scroll on
    small screens (body is handled by .root-fixed which already has
    overflow: hidden) */
