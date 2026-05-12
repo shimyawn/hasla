@@ -1,7 +1,7 @@
 # PROJECT-CONTEXT.md
 
 > **For agents resuming work on this repo.** Read this first, then `AGENTS.md`.
-> Last updated: 2026-05-02 (가오픈 D-day)
+> Last updated: 2026-05-12 (post-soft-open cleanup pass)
 
 ---
 
@@ -25,9 +25,9 @@ A mobile-first leaflet web app for an immersive media art show in Gangneung, Kor
 - **React 19.2**
 - **Tailwind CSS v4** (`@theme inline` in `globals.css`)
 - **TypeScript**
-- **framer-motion** for `FadeInSection`
-- Custom i18n (KO default / EN toggle) via `LanguageContext`
-- Custom fonts: `--font-yoon` (Yoon Meoli display, local TTF) + `--font-noto` (Noto Sans KR, Google Fonts)
+- **No framer-motion** — was removed (~50KB win). `FadeInSection` now uses IntersectionObserver + CSS class toggle.
+- Custom i18n (KO default / EN toggle) via `LanguageContext`. Updates `<html lang>` on toggle.
+- Custom fonts: `--font-yoon` (Yoon Meoli display, **served as WOFF1** — TTF source files had non-spec-compliant table directory + loca, see `scripts/repair-loca.py`) + `--font-noto` (Noto Sans KR, Google Fonts)
 - Analytics: `@vercel/analytics` + `@vercel/speed-insights` + `@next/third-parties` (GA4, gated by `NEXT_PUBLIC_GA_ID`)
 
 ---
@@ -37,46 +37,53 @@ A mobile-first leaflet web app for an immersive media art show in Gangneung, Kor
 ```
 src/
   app/
-    layout.tsx                      ← root metadata, JSON-LD Event, analytics, body fixed wrapper
+    layout.tsx                      ← root metadata, JSON-LD Event, analytics, body fixed wrapper, noscript
     page.tsx                        ← splash route entry
-    SplashClient.tsx                ← moon-rise splash animation
+    SplashClient.tsx                ← moon-rise splash animation; timing constants at top
     opengraph-image.tsx             ← dynamic 1200x630 PNG (Korean wordmark + Yoon Meoli)
+    icon.tsx                        ← 32x32 brand-gradient favicon (Next 16 file-based)
+    apple-icon.tsx                  ← 180x180 iOS home-screen icon
+    not-found.tsx                   ← branded 404 (소프트 펄스 → 지도로)
+    error.tsx                       ← route-level error boundary with reset()
+    loading.tsx                     ← branded loading dot fallback
     robots.ts                       ← Allow * + sitemap pointer
-    sitemap.ts                      ← 5 core pages + 8 zone pages
+    sitemap.ts                      ← 5 core pages + 8 zone pages, stable LAST_REV dates
     (tabs)/
-      map/
-        page.tsx                    ← server (metadata)
-        MapPageClient.tsx           ← 8 zone icons over map.jpg, two-step selection, PC split
-      about/
-        page.tsx                    ← server (metadata)
-        AboutPageClient.tsx         ← narrative + Visit info SEO block + teaser video
-      show/
-        page.tsx + ShowPageClient.tsx
-      feedback/
-        page.tsx + FeedbackPageClient.tsx  ← PreOpenBanner + Naver review CTA + ContactBlock
+      layout.tsx                    ← HeaderBar + children + BottomTabs wrapper
+      map/page.tsx + MapPageClient.tsx
+      about/page.tsx + AboutPageClient.tsx
+      show/page.tsx + ShowPageClient.tsx
+      feedback/page.tsx + FeedbackPageClient.tsx
     zone/[id]/
-      page.tsx                      ← server, generateMetadata per zone
-      ZonePageClient.tsx            ← hero image, story, directions, prev/next
+      layout.tsx + page.tsx + ZonePageClient.tsx
   components/
     HeaderBar.tsx                   ← sticky top — mobile: home+logo+spacer, PC: logo+nav
     BottomTabs.tsx                  ← mobile-only (lg:hidden)
     LanguageButton.tsx              ← floats top-right on mobile, in HeaderBar on PC
-    PreOpenBanner.tsx               ← white card with vertical gradient bar; on /map /about /show /feedback /zone
-    ContactBlock.tsx                ← phone (tel:), address, Naver Place pill, Instagram pill
-    zone/FadeInSection.tsx          ← framer-motion in-view fade
-  data/zones.json                   ← 8 zones with mapPin {cx, cy, w, h} % coords
+    PreOpenBanner.tsx               ← white card with vertical gradient bar
+    ContactBlock.tsx                ← phone + address + Naver Place + Instagram; uses BrandedSection
+    BrandedSection.tsx              ← shared brand-yellow eyebrow + hairline wrapper
+    zone/FadeInSection.tsx          ← IntersectionObserver-driven CSS fade (no framer-motion)
+  data/
+    zones.json                      ← 8 zones with mapPin {cx, cy, w, h} % coords
+    schedule.ts                     ← showTimes single source (read by /show + /zone/zone6)
+    links.ts                        ← LINKS.naverPlace / .instagram / .reviewForm (env-overrideable)
   i18n/
-    LanguageContext.tsx             ← provider + useLang() hook
-    types.ts                        ← UI string contract
+    LanguageContext.tsx             ← provider + useLang() hook + html lang sync
+    types.ts                        ← UI string contract + LocalizedZone shape + AboutCopy shape
     ui.ts                           ← KO + EN UI strings
-    zones.ts                        ← KO + EN per-zone copy
-  lib/zones.ts                      ← getZone(id), getNextZone, getPrevZone, getAllZones
-  fonts/                            ← yoon-meoli-light.ttf, yoon-meoli-ultralight.ttf
+    zones.ts                        ← KO + EN per-zone copy + localizeZone helper
+    about.ts                        ← KO + EN About-page narrative (ABOUT_COPY)
+  lib/zones.ts                      ← getZone / getAllZones / getNextZone / getPrevZone / localized()
+  fonts/                            ← yoon-meoli-{light,ultralight}.woff (served) + .ttf (source)
+scripts/
+  repair-loca.py                    ← font-surgery script — clamps non-monotonic loca offsets
+                                      and re-serializes as WOFF1. Re-run if TTFs change.
 
 public/
   images/                           ← logo_full.png, logo_black.png, map.jpg, zone hero images
   icons/                            ← zone1.png … zone8.png (map icons)
-  videos/teaser.mp4
+  videos/teaser.mp4                 ← About page teaser (preload="none" — fetched only on play)
   googleb9db032ad24ffb6a.html       ← Google Search Console verification
   naverd72d7ba9cebe08b306b7134a1b8c7825.html ← Naver verification
 ```
@@ -99,7 +106,7 @@ The current moon-rise effect is the **3rd iteration**. Don't "simplify" it witho
 - **Two-step zone selection**: first tap on zone icon = select (super-glow + dim others + show below-map info card on mobile / right panel on PC). Second tap on same zone = navigate. Tap empty map area = deselect.
 - **`e.stopPropagation()`** on the Link's onClick is critical — without it the wrapper's `onClick={() => setSelectedId(null)}` immediately deselects.
 - **PC split layout** (`lg:`): left = map (600px), right = zone detail panel (`flex-1`). Mobile keeps the below-map card.
-- **Icon cascade ripple** uses `animationDelay: ${i * 0.4}s` for a 1→8 wave when nothing is selected.
+- **Icon cascade ripple** uses `animationDelay: ${i * 0.15}s` for a 1→8 wave when nothing is selected (~1.05s total).
 - **GPU layer pinning**: `.icon-glow` / `.icon-selected` / `.icon-dim` all use `will-change: filter, transform, opacity` + `translateZ(0)`. Without these the drop-shadow falls back to bounding-box and produces a square clip after the transition ends.
 
 ### iOS overscroll bounce fix
@@ -143,42 +150,64 @@ schema.org **Event** type is in the root layout `<head>` so every page emits it.
 
 ### Functional
 - 5 routes: `/` (splash) → `/map` → `/about` → `/show` → `/feedback` → `/zone/[1-8]`
-- KO/EN toggle (`LanguageButton`)
+- KO/EN toggle (`LanguageButton`) — `<html lang>` mirrors active locale
 - 8 zone pages with localized copy + main image + directions + prev/next nav
 - Splash → Map fade-in transition (sessionStorage flag)
 - iOS overscroll bounce fixed
 - PC layouts: top nav (HeaderBar), Map split layout, wider containers throughout
+- **Special routes**: not-found.tsx, error.tsx, loading.tsx, icon.tsx, apple-icon.tsx — all brand-styled
+- **Accessibility**: sr-only h1 on every page, screen-reader hints on external links, prefers-reduced-motion respected, noscript fallback
+- Yoon Meoli fonts repaired (loca offset surgery) and re-served as WOFF1 — see `scripts/repair-loca.py`
 
 ### SEO (Tier 1+2 complete)
-- Comprehensive `metadata` in `layout.tsx` (title.template, 12 keywords, alternates, openGraph, twitter, robots)
+- Comprehensive `metadata` in `layout.tsx` (title.template, 30+ keywords, alternates, openGraph, twitter, robots)
+- Brand unified as `하슬라강릉이머시브아트쇼` across titles, descriptions, JSON-LD, alts, ContactBlock
+- Target query priorities: `강릉` / `강릉가볼만한곳` / `강릉관광` (descriptions lead with these)
 - Dynamic OG image with Korean wordmark
-- `robots.ts` + `sitemap.ts`
-- JSON-LD Event schema
+- `robots.ts` + `sitemap.ts` with stable LAST_REV dates
+- JSON-LD Event schema with structured-data `keywords` field
 - Per-page metadata via server/client split
-- Korean keyword-rich body copy (Visit info section in About)
-- Image alts with SEO keywords (HeaderBar, Splash, Map, Zone hero)
-- Google Search Console verification file deployed
-- Naver Search Advisor verification file deployed
+- Image alts with brand + SEO keywords (Map, HeaderBar, Splash, Zone hero)
+- Google Search Console + Naver Search Advisor verification files deployed
+- Both indexed as of 2026-05-04 (Naver) / 2026-05-12 (Google partial)
+
+### Performance
+- framer-motion removed (~50KB win) — FadeInSection now IntersectionObserver + CSS
+- Teaser video `preload="none"` — no metadata fetch unless user presses play
+- HeaderBar logo no longer `priority` — saves preload signal for actual LCP candidates
+- Map icon cascade tightened: 0.4s/icon → 0.15s/icon (1.05s total vs 2.8s)
+- `@vercel/speed-insights` mounted — Core Web Vitals visible in dashboard
 
 ### Analytics
 - `@vercel/analytics` (visitor counts, referrers, country, device)
 - `@vercel/speed-insights` (Core Web Vitals — LCP/INP/CLS)
 - GA4 wired up but **dormant** until `NEXT_PUBLIC_GA_ID` env var is set in Vercel
 
+### Code organization
+- `localized()` zone helper unified in `lib/zones.ts` (was duped in 2 components)
+- `showTimes` single source in `data/schedule.ts` (was duplicated string arrays)
+- External URLs centralized in `data/links.ts` (env-overrideable)
+- About narrative extracted to `i18n/about.ts` (mirrors `i18n/zones.ts` pattern)
+- `BrandedSection` shared component (was file-local in About + inline in ContactBlock)
+
 ---
 
-## 7. What's pending (user-side and code-side)
+## 7. What's pending (user-side only)
 
-### User-side (Tier 3 SEO + analytics)
-- [ ] Google Search Console: click "Verify" on the property, then **submit sitemap.xml**, then "URL inspection → Request indexing" for the homepage (faster crawl before grand open)
-- [ ] Naver Search Advisor: same flow for Naver
+All code-level improvements have landed. Remaining items are platform/account actions outside the codebase:
+
+- [ ] Google Search Console: submit sitemap.xml (verification HTML already deployed)
+- [ ] Naver Search Advisor: submit sitemap (verification HTML already deployed) — note Naver requires full URL `https://hasla-gangneung.vercel.app/sitemap.xml`
 - [ ] Test OG preview at https://www.opengraph.xyz/ to confirm the og image renders
 - [ ] Test Rich Results: https://search.google.com/test/rich-results — verify the Event schema parses
-- [ ] Create GA4 property → get `G-XXXXXXXXXX` ID → add `NEXT_PUBLIC_GA_ID` env var in Vercel → redeploy
+- [ ] Create GA4 property → get `G-XXXXXXXXXX` ID → set `NEXT_PUBLIC_GA_ID` env var in Vercel → redeploy
+- [ ] (optional) UTM-tagged QR codes for on-site visit attribution
+- [ ] (optional) Custom domain → improves perceived authority for SEO
 
-### Code-side (potential improvements, not committed)
-- [ ] **UTM-tagged QR codes** for on-site visit attribution. User declined for now (현장 QR 따로 안 만든 듯) but if soft-open foot traffic data becomes important: append `?utm_source=onsite_qr&utm_medium=qr&utm_campaign=soft_open` to QR URLs and they'll separate in Vercel Analytics' UTM tab.
-- [ ] **Custom events** — Vercel Analytics supports custom events on Pro plan; could track zone selection, language toggle, etc. Currently free plan.
+### Future code-side enhancements (not yet committed)
+- **Custom events** in Vercel Analytics (Pro plan) — track zone selection, lang toggle
+- **Magic-number purge** — extract more inline `text-[14.5px]`, etc. into utility classes
+- **Press kit / news page** at `/press` — would use the now-shared `BrandedSection`
 
 ---
 
@@ -230,26 +259,30 @@ git push                              # Vercel auto-deploys from main
 - **Zone icon `alt=""`** is intentional accessibility — the wrapping `<Link aria-label={zone title}>` already announces the zone, so the image is decoration. Don't "improve" by adding alt text.
 - **Splash silhouette `alt=""`** — same reasoning. The color logo right behind it has the SEO alt text.
 - **CRLF line ending warnings** are normal on Windows (the repo is checked in as LF) — ignore them.
+- **WOFF1 (not WOFF2) for Yoon Meoli** — the foundry's TTFs had a broken loca offset at glyph 17146 that WOFF2 conversion can't tolerate (it fully decompiles glyf/loca). `scripts/repair-loca.py` clamps the bad offset before re-serializing as WOFF1. If TTFs are ever replaced with cleaner sources, rerunning the script with `flavor='woff2'` would give an additional ~40% size win.
+- **`<html lang>` is set by LanguageProvider, not SSR'd correctly** — server renders 'ko' always. A `useEffect` in `LanguageContext.tsx` updates the attribute after hydration to match the actual locale. Don't move this to the `<html>` element directly.
+- **JSON-LD `keywords` on Event** — `keywords` is inherited from `Thing` (schema.org ≥ 3.9) so this is valid even though some older validators flag it. Don't remove based on stale validator output.
 
 ---
 
 ## 11. Recent commit history (for orientation)
 
 ```
+076f7b5 polish: splash timing constants, noscript fallback, design tokens
+b5f3ef2 refactor: dynamic html lang, stable sitemap dates, extract About + section + links
+de82ac2 perf: replace framer-motion with IntersectionObserver + CSS
+cdd4dbc perf+cleanup: video preload, icon cascade, dedup, sr-only hints
+b14223f feat: add not-found / error / loading / icon route files
+10c0ccd fix(a11y): i18n missing on Map PC panel, no h1 on splash/map, no reduced-motion
+e63dd40 fix(font): patch loca's last bad offset before WOFF1 re-serialize
+0899bba fix(font): re-serialize Yoon Meoli TTFs as WOFF1 — Chrome rejected originals
+ac033c0 seo: rewrite titles & descriptions to read naturally in search snippets
+ac22fbe seo: unify brand as 하슬라강릉이머시브아트쇼, target 강릉/강릉가볼만한곳/강릉관광
+f119395 seo: lead every title with 강릉/하슬라, expand keyword set
+9bffe76 docs: add PROJECT-CONTEXT.md for session handoff
 03d7fb7 feat(perf): wire up Vercel Speed Insights
 088b4d0 content(seo): add Visit info section + boost image alts
-e21b186 chore(seo): add Naver Search Advisor verification file
-6a8357e chore(seo): add Google Search Console verification file
 a82cea5 feat(seo): full SEO foundation — meta + OG + sitemap + robots + JSON-LD
-4dad128 feat: wire up Vercel Analytics + Google Analytics 4
-7b3f2c0 content(feedback): add ContactBlock at bottom
-f5efa59 content(contact): add Instagram (@hasla_5moons) to ContactBlock
-19f695c content(contact): revert phone → 0507-1322-4508
-1ee42df content(feedback): add PreOpenBanner at top
-5082784 content + chore: zone4 description rewrite, drop notify signup
-938d5b1 feat(pc): Phase 2 — top nav + Map split layout
-395a13e feat(pc): Phase 1 — wider containers + larger splash logo
-3984096 fix: smooth splash→map fade-in + kill iOS overscroll bounce for real
 ```
 
 ---
@@ -260,15 +293,21 @@ f5efa59 content(contact): add Instagram (@hasla_5moons) to ContactBlock
 |---|---|
 | Site title / global meta | `src/app/layout.tsx` (metadata + eventJsonLd) |
 | OG image | `src/app/opengraph-image.tsx` |
-| Sitemap entries | `src/app/sitemap.ts` |
-| Splash text or animation | `src/app/SplashClient.tsx` + `globals.css` `.moon-rise` etc. |
+| Favicon | `src/app/icon.tsx` + `apple-icon.tsx` |
+| Sitemap entries / per-page lastModified | `src/app/sitemap.ts` (LAST_REV bucket) |
+| Splash text or animation | `src/app/SplashClient.tsx` (timing constants at top) + `globals.css` |
 | Map background | `public/images/map.jpg` |
 | Zone pin position | `src/data/zones.json` → `mapPin.cx/cy/w/h` |
 | Zone copy (story, directions) | `src/i18n/zones.ts` |
+| About narrative copy | `src/i18n/about.ts` (ABOUT_COPY[lang]) |
 | UI strings (labels, hints) | `src/i18n/ui.ts` (+ types.ts contract) |
-| Phone / address / Instagram | `src/components/ContactBlock.tsx` (+ ui.ts for labels) |
+| Phone / address labels | `src/i18n/ui.ts` `contactPhone*` etc. |
+| Naver Place / Instagram / Review URLs | `src/data/links.ts` (or env vars) |
+| Show / zone6 timetable | `src/data/schedule.ts` (showTimes array) |
 | Pre-open banner copy | `src/i18n/ui.ts` `infoNoticeParagraphs` |
 | Header nav items | `src/components/HeaderBar.tsx` `navItems` |
 | Bottom tab items | `src/components/BottomTabs.tsx` |
-| About page sections | `src/app/(tabs)/about/AboutPageClient.tsx` |
-| Custom CSS animations | `src/app/globals.css` |
+| About page structure (sections) | `src/app/(tabs)/about/AboutPageClient.tsx` |
+| Shared section wrapper | `src/components/BrandedSection.tsx` |
+| 404 / error / loading text | `src/app/{not-found,error,loading}.tsx` |
+| Custom CSS animations / design tokens | `src/app/globals.css` (`:root` has `--track-*` vars) |
