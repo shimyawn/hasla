@@ -8,6 +8,7 @@ import './globals.css'
 import { LanguageProvider } from '@/i18n/LanguageContext'
 import LanguageButton from '@/components/LanguageButton'
 import { LINKS } from '@/data/links'
+import { CONTACT } from '@/data/contact'
 
 // Source TTFs from the foundry had non-spec-compliant table directory ordering
 // + unsorted name records, which Chrome/Edge's OpenType Sanitizer rejected
@@ -232,7 +233,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <br />
             이 페이지는 JavaScript가 켜져 있어야 정상 표시됩니다.
             <br />
-            문의: 0507-1322-4508 · @hasla_5moons
+            문의: {CONTACT.phone} · @hasla_5moons
           </div>
         </noscript>
         {/* Inner scroll container — body itself is fixed (no rubber-band)

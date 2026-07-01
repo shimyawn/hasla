@@ -2,6 +2,7 @@
 
 import { useLang } from '@/i18n/LanguageContext'
 import { LINKS } from '@/data/links'
+import { CONTACT } from '@/data/contact'
 import FadeInSection from './zone/FadeInSection'
 import BrandedSection from './BrandedSection'
 
@@ -31,10 +32,10 @@ export default function ContactBlock() {
               {t.contactPhoneLabel}
             </div>
             <a
-              href="tel:0507-1322-4508"
+              href={`tel:${CONTACT.phone}`}
               className="mt-1.5 inline-flex items-center gap-2 font-clean text-[16px] tracking-[0.02em] text-white transition-colors hover:text-hasla-yellow"
             >
-              0507-1322-4508
+              {CONTACT.phone}
             </a>
           </li>
         </FadeInSection>
@@ -45,7 +46,7 @@ export default function ContactBlock() {
               {t.contactAddressLabel}
             </div>
             <p className="mt-1.5 font-clean text-[14px] leading-[1.7] text-white/85">
-              강원 강릉시 초당동 474-4
+              {CONTACT.address}
             </p>
           </li>
         </FadeInSection>
