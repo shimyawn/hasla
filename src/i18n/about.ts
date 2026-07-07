@@ -62,7 +62,7 @@ const ko: AboutCopy = {
   visitFormatLabel: '형식',
   visitFormatValue: '야외 이머시브 아트 산책 · 8개 ZONE · 빛과 사운드',
   visitWhenLabel: '시기',
-  visitWhenValue: '오픈 2026년 5월 2일 · 연중무휴 운',
+  visitWhenValue: '오픈 2026년 5월 2일 · 연중무휴 운영',
   ctaLabel: '둘러보기',
 }
 
