@@ -62,7 +62,7 @@ const ko: AboutCopy = {
   visitFormatLabel: '형식',
   visitFormatValue: '야외 이머시브 아트 산책 · 8개 ZONE · 빛과 사운드',
   visitWhenLabel: '시기',
-  visitWhenValue: '가오픈 2026년 5월 2일 · 그랜드 오픈 2026년 7월 중순',
+  visitWhenValue: '오픈 2026년 5월 2일 · 연중무휴 운',
   ctaLabel: '둘러보기',
 }
 
@@ -101,7 +101,7 @@ const en: AboutCopy = {
   visitFormatLabel: 'FORMAT',
   visitFormatValue: 'Outdoor immersive art walk · 8 zones · light & sound',
   visitWhenLabel: 'WHEN',
-  visitWhenValue: 'Soft open: May 2, 2026 · Grand opening: mid-July 2026',
+  visitWhenValue: 'Open: May 2, 2026 · daily year-round open',
   ctaLabel: 'Explore',
 }
 
