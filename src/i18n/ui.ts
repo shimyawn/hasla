@@ -139,11 +139,11 @@ export const UI: Record<Lang, UIStrings> = {
     infoButtonLabel: 'INFO',
     infoSheetTitle: 'Visit Info',
     infoPreOpenLabel: 'Notice',
-    infoPreOpenLineShort: '24/7/365 OPEN',
+    infoPreOpenLineShort: '24/7 OPEN',
     infoNoticeParagraphs: [
-      'HASLA is currently in 24/7/365-open.',
-      'Hours may vary with the season and sunset.',
-      'Thank you for your patience and understanding.',
+      'HASLA is open daily year-round, with no regular closing days.',
+      'Please note that showtimes may vary depending on the season and sunset times.',
+      'Thank you for your kind understanding.',
     ],
     infoSessionsHeading: 'Infinity Forest · Show Schedule',
     infoSessionsNote:
@@ -152,7 +152,7 @@ export const UI: Record<Lang, UIStrings> = {
     infoGrandOpenWhen: 'Flexible — varies with season & sunset',
     infoCloseLabel: 'Close',
     infoPerDayLabel: '3 shows daily',
-    splashStatusBanner: '24/7/365 open · 3 shows daily · Hours vary with season & sunset',
+    splashStatusBanner: '24/7 open · 3 shows daily · Hours vary with season & sunset',
 
     tabHome: 'Home',
     tabAbout: 'About HASLA',
