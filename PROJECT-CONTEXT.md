@@ -40,7 +40,7 @@ src/
     layout.tsx                      ← root metadata, JSON-LD Event, analytics, body fixed wrapper, noscript
     page.tsx                        ← splash route entry
     SplashClient.tsx                ← moon-rise splash animation; timing constants at top
-    opengraph-image.tsx             ← dynamic 1200x630 PNG (Korean wordmark + Yoon Meoli)
+    (og image now a static file — see public/og.png)
     icon.tsx                        ← 32x32 brand-gradient favicon (Next 16 file-based)
     apple-icon.tsx                  ← 180x180 iOS home-screen icon
     not-found.tsx                   ← branded 404 (소프트 펄스 → 지도로)
@@ -122,8 +122,8 @@ FooPageClient.tsx         ← 'use client', the actual UI
 ```
 This is in place for: `/map`, `/about`, `/show`, `/feedback`, `/zone/[id]`.
 
-### `opengraph-image.tsx`
-Dynamic PNG. Loads Yoon Meoli font via `fs.readFile` so Korean wordmark renders correctly — therefore needs `export const runtime = 'nodejs'` (not `edge`).
+### OG image — now a static file
+Previously generated at request time by `src/app/opengraph-image.tsx` (Node runtime + Yoon Meoli via `fs.readFile`). Extracted the rendered output and moved to `public/og.png`. `src/app/layout.tsx` openGraph metadata now points at `/og.png` explicitly. Drop-in replaceable by the designer without touching code.
 
 ### JSON-LD (`layout.tsx`)
 schema.org **Event** type is in the root layout `<head>` so every page emits it. Lists soft open date, location, organizer, free admission. Don't move this into per-page heads — Google needs it once and consistent.
@@ -132,7 +132,7 @@ schema.org **Event** type is in the root layout `<head>` so every page emits it.
 
 ## 5. Conventions
 
-- **Phone**: `0507-1322-4508` (was changed to `010-9819-0245` then reverted — keep as-is)
+- **Phone**: `0507-1322-4508` (was briefly changed to a personal mobile then reverted — keep the 0507 line)
 - **Instagram**: `@hasla_5moons` → https://www.instagram.com/hasla_5moons/
 - **Address**: 강릉 경포호 일원 (허난설헌공원 인근)
 - **Soft open date**: 2026-05-02 (was originally 5-1, changed to 5-2)
@@ -292,7 +292,7 @@ a82cea5 feat(seo): full SEO foundation — meta + OG + sitemap + robots + JSON-L
 | Need to change… | Edit… |
 |---|---|
 | Site title / global meta | `src/app/layout.tsx` (metadata + eventJsonLd) |
-| OG image | `src/app/opengraph-image.tsx` |
+| OG image | `public/og.png` (static file — replace to update) |
 | Favicon | `src/app/icon.tsx` + `apple-icon.tsx` |
 | Sitemap entries / per-page lastModified | `src/app/sitemap.ts` (LAST_REV bucket) |
 | Splash text or animation | `src/app/SplashClient.tsx` (timing constants at top) + `globals.css` |

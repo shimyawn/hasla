@@ -29,7 +29,8 @@
 | 🟡 | 관람객 참여 페이지 문구 | [4-7](#4-7-관람객-참여-리뷰-페이지) |
 | 🟡 | 영어(EN) 번역 함께 반영 | [8](#8-영어en-번역-유지) |
 | 🔴 | 지도 배경 이미지의 **비율(가로:세로)** 이 달라지는 교체 | [6-2](#6-2-지도-배경-이미지), [9](#9-지도--지도-리디자인의-경우) |
-| 🔴 | 파비콘 · iOS 홈 아이콘 · OG 공유 이미지 (코드로 그림) | [6-5](#6-5-로고--파비콘--og-이미지) |
+| 🔴 | 파비콘 · iOS 홈 아이콘 (코드로 그림) | [6-5](#6-5-로고--파비콘--og-이미지) |
+| 🟢 | 카톡·페이스북 SNS 공유 미리보기(OG) 이미지 교체 | [6-5](#6-5-로고--파비콘--og-이미지) |
 | 🔴 | 스플래시 로고 3장 세트 교체 (color·black·full) | [6-5](#6-5-로고--파비콘--og-이미지) |
 | 🔴 | 이미지 확장자 변경 (`.png` ↔ `.jpg`) | [6](#6-이미지-교체) |
 | 🔴 | 가오픈 안내(PreOpenBanner) **카드 자체를 제거** | [5-3](#5-3-가오픈-안내-카드-preopenbanner) |
@@ -41,6 +42,7 @@
 | 🟡 | Vercel 환경변수(전화·인스타 URL·GA ID 등) 등록·수정 | [13-5](#13-5-환경변수-목록) |
 | 🟡 | 로컬 개발 환경 셋업(npm install · npm run dev) | [13-3](#13-3-시나리오-c-로컬-개발-환경-셋업-선택) |
 | 🔴 | 새 계정으로 처음부터 배포 · 서비스 이관 | [13-2](#13-2-시나리오-b-새-계정으로-처음부터-배포), [13-6](#13-6-서비스-이관-시-체크리스트) |
+| 🟡 | 커스텀 도메인 구매 후 연결 · SEO 이관 | [14](#14-커스텀-도메인-연결하기-선택) |
 
 ---
 
@@ -383,7 +385,7 @@ export const CONTACT = {
 | 상단바 로고 (헤더) | `public/images/logo_full.png` |
 | 브라우저 탭 파비콘 | `src/app/icon.tsx` (코드로 그림) — 개발자 문의 |
 | iOS 홈 화면 아이콘 | `src/app/apple-icon.tsx` (코드로 그림) — 개발자 문의 |
-| 카톡·페이스북 공유 OG 이미지 | `src/app/opengraph-image.tsx` (코드로 그림) — 개발자 문의 |
+| 카톡·페이스북 공유 OG 이미지 | `public/og.png` — **파일 교체로 반영** (1200×630 PNG) |
 
 **스플래시 로고 3가지(color/black/full)의 관계는 문라이즈 애니메이션과 얽혀 있으므로**, 새 로고로 교체하는 경우 3장 모두 같은 컨셉으로 준비해서 함께 갈아끼우세요. 잘못 넣으면 애니메이션이 어색해집니다.
 
@@ -788,7 +790,141 @@ Vercel **Settings → Environment Variables** 에서 등록하는 값들입니�
 
 ---
 
-## 14. 손대기 전 체크리스트
+## 14. 커스텀 도메인 연결하기 (선택)
+
+현재 실서비스는 Vercel 이 발급한 `hasla-gangneung.vercel.app` 을 사용합니다. **자체 도메인(예: `hasla.kr`)이 필요해지면** 아래 절차로 연결 가능하며, 이후 브랜딩·인쇄물·SEO 모두 새 도메인으로 통일할 수 있습니다.
+
+### 언제 커스텀 도메인이 필요한가
+
+- 발주처(강릉시)에서 시(市) 자산으로 이관하고 자체 도메인 요구
+- 홍보물(팜플렛, 인쇄물, QR코드)에 짧고 기억하기 쉬운 URL 필요
+- SEO 상 브랜드 도메인이 더 신뢰도 있음 (검색엔진이 개인 계정 도메인보다 자체 도메인을 우선)
+- SNS 미리보기·카톡 공유에서 더 프로페셔널해 보임
+
+### Step 1. 도메인 구매
+
+**공급 업체 (Registrar) 선택 팁:**
+- **국내 도메인 (.kr, .co.kr)** — 가비아, 후이즈, 카페24 등. .kr 는 국내법상 사업자등록 필요할 수 있음
+- **해외 도메인 (.com, .net, .co, .art)** — Namecheap, Cloudflare Registrar, GoDaddy 등. .com 은 연 $10~15
+- **결제**: 신용카드 또는 계좌이체. 최소 1년 등록 필요
+
+**도메인 이름 추천 기준:**
+- 짧고 발음하기 쉬움 (예: `hasla.kr`, `hasla.art`, `hasla-gn.com`)
+- 브랜드명 그대로 사용 (다른 목적으로 나중에 재활용 가능)
+- 확장자는 `.kr` (국내 신뢰도) 또는 `.com` (글로벌·범용) 권장
+
+*(구체적인 도메인 후보·공급업체·결제 세부사항은 이 문서에 넣지 않았습니다. 별도로 정리한 파일에 있습니다 — 담당자 인수인계 시 오프라인으로 전달.)*
+
+### Step 2. Vercel 에 도메인 등록
+
+1. Vercel 대시보드 → 프로젝트 `hasla-gangneung` 선택
+2. **Settings → Domains → Add**
+3. 구매한 도메인 입력 (예: `hasla.kr`) → **Add**
+4. Vercel 이 안내하는 DNS 레코드 값 복사 (보통 A 레코드 또는 CNAME)
+   - Apex 도메인 (`hasla.kr`): A 레코드 `76.76.21.21` (Vercel 표준)
+   - 서브도메인 (`www.hasla.kr`): CNAME `cname.vercel-dns.com`
+
+### Step 3. DNS 설정 (도메인 공급업체 쪽)
+
+도메인 구매한 곳(가비아, Namecheap 등) 관리 페이지에서 DNS 레코드 편집:
+
+1. 로그인 → 도메인 관리 → **DNS 설정** 또는 **네임서버 관리**
+2. Vercel 이 안내한 값 입력:
+   - **A 레코드**: 이름 `@`, 값 `76.76.21.21` (Vercel 의 IP)
+   - **CNAME**: 이름 `www`, 값 `cname.vercel-dns.com`
+3. 저장 → DNS 반영까지 **최대 24시간** 소요 (보통 5~30분 이내)
+
+Cloudflare 를 DNS 관리로 쓰는 경우 프록시(주황색 구름) **끄고** DNS Only(회색 구름) 로 설정 — 안 그러면 Vercel 이 인증서 발급 못 함.
+
+### Step 4. Vercel 에서 도메인 확인 후 자동 SSL
+
+1. Vercel 대시보드 → **Settings → Domains** 에서 등록한 도메인 옆에 초록 체크(✅) 뜨는지 확인
+2. Vercel 이 **Let's Encrypt SSL 인증서를 자동 발급** — 별도 설정 불필요
+3. `https://` 로 접속되는지 확인
+
+### Step 5. 코드 안 URL 상수 변경 (담당자 셀프 가능 🟢)
+
+새 도메인이 정상 동작하면 아래 3곳의 `SITE_URL` 을 새 값으로 수정:
+
+| 파일 | 수정 위치 |
+| --- | --- |
+| `src/app/layout.tsx` | 상단 `const SITE_URL = 'https://hasla-gangneung.vercel.app'` → 새 도메인 |
+| `src/app/sitemap.ts` | 상단 `const SITE_URL = ...` → 새 도메인 |
+| `PROJECT-CONTEXT.md` | 참고용 문서의 URL 도 함께 갱신 |
+
+수정 후 커밋 → 자동 배포 → 사이트가 새 도메인으로 완전히 이전됨.
+
+### Step 6. 기존 URL 리다이렉트 (SEO 손실 방지)
+
+`hasla-gangneung.vercel.app` 은 유지되지만, 방문자가 옛 URL 로 오면 새 도메인으로 자동 이동하도록 리다이렉트 추가하는 게 좋습니다.
+
+`next.config.ts` 에 redirects 추가 (개발자 요청):
+
+```typescript
+async redirects() {
+  return [
+    {
+      source: '/:path*',
+      has: [{ type: 'host', value: 'hasla-gangneung.vercel.app' }],
+      destination: 'https://hasla.kr/:path*',
+      permanent: true,
+    },
+  ]
+}
+```
+
+**308 Permanent Redirect** 로 처리되어 검색엔진이 옛 URL 의 SEO 이력을 새 도메인으로 이관합니다.
+
+### Step 7. 검색엔진에 새 도메인 등록
+
+- **Google Search Console** (https://search.google.com/search-console)
+  - 새 도메인으로 속성 추가 → HTML 파일 인증
+  - 인증 파일을 `public/` 에 업로드 → 커밋
+  - **Change of Address** 도구로 옛 URL → 새 URL 이관 신청 (SEO 이력 보존)
+  - 새 도메인의 sitemap 제출: `https://hasla.kr/sitemap.xml`
+- **네이버 서치어드바이저** (https://searchadvisor.naver.com)
+  - 마찬가지로 새 도메인 등록 + HTML 인증
+  - 사이트맵 재제출
+
+### Step 8. 외부 링크 교체 (수동)
+
+- 인쇄물·팜플렛·QR코드·현장 안내판의 URL 을 새 도메인으로 교체
+- Instagram 프로필 링크 (`@hasla_5moons`) 갱신
+- 네이버 플레이스에 새 홈페이지 URL 등록
+- 카톡 채널·기타 SNS 링크 갱신
+
+### 도메인 이관 후 SEO 회복 전략 (권장)
+
+옛 URL 의 검색 순위가 새 도메인으로 안전하게 이관되려면 아래 조치가 도움됩니다.
+
+1. **308 리다이렉트를 최소 6개월 유지** — 검색엔진이 새 URL 을 완전 인식할 때까지
+2. **Search Console 의 "Change of Address"** 신청 필수 (Google 이 명시적으로 이관 알림)
+3. **동일 콘텐츠 유지** — URL만 바뀌고 콘텐츠·구조는 그대로 (구조 변경 시 SEO 페널티)
+4. **backlinks 갱신 요청** — 외부에서 걸린 링크가 있으면 새 도메인으로 교체 요청 (연락 가능한 곳만)
+5. **한 달 뒤 백링크 감사** — Ahrefs, Semrush 무료 도구로 어떤 사이트가 옛 URL 을 여전히 링크하고 있는지 체크
+6. **소셜 시그널 재구축** — 새 도메인으로 SNS 재게시, 인스타그램 스토리·게시물에서 새 URL 노출
+
+### 발생 가능한 문제 & 해결
+
+| 증상 | 원인 | 해결 |
+| --- | --- | --- |
+| Vercel 대시보드에 "Invalid Configuration" | DNS 레코드 잘못 입력 | Vercel 안내값 다시 확인 후 도메인 관리 페이지에서 수정 |
+| "Certificate is being issued" 24시간 이상 | Cloudflare 프록시 켜져 있음 | Cloudflare DNS 를 회색 구름(DNS Only) 로 변경 |
+| 옛 도메인으로 접속하면 새 도메인 리다이렉트 안 됨 | `next.config.ts` redirects 미설정 | 개발자에게 Step 6 코드 추가 요청 |
+| 새 도메인 접속 시 사이트 뜨는데 SNS 미리보기(OG) 는 옛 이미지 | 카톡·페북 캐시 | https://developers.facebook.com/tools/debug/ 에서 "Scrape Again" |
+| Google 검색 시 여전히 옛 URL 노출 | 색인 재크롤링 대기 | Search Console 에서 URL 검사 → "색인 요청" 여러 번 |
+
+### 예상 총 소요 시간
+
+- 도메인 구매: 30분
+- DNS 설정 + Vercel 등록: 30분~1시간
+- SSL 발급 + 실제 접속 확인: 최대 24시간 (보통 30분 이내)
+- 검색엔진 재등록: 1주~1개월 (색인 반영 기다림)
+- SEO 완전 이관: 3~6개월
+
+---
+
+## 15. 손대기 전 체크리스트
 
 수정을 시작하기 전에 아래 3가지를 지키면 사고 확률을 크게 줄입니다.
 
