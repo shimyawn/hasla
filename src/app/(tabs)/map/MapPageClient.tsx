@@ -62,7 +62,7 @@ export default function MapPageClient({ zones }: Props) {
             area (anywhere except a zone icon) deselects the current zone
             so the whole map returns to its idle breathing state. */}
         <div
-          className="relative aspect-[1600/1748] w-full cursor-pointer"
+          className="relative aspect-[1600/2100] w-full cursor-pointer"
           onClick={() => setSelectedId(null)}
         >
           <div className="absolute inset-0 overflow-hidden rounded-2xl border border-border bg-card">

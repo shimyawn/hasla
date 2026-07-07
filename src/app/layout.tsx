@@ -126,12 +126,23 @@ export const metadata: Metadata = {
     siteName: '하슬라강릉이머시브아트쇼',
     locale: 'ko_KR',
     type: 'website',
-    // og:image is auto-populated by app/opengraph-image.tsx
+    // og image is a static file in /public — swap `public/og.png` (1200x630)
+    // and redeploy to update carousel previews on Kakao/Facebook/X.
+    images: [
+      {
+        url: '/og.png',
+        width: 1200,
+        height: 630,
+        alt:
+          '하슬라강릉이머시브아트쇼 — 강릉 경포 환상의 호수, 다섯 개의 달이 뜨는 밤 (강릉 가볼만한곳 · 강릉 관광)',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
+    images: ['/og.png'],
   },
   robots: {
     index: true,
