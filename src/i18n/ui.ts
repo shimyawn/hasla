@@ -3,7 +3,7 @@ import type { Lang, UIStrings } from './types'
 export const UI: Record<Lang, UIStrings> = {
   ko: {
     splashLabel: '강릉 이머시브 아트 쇼',
-    splashSloganLine1: '다섯개의 달이 피어오르는 밤,',
+    splashSloganLine1: '다섯개의 달이 떠오르는 밤,',
     splashSloganLine2: '고대 하슬라의 판타지가 펼쳐집니다.',
     splashHint: 'TAP TO AWAKEN',
     splashCta: '숲으로 들어가기',
