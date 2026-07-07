@@ -48,8 +48,8 @@
       "mapPin": {
         "cx": "45%",
         "cy": "78%",
-        "w": "15%",
-        "h": "11.43%"
+        "w": "22%",
+        "h": "16.76%"
       },
       "assets": {
         "mainImage": "/images/zone2_main.png"
@@ -135,10 +135,10 @@
       "accentColor": "#FF5184",
       "element": "화(火)",
       "mapPin": {
-        "cx": "57%",
+        "cx": "55%",
         "cy": "50%",
-        "w": "15%",
-        "h": "11.43%"
+        "w": "22%",
+        "h": "16.76%"
       },
       "assets": {
         "mainImage": "/images/zone5_main.png"
