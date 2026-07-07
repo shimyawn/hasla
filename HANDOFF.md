@@ -91,31 +91,228 @@ C:\Users\yawns\OneDrive\2025\강릉\모바일 리플렛\hasla-gangneung
 
 ---
 
-## 3. 수정 시나리오 인덱스
+## 3. 메뉴별 콘텐츠 지도 — 화면에 뜨는 것 → 어느 파일
 
-| 바꾸고 싶은 것 | 참고 절 |
+> **이 섹션은 "이 화면의 이 문구·이미지를 바꾸고 싶다"** 라는 상황에서 첫번째로 볼 곳입니다.
+> 관람객에게 보이는 사이트 구조 그대로 정리했어요. 각 표의 오른쪽 컬럼이 GitHub 에서 열어야 할 파일과 필드 이름입니다.
+
+### 사이트 전체 구조 요약
+
+- **처음 접속:** 스플래시(문라이즈 애니메이션) → 탭하면 지도로 진입
+- **하단 탭 (모바일) 또는 상단 nav (PC):** 4개 메뉴
+  - 📍 **메인** (지도)
+  - 🌙 **HASLA 소개**
+  - 🕘 **상영시간표**
+  - ✍ **관람객 참여**
+- **모든 페이지 공통 요소:** 상단 헤더바 (로고·언어·INFO 버튼), 하단 탭바, PreOpenBanner(공지 카드), INFO 시트
+- **지도 아이콘 탭:** 8개 존 상세 페이지 (`/zone/1` ~ `/zone/8`)
+
+### 🔹 공통 요소 (모든 페이지에 뜨는 것)
+
+**상단 헤더바** (모든 페이지 최상단)
+
+| 화면에 뜨는 것 | 파일 | 필드 |
+| --- | --- | --- |
+| 로고 이미지 | `public/images/logo_full.png` | 파일 교체 |
+| ← HOME 링크 (지도 페이지) | `src/i18n/ui.ts` | `navHome` |
+| ← MAP 링크 (존 상세) | `src/i18n/ui.ts` | `navMap` |
+| INFO 버튼 라벨 | `src/i18n/ui.ts` | `infoButtonLabel` |
+| LANGUAGE 토글 라벨 | `src/i18n/ui.ts` | `langToggleLabel` |
+
+**하단 탭바** (모바일 전용)
+
+| 탭 이름 | 파일 | 필드 |
+| --- | --- | --- |
+| 📍 메인 | `src/i18n/ui.ts` | `tabHome` |
+| 🌙 HASLA 소개 | `src/i18n/ui.ts` | `tabAbout` |
+| 🕘 상영시간표 | `src/i18n/ui.ts` | `tabShow` |
+| ✍ 관람객 참여 | `src/i18n/ui.ts` | `tabReviews` |
+
+**PreOpenBanner** (흰 공지 카드 — 지도·소개·상영·참여·존상세 상단)
+
+| 화면에 뜨는 것 | 파일 | 필드 |
+| --- | --- | --- |
+| 배지 ("공지") | `src/i18n/ui.ts` | `infoPreOpenLabel` |
+| 한 줄 문구 ("지금은 가오픈 기간입니다") | `src/i18n/ui.ts` | `infoPreOpenLineShort` |
+
+**INFO 시트** (상단 INFO 버튼 클릭 → 아래에서 올라오는 시트)
+
+| 화면에 뜨는 것 | 파일 | 필드 |
+| --- | --- | --- |
+| 시트 제목 ("운영 안내") | `src/i18n/ui.ts` | `infoSheetTitle` |
+| 3개 문단 안내 | `src/i18n/ui.ts` | `infoNoticeParagraphs` (배열) |
+| 조명쇼 시간표 헤딩 | `src/i18n/ui.ts` | `infoSessionsHeading` |
+| 시간표 부연 문구 | `src/i18n/ui.ts` | `infoSessionsNote` |
+| "정식 운영" 라벨 | `src/i18n/ui.ts` | `infoGrandOpenLabel` |
+| "계절·일몰에 따라..." | `src/i18n/ui.ts` | `infoGrandOpenWhen` |
+| "1일 4타임" 라벨 | `src/i18n/ui.ts` | `infoPerDayLabel` |
+| "닫기" 버튼 | `src/i18n/ui.ts` | `infoCloseLabel` |
+
+**문의 블록 (ContactBlock)** — HASLA 소개, 관람객 참여, 지도 페이지 하단에 공통 표시
+
+| 화면에 뜨는 것 | 파일 | 필드 |
+| --- | --- | --- |
+| "문의" 라벨 | `src/i18n/ui.ts` | `contactSectionLabel` |
+| 상호명 표기 | `src/i18n/ui.ts` | `contactName` |
+| **전화번호** (`0507-...`) | `src/data/contact.ts` | `phone` |
+| **주소** (강원 강릉시...) | `src/data/contact.ts` | `address` |
+| "대표 전화" 라벨 | `src/i18n/ui.ts` | `contactPhoneLabel` |
+| "주소" 라벨 | `src/i18n/ui.ts` | `contactAddressLabel` |
+| "네이버 플레이스" 라벨 | `src/i18n/ui.ts` | `contactPlaceLabel`, `contactPlaceCta` |
+| **네이버 플레이스 URL** | `src/data/links.ts` | `naverPlace` |
+| "공식 인스타그램" 라벨 | `src/i18n/ui.ts` | `contactInstagramLabel` |
+| "@hasla_5moons" 표시 | `src/i18n/ui.ts` | `contactInstagramHandle` |
+| **인스타그램 URL** | `src/data/links.ts` | `instagram` |
+
+---
+
+### 📍 메인 (스플래시 + 지도)
+
+**스플래시** (사이트 진입 시 첫 화면)
+
+| 화면에 뜨는 것 | 파일 | 필드 |
+| --- | --- | --- |
+| 상단 라벨 ("강릉 이머시브 아트 쇼") | `src/i18n/ui.ts` | `splashLabel` |
+| 슬로건 1행 | `src/i18n/ui.ts` | `splashSloganLine1` |
+| 슬로건 2행 | `src/i18n/ui.ts` | `splashSloganLine2` |
+| 힌트 ("TAP TO AWAKEN") | `src/i18n/ui.ts` | `splashHint` |
+| 진입 버튼 ("숲으로 들어가기") | `src/i18n/ui.ts` | `splashCta` |
+| 오픈 날짜 문구 | `src/i18n/ui.ts` | `splashOpenDate` |
+| 하단 상태 배너 (한 줄 흐름) | `src/i18n/ui.ts` | `splashStatusBanner` |
+| 저작권 문구 | `src/i18n/ui.ts` | `copyrightSuffix` |
+| 컬러 로고 (문라이즈) | `public/images/logo_color.png` | 파일 교체 |
+| 실루엣 로고 (문라이즈) | `public/images/logo_black.png` | 파일 교체 |
+
+**지도 페이지**
+
+| 화면에 뜨는 것 | 파일 | 필드 |
+| --- | --- | --- |
+| 페이지 제목 ("HASLA 지도") | `src/i18n/ui.ts` | `mapPageTitle` |
+| "빛나는 영역을 탭하면..." | `src/i18n/ui.ts` | `mapCaption` |
+| PC 우측 빈 패널 (선택 전) — eyebrow | `src/i18n/ui.ts` | `mapPCEmptyEyebrow` |
+| PC 우측 빈 패널 — title | `src/i18n/ui.ts` | `mapPCEmptyTitle` |
+| PC 우측 빈 패널 — hint | `src/i18n/ui.ts` | `mapPCEmptyHint` |
+| **지도 배경 이미지** | `public/images/map.jpg` | 파일 교체 (1600×2100) |
+| **8개 존 아이콘** | `public/icons/zone1.png` ~ `zone8.png` | 파일 교체 (800×800) |
+| 아이콘 위치·크기 | `src/data/zones.json` | `mapPin.cx/cy/w/h` |
+
+**존 상세 페이지** (`/zone/1` ~ `/zone/8` — 지도에서 아이콘 탭 시 진입)
+
+| 화면에 뜨는 것 | 파일 | 필드 |
+| --- | --- | --- |
+| 존 제목 (예: 하슬라 포털) | `src/i18n/zones.ts` | zone{N}.`title` |
+| 부제 | `src/i18n/zones.ts` | zone{N}.`subtitle` |
+| 태그라인 (제목 아래 한 줄) | `src/i18n/zones.ts` | zone{N}.`tagline` |
+| 스토리 | `src/i18n/zones.ts` | zone{N}.`story` |
+| 본문 설명 | `src/i18n/zones.ts` | zone{N}.`description` |
+| "연출 방향" 리스트 | `src/i18n/zones.ts` | zone{N}.`direction` (배열) |
+| "연출 매체" 리스트 | `src/i18n/zones.ts` | zone{N}.`media` (배열) |
+| "수(水)" 등 오행 라벨 | `src/i18n/zones.ts` | zone{N}.`element` |
+| **대표 이미지** | `public/images/zone{N}_main.{jpg/png}` | 파일 교체 |
+| "연출 방향" 섹션 헤딩 | `src/i18n/ui.ts` | `sectionDirection` |
+| "연출 매체" 섹션 헤딩 | `src/i18n/ui.ts` | `sectionMedia` |
+| "맵으로 돌아가기" | `src/i18n/ui.ts` | `navBackToMap` |
+| "FINISH →" (zone8) | `src/i18n/ui.ts` | `navFinish` |
+
+---
+
+### 🌙 HASLA 소개 (About)
+
+이 페이지는 **위→아래 스크롤** 순서로 이렇게 구성됩니다: Hero → 스토리 4문단 → 오행 섹션 → 초대 섹션 → 방문 안내 → 티저 영상 → ContactBlock.
+
+**Hero 헤더**
+
+| 화면에 뜨는 것 | 파일 | 필드 |
+| --- | --- | --- |
+| "다섯 개의 달이 뜨는 밤..." 큰 제목 | `src/i18n/about.ts` | `heroTitle` |
+
+**본문 스토리 4문단**
+
+| 화면에 뜨는 것 | 파일 | 필드 |
+| --- | --- | --- |
+| 4개 스토리 문단 | `src/i18n/about.ts` | `body` (배열, 각 문단이 한 항목) |
+
+**오행 섹션 (다섯 빛의 순환)**
+
+| 화면에 뜨는 것 | 파일 | 필드 |
+| --- | --- | --- |
+| 섹션 라벨 ("오행, 다섯 빛의 순환") | `src/i18n/about.ts` | `s3Label` |
+| 인트로 문구 | `src/i18n/about.ts` | `s3Intro` |
+| 오행 5개 항목 (목·화·토·금·수) | `src/i18n/about.ts` | `s3Moons` (배열, 각 항목 = `{element, desc}`) |
+| 아웃트로 문구 | `src/i18n/about.ts` | `s3Outro` |
+
+**초대 섹션 (숲에 발걸음을 더하세요)**
+
+| 화면에 뜨는 것 | 파일 | 필드 |
+| --- | --- | --- |
+| 섹션 라벨 | `src/i18n/about.ts` | `s4Label` |
+| 3개 초대 문장 | `src/i18n/about.ts` | `s4` (배열) |
+
+**방문 안내 섹션** (위치 · 형식 · 시기)
+
+| 화면에 뜨는 것 | 파일 | 필드 |
+| --- | --- | --- |
+| 섹션 라벨 ("방문 안내") | `src/i18n/about.ts` | `visitLabel` |
+| 소개문 (한 문단) | `src/i18n/about.ts` | `visitBody` |
+| "위치" 라벨 | `src/i18n/about.ts` | `visitWhereLabel` |
+| 위치 값 (강릉 경포호...) | `src/i18n/about.ts` | `visitWhereValue` |
+| "형식" 라벨 | `src/i18n/about.ts` | `visitFormatLabel` |
+| 형식 값 (야외 이머시브...) | `src/i18n/about.ts` | `visitFormatValue` |
+| "시기" 라벨 | `src/i18n/about.ts` | `visitWhenLabel` |
+| 시기 값 (가오픈 2026년...) | `src/i18n/about.ts` | `visitWhenValue` |
+
+**티저 영상 섹션**
+
+| 화면에 뜨는 것 | 파일 | 필드 |
+| --- | --- | --- |
+| "티저" 라벨 | `src/i18n/ui.ts` | `aboutTeaserLabel` |
+| 헤딩 문구 | `src/i18n/ui.ts` | `aboutTeaserHeading` |
+| 영상 없을 때 안내 | `src/i18n/ui.ts` | `aboutTeaserNote` |
+| **티저 영상 파일** | `public/videos/teaser.mp4` | 파일 교체 |
+
+---
+
+### 🕘 상영시간표 (Show)
+
+| 화면에 뜨는 것 | 파일 | 필드 |
+| --- | --- | --- |
+| 페이지 제목 | `src/i18n/ui.ts` | `showPageTitle` |
+| 시간표 헤딩 ("인피니티 포레스트 조명쇼 타임테이블") | `src/i18n/ui.ts` | `infoSessionsHeading` |
+| **시간표 배열** (19:30, 20:00 등) | `src/data/schedule.ts` | `showTimes` |
+| 시간표 아래 부연 문구 | `src/i18n/ui.ts` | `infoSessionsNote` |
+
+---
+
+### ✍ 관람객 참여 (Feedback / Reviews)
+
+| 화면에 뜨는 것 | 파일 | 필드 |
+| --- | --- | --- |
+| 페이지 제목 | `src/i18n/ui.ts` | `reviewsPageTitle` |
+| 안내 문구 | `src/i18n/ui.ts` | `reviewsIntro` |
+| "리뷰 작성하러 가기" 버튼 | `src/i18n/ui.ts` | `reviewsCta` |
+| **리뷰 폼 URL** (구글 폼) | `src/data/links.ts` | `reviewForm` |
+
+---
+
+### 자주 나오는 파일 요약 (참고)
+
+| 파일 | 어떤 내용? |
 | --- | --- |
-| 스플래시(첫 화면) 문구·슬로건 | [4-1](#4-1-스플래시-첫-화면-문구) |
-| 상·하단 탭 이름 | [4-2](#4-2-상단하단-탭-메뉴-이름) |
-| 지도 페이지 안내 문구 | [4-3](#4-3-지도-페이지-문구) |
-| 각 존(ZONE)의 제목·스토리·설명·연출 방향·매체 리스트 | [4-4](#4-4-존zone별-콘텐츠-스토리-설명-연출-방향-매체) |
-| 소개(About) 페이지 문구 | [4-5](#4-5-소개about-페이지-문구) |
-| 상영시간표 (19:30 / 20:00 …) | [4-6](#4-6-상영시간표) |
-| 관람객 참여(리뷰) 페이지 문구 | [4-7](#4-7-관람객-참여-리뷰-페이지) |
-| 연락처·주소·SNS 라벨 | [4-8](#4-8-연락처-주소-라벨) |
-| INFO 시트(운영 안내 팝업) | [5-1](#5-1-info-시트-운영-안내-팝업) |
-| 스플래시 하단 상태 배너 | [5-2](#5-2-스플래시-하단-상태-배너) |
-| 가오픈 안내 카드(PreOpenBanner) | [5-3](#5-3-가오픈-안내-카드-preopenbanner) |
-| 존 대표 이미지 (8개) | [6-1](#6-1-존별-대표-이미지) |
-| 지도 배경 이미지 | [6-2](#6-2-지도-배경-이미지) |
-| 지도 위 존 아이콘 (8개) | [6-3](#6-3-지도-위-존-아이콘) |
-| 지도 위 존 아이콘 위치(핀 좌표) | [6-4](#6-4-지도-위-존-아이콘-위치-조정) |
-| 로고 / 파비콘 / OG 이미지 | [6-5](#6-5-로고--파비콘--og-이미지) |
-| 티저 영상 | [6-6](#6-6-티저-영상) |
-| 전화번호 · 인스타그램 · 네이버 플레이스 · 리뷰 폼 URL | [7](#7-외부-링크--전화-인스타-네이버플레이스-리뷰폼) |
-| 영어 번역 유지 | [8](#8-영어en-번역-유지) |
-| 지도 자체를 새로 디자인 (구조 변경) | [9](#9-지도--지도-리디자인의-경우) |
-| 되돌리기 / 사고 대응 | [10](#10-사고-쳤을-때-되돌리기) |
+| `src/i18n/ui.ts` | UI 라벨·버튼·탭·INFO 시트·스플래시 문구 등 (한/영) |
+| `src/i18n/zones.ts` | 8개 존의 스토리·설명·연출 방향·매체 등 (한/영) |
+| `src/i18n/about.ts` | HASLA 소개 페이지 전체 문구 (한/영) |
+| `src/data/schedule.ts` | 상영시간표 배열 |
+| `src/data/contact.ts` | 대표 전화·주소 |
+| `src/data/links.ts` | 인스타·네이버 플레이스·리뷰 폼 URL |
+| `src/data/zones.json` | 지도 위 아이콘 좌표·존 slug·SEO 데이터 |
+| `public/images/` | 지도·로고·존 대표 이미지 |
+| `public/icons/` | 지도 위 존 아이콘 8개 |
+| `public/videos/teaser.mp4` | About 페이지 티저 영상 |
+| `public/og.png` | 카톡·페이스북 공유 미리보기 이미지 |
+
+**한국어와 영어 모두 유지:** `i18n/*.ts` 파일들은 모두 `ko: { ... }` / `en: { ... }` 블록이 나란히 있습니다. 한국어 수정 시 같은 필드의 영어도 함께 수정해야 관람객이 EN 토글했을 때 어색하지 않습니다 → [§8 참고](#8-영어en-번역-유지)
+
+**변경 절차:** 위 표에서 파일과 필드를 찾은 후 [§2 GitHub 웹 편집 흐름](#2-github-웹에서-파일-수정하는-기본-흐름) 대로 진행. 만약 실수 시 [§10 Revert](#10-사고-쳤을-때-되돌리기).
 
 ---
 
@@ -197,9 +394,17 @@ direction: [
 
 **파일:** `src/i18n/about.ts`
 
-이 파일은 `ABOUT_COPY.ko` / `ABOUT_COPY.en` 로 나뉘어 있고, 그 안에 섹션별 문단이 배열로 들어 있습니다. 필드 이름이 그대로 화면 순서를 나타내므로 위에서부터 순서대로 대응됩니다.
+이 파일은 `ABOUT_COPY.ko` / `ABOUT_COPY.en` 로 나뉘어 있고, 각 필드가 About 페이지의 위→아래 순서로 대응됩니다.
 
-**부제/티저 라벨 등 About 페이지 상단 부분**은 `ui.ts` 쪽의 `aboutTeaserLabel`, `aboutTeaserHeading`, `aboutTeaserNote` 에 있습니다.
+| 필드 | 화면 위치 |
+| --- | --- |
+| `heroTitle` | 페이지 최상단 큰 제목 |
+| `body` (배열, 4문단) | 스토리 본문 |
+| `s3Label`·`s3Intro`·`s3Moons`·`s3Outro` | 오행 섹션 (다섯 빛의 순환) |
+| `s4Label`·`s4` | 초대 섹션 (숲에 발걸음을 더하세요) |
+| `visitLabel`·`visitBody`·`visitWhereLabel`·`visitWhereValue`·`visitFormatLabel`·`visitFormatValue`·`visitWhenLabel`·`visitWhenValue` | 방문 안내 (위치·형식·시기) |
+
+**부제/티저 라벨 등 About 페이지 티저 섹션 상단**은 `ui.ts` 쪽의 `aboutTeaserLabel`, `aboutTeaserHeading`, `aboutTeaserNote` 에 있습니다.
 
 ### 4-6. 상영시간표
 

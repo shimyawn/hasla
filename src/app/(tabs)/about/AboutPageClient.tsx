@@ -79,43 +79,36 @@ export default function AboutPageClient() {
 
         {/* Visit info — keyword-rich block, also serves as a quick orientation
             for first-time visitors. Doubles as SEO context (location, format,
-            schedule) for search engines. */}
-        <BrandedSection label={lang === 'en' ? 'Visit' : '방문 안내'}>
+            schedule) for search engines. All copy lives in i18n/about.ts so
+            the handoff guide can point non-devs at a single file. */}
+        <BrandedSection label={c.visitLabel}>
           <FadeInSection>
             <p className="mb-4 font-clean text-[15px] leading-[1.85] text-white/85">
-              {lang === 'en'
-                ? 'Hasla Gangneung Immersive Art Show — a nightly immersive media-art walk along Gyeongpo Lake in Gangneung, set in the pine grove near Heo Nanseolheon Park. The 8 zones light up at dusk, weaving sound, light, and the legend of the five moons of ancient Hasla.'
-                : '하슬라강릉이머시브아트쇼 — 강릉 경포호 일원에서 펼쳐지는 야간 미디어아트 산책. 허난설헌공원 인근 송림에서 8개의 ZONE이 빛과 사운드로 깨어나, 다섯 개의 달이 떠오르는 고대 하슬라의 전설로 안내합니다. 강릉 가볼만한곳·강릉 관광·강릉 야간 명소로 추천드립니다.'}
+              {c.visitBody}
             </p>
             <ul className="mt-4 flex flex-col gap-2.5">
               <li className="flex items-baseline gap-3">
                 <span className="font-display text-[10px] tracking-[0.4em] text-hasla-yellow/85 shrink-0 w-14">
-                  {lang === 'en' ? 'WHERE' : '위치'}
+                  {c.visitWhereLabel}
                 </span>
                 <span className="font-clean text-[14px] leading-[1.7] text-white/80">
-                  {lang === 'en'
-                    ? 'Gyeongpo Lake area, Gangneung (near Heo Nanseolheon Park)'
-                    : '강릉 경포호 일원 (허난설헌공원 인근)'}
+                  {c.visitWhereValue}
                 </span>
               </li>
               <li className="flex items-baseline gap-3">
                 <span className="font-display text-[10px] tracking-[0.4em] text-hasla-yellow/85 shrink-0 w-14">
-                  {lang === 'en' ? 'FORMAT' : '형식'}
+                  {c.visitFormatLabel}
                 </span>
                 <span className="font-clean text-[14px] leading-[1.7] text-white/80">
-                  {lang === 'en'
-                    ? 'Outdoor immersive art walk · 8 zones · light & sound'
-                    : '야외 이머시브 아트 산책 · 8개 ZONE · 빛과 사운드'}
+                  {c.visitFormatValue}
                 </span>
               </li>
               <li className="flex items-baseline gap-3">
                 <span className="font-display text-[10px] tracking-[0.4em] text-hasla-yellow/85 shrink-0 w-14">
-                  {lang === 'en' ? 'WHEN' : '시기'}
+                  {c.visitWhenLabel}
                 </span>
                 <span className="font-clean text-[14px] leading-[1.7] text-white/80">
-                  {lang === 'en'
-                    ? 'Soft open: May 2, 2026 · Grand opening: mid-July 2026'
-                    : '가오픈 2026년 5월 2일 · 그랜드 오픈 2026년 7월 중순'}
+                  {c.visitWhenValue}
                 </span>
               </li>
             </ul>

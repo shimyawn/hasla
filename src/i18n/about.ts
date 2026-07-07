@@ -17,6 +17,14 @@ export interface AboutCopy {
   s3Outro: string
   s4Label: string
   s4: string[]
+  visitLabel: string
+  visitBody: string
+  visitWhereLabel: string
+  visitWhereValue: string
+  visitFormatLabel: string
+  visitFormatValue: string
+  visitWhenLabel: string
+  visitWhenValue: string
   ctaLabel: string
 }
 
@@ -46,6 +54,15 @@ const ko: AboutCopy = {
     '기억이 새겨진 연못 속 빛나는 잔상을 마주해 보세요.',
     '달빛을 머금은 거대한 그루터기 앞에서,\n숲이 깨어나는 순간을 목격해 보세요.',
   ],
+  visitLabel: '방문 안내',
+  visitBody:
+    '하슬라강릉이머시브아트쇼 — 강릉 경포호 일원에서 펼쳐지는 야간 미디어아트 산책. 허난설헌공원 인근 송림에서 8개의 ZONE이 빛과 사운드로 깨어나, 다섯 개의 달이 떠오르는 고대 하슬라의 전설로 안내합니다. 강릉 가볼만한곳·강릉 관광·강릉 야간 명소로 추천드립니다.',
+  visitWhereLabel: '위치',
+  visitWhereValue: '강릉 경포호 일원 (허난설헌공원 인근)',
+  visitFormatLabel: '형식',
+  visitFormatValue: '야외 이머시브 아트 산책 · 8개 ZONE · 빛과 사운드',
+  visitWhenLabel: '시기',
+  visitWhenValue: '가오픈 2026년 5월 2일 · 그랜드 오픈 2026년 7월 중순',
   ctaLabel: '둘러보기',
 }
 
@@ -76,6 +93,15 @@ const en: AboutCopy = {
     'Meet the shimmering afterimage in a pond that remembers.',
     'Stand before the giant stump bathed in moonlight,\nand witness the moment the forest awakens.',
   ],
+  visitLabel: 'Visit',
+  visitBody:
+    'Hasla Gangneung Immersive Art Show — a nightly immersive media-art walk along Gyeongpo Lake in Gangneung, set in the pine grove near Heo Nanseolheon Park. The 8 zones light up at dusk, weaving sound, light, and the legend of the five moons of ancient Hasla.',
+  visitWhereLabel: 'WHERE',
+  visitWhereValue: 'Gyeongpo Lake area, Gangneung (near Heo Nanseolheon Park)',
+  visitFormatLabel: 'FORMAT',
+  visitFormatValue: 'Outdoor immersive art walk · 8 zones · light & sound',
+  visitWhenLabel: 'WHEN',
+  visitWhenValue: 'Soft open: May 2, 2026 · Grand opening: mid-July 2026',
   ctaLabel: 'Explore',
 }
 
