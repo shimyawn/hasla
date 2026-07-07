@@ -7,7 +7,7 @@ export const UI: Record<Lang, UIStrings> = {
     splashSloganLine2: '고대 하슬라의 판타지가 펼쳐집니다.',
     splashHint: 'TAP TO AWAKEN',
     splashCta: '숲으로 들어가기',
-    splashOpenDate: '2026년 5월 2일 가오픈',
+    splashOpenDate: '2026년 5월 2일 오픈',
     copyrightSuffix: '강릉 경포 환상의 호수',
 
     navHome: '← HOME',
