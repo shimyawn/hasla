@@ -9,4 +9,4 @@
  * variations by season/weekday emerge later, expand this to a function
  * returning the slot list for a given date.
  */
-export const showTimes = ['19:30', '20:00', '20:30', '21:00'] as const
+export const showTimes = ['20:00', '20:30', '21:00'] as const
