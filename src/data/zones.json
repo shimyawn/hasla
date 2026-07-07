@@ -17,8 +17,8 @@
       "accentColor": "#21A3DD",
       "element": "수(水)",
       "mapPin": {
-        "cx": "76%",
-        "cy": "88%",
+        "cx": "74%",
+        "cy": "85%",
         "w": "13%",
         "h": "9.90%"
       },
@@ -46,10 +46,10 @@
       "accentColor": "#7EC497",
       "element": "목(木)",
       "mapPin": {
-        "cx": "50%",
-        "cy": "78%",
-        "w": "18%",
-        "h": "13.71%"
+        "cx": "53%",
+        "cy": "80%",
+        "w": "14%",
+        "h": "10.67%"
       },
       "assets": {
         "mainImage": "/images/zone2_main.png"
@@ -76,10 +76,10 @@
       "accentColor": "#2353A3",
       "element": "수(水)",
       "mapPin": {
-        "cx": "71%",
+        "cx": "68%",
         "cy": "70%",
-        "w": "12%",
-        "h": "9.14%"
+        "w": "10%",
+        "h": "7.62%"
       },
       "assets": {
         "mainImage": "/images/zone3_main.png"
@@ -107,7 +107,7 @@
       "element": "토(土)",
       "mapPin": {
         "cx": "48%",
-        "cy": "68%",
+        "cy": "61%",
         "w": "15%",
         "h": "11.43%"
       },
@@ -136,9 +136,9 @@
       "element": "화(火)",
       "mapPin": {
         "cx": "55%",
-        "cy": "50%",
-        "w": "22%",
-        "h": "16.76%"
+        "cy": "58%",
+        "w": "17%",
+        "h": "12.95%"
       },
       "assets": {
         "mainImage": "/images/zone5_main.png"
@@ -164,8 +164,8 @@
       "mapPin": {
         "cx": "39%",
         "cy": "35%",
-        "w": "15%",
-        "h": "11.43%"
+        "w": "12%",
+        "h": "9.14%"
       },
       "assets": {
         "mainImage": "/images/zone6_main.png"
@@ -197,10 +197,10 @@
       "accentColor": "#FA5F5C",
       "element": "화(火)",
       "mapPin": {
-        "cx": "28%",
-        "cy": "24%",
-        "w": "15%",
-        "h": "11.43%"
+        "cx": "29%",
+        "cy": "22%",
+        "w": "12%",
+        "h": "9.14%"
       },
       "assets": {
         "mainImage": "/images/zone7_main.jpg"
