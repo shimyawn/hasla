@@ -90,6 +90,20 @@ export const UI: Record<Lang, UIStrings> = {
     reviewsIntro:
       '관람 후 느낀 점을 편하게 들려주세요.\n여러분의 한 마디가 강릉을 지키는 다섯 개의 달에 빛을 더합니다.',
     reviewsCta: '리뷰 작성하러 가기',
+
+    languageToggleTo: 'ENGLISH',
+
+    notFoundEyebrow: '404',
+    notFoundTitle: '달이 잘못 떴습니다',
+    notFoundDescription:
+      '찾으시는 페이지가 사라졌거나 주소가 잘못된 것 같습니다.\n지도로 돌아가 다른 ZONE을 둘러봐주세요.',
+    notFoundBackButton: '지도로 돌아가기',
+
+    errorEyebrow: 'OOPS',
+    errorTitle: '달이 잠시 흐려졌습니다',
+    errorDescription:
+      '화면을 그리는 중에 문제가 발생했어요.\n다시 시도해주시면 곧 다시 떠오릅니다.',
+    errorRetryButton: '다시 시도',
   },
 
   en: {
@@ -181,5 +195,19 @@ export const UI: Record<Lang, UIStrings> = {
     reviewsIntro:
       "Tell us what you felt — there's no wrong way to say it.\nYour words add light to the five moons watching over Gangneung.",
     reviewsCta: 'Leave a review',
+
+    languageToggleTo: '한국어',
+
+    notFoundEyebrow: '404',
+    notFoundTitle: 'The moon rose in the wrong place',
+    notFoundDescription:
+      "The page you were looking for isn't here, or the URL may be off.\nHead back to the map and explore another ZONE.",
+    notFoundBackButton: 'Back to the map',
+
+    errorEyebrow: 'OOPS',
+    errorTitle: 'The moon dimmed for a moment',
+    errorDescription:
+      'Something went wrong while drawing this screen.\nGive it another try — it should rise again shortly.',
+    errorRetryButton: 'Try again',
   },
 }

@@ -3,10 +3,11 @@
 import { useLang } from '@/i18n/LanguageContext'
 
 export default function LanguageButton() {
-  const { lang, setLang } = useLang()
+  const { lang, setLang, t } = useLang()
   const next = lang === 'ko' ? 'en' : 'ko'
-  // Show the label of the language you can SWITCH TO
-  const label = lang === 'ko' ? 'ENGLISH' : '한국어'
+  // t.languageToggleTo already reads as the language you'll SWITCH TO
+  // (KO shows "ENGLISH", EN shows "한국어").
+  const label = t.languageToggleTo
 
   return (
     <button

@@ -85,6 +85,18 @@ export interface UIStrings {
   // Reviews
   reviewsIntro: string
   reviewsCta: string
+  // Language toggle button — shows the language you will SWITCH TO
+  languageToggleTo: string
+  // 404 (not-found page)
+  notFoundEyebrow: string
+  notFoundTitle: string
+  notFoundDescription: string
+  notFoundBackButton: string
+  // Runtime error boundary
+  errorEyebrow: string
+  errorTitle: string
+  errorDescription: string
+  errorRetryButton: string
 }
 
 export interface LocalizedZone {
