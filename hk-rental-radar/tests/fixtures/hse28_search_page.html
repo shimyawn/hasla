@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><title>28Hse Search Results — Test Fixture</title></head>
+<body>
+<!-- Sanitized fixture for parser testing. Mirrors the CSS selectors in parsers/hse28.py -->
+<div class="result-count">32 listings found</div>
+
+<!-- Listing 1: good data, Olympic district, pool + clubhouse -->
+<div class="item" data-id="100001">
+  <div class="item-photo">
+    <a class="item-link" href="/en/rent/detail/100001">
+      <img src="https://img.28hse.com/photo/100001.jpg" />
+    </a>
+  </div>
+  <div class="item-info">
+    <div class="item-title"><a class="item-link" href="/en/rent/detail/100001">The Harbourside Tower 1</a></div>
+    <div class="item-price">HK$28,000/月</div>
+    <div class="item-district">Olympic</div>
+    <div class="item-estate">The Harbourside</div>
+    <span class="room-num">2房</span>
+    <span class="item-area">650 ft²</span>
+    <span class="available-date">2026-08-01</span>
+    <span class="post-date">2026-07-25</span>
+    <div class="agent-name">ABC Property</div>
+    <div class="item-desc">Spacious 2BR in The Harbourside. Swimming pool, clubhouse, gym. MTR Olympic 3 min walk.</div>
+    <ul class="amenity-list">
+      <li class="facility">Swimming Pool</li>
+      <li class="facility">Clubhouse</li>
+      <li class="facility">Gym</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Listing 2: Kennedy Town, 1BR, no pool, price slightly over target -->
+<div class="item" data-id="100002">
+  <div class="item-photo">
+    <a class="item-link" href="/en/rent/detail/100002">
+      <img src="https://img.28hse.com/photo/100002.jpg" />
+    </a>
+  </div>
+  <div class="item-info">
+    <div class="item-title"><a class="item-link" href="/en/rent/detail/100002">Cadogan Kennedy Town</a></div>
+    <div class="item-price">HK$22,500/月</div>
+    <div class="item-district">Kennedy Town</div>
+    <div class="item-estate">Cadogan</div>
+    <span class="room-num">1房</span>
+    <span class="item-area">420 ft²</span>
+    <span class="available-date">2026-09-01</span>
+    <span class="post-date">2026-07-20</span>
+    <div class="agent-name">XYZ Realty</div>
+    <div class="item-desc">1BR in Cadogan, Kennedy Town. MTR 5 min walk. Modern renovation.</div>
+  </div>
+</div>
+
+<!-- Listing 3: Ho Man Tin, 2BR with saleable area, good commute balance -->
+<div class="item" data-id="100003">
+  <div class="item-photo">
+    <a class="item-link" href="/en/rent/detail/100003">
+      <img src="https://img.28hse.com/photo/100003a.jpg" />
+      <img src="https://img.28hse.com/photo/100003b.jpg" />
+    </a>
+  </div>
+  <div class="item-info">
+    <div class="item-title"><a class="item-link" href="/en/rent/detail/100003">Laguna Verde Phase 3</a></div>
+    <div class="item-price">HK$27,500/月</div>
+    <div class="item-district">Ho Man Tin</div>
+    <div class="item-estate">Laguna Verde</div>
+    <span class="room-num">2房</span>
+    <span class="item-area">720 ft²</span>
+    <span class="available-date">2026-08-15</span>
+    <span class="post-date">2026-07-29</span>
+    <div class="agent-name">Owner</div>
+    <div class="item-desc">Large 2BR in managed estate. Swimming pool. Close to Ho Man Tin MTR (Tuen Ma Line).</div>
+    <ul class="amenity-list">
+      <li class="facility">Swimming Pool</li>
+      <li class="facility">Clubhouse</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Listing 4: Serviced apartment — should be penalized -->
+<div class="item" data-id="100004">
+  <div class="item-photo">
+    <a class="item-link" href="/en/rent/detail/100004">
+      <img src="https://img.28hse.com/photo/100004.jpg" />
+    </a>
+  </div>
+  <div class="item-info">
+    <div class="item-title"><a class="item-link" href="/en/rent/detail/100004">iclub Sheung Wan Serviced Apartment</a></div>
+    <div class="item-price">HK$32,000/月</div>
+    <div class="item-district">Sheung Wan</div>
+    <div class="item-estate">iclub</div>
+    <span class="room-num">1房</span>
+    <span class="item-area">380 ft²</span>
+    <div class="agent-name">iclub</div>
+    <div class="item-desc">Fully furnished serviced apartment in Sheung Wan. Daily cleaning included.</div>
+  </div>
+</div>
+
+<!-- Listing 5: Jordan, 2BR, missing area (only gross) -->
+<div class="item" data-id="100005">
+  <div class="item-photo">
+    <a class="item-link" href="/en/rent/detail/100005">
+      <img src="https://img.28hse.com/photo/100005.jpg" />
+    </a>
+  </div>
+  <div class="item-info">
+    <div class="item-title"><a class="item-link" href="/en/rent/detail/100005">The Austin</a></div>
+    <div class="item-price">HK$33,000/月</div>
+    <div class="item-district">Jordan</div>
+    <div class="item-estate">The Austin</div>
+    <span class="room-num">2房</span>
+    <span class="item-area">850 ft² (總面積)</span>
+    <span class="post-date">2026-07-28</span>
+    <div class="agent-name">Premier Estates</div>
+    <div class="item-desc">2BR in The Austin. Nearby Austin MTR. City view.</div>
+    <ul class="amenity-list">
+      <li class="facility">Clubhouse</li>
+      <li class="facility">Swimming Pool</li>
+    </ul>
+  </div>
+</div>
+
+<a class="next" href="/en/rent/search?page=2">Next</a>
+</body>
+</html>

@@ -1,0 +1,35 @@
+# 28Hse search URLs to crawl each day.
+# Labels are used in the report header.
+# max_pages caps pagination per search (default from settings: 10).
+#
+# IMPORTANT: Verify these URLs against the live site before first run.
+# URL parameters may change over time. Use the 28Hse advanced search UI
+# to construct the correct query, then paste the result URL here.
+#
+# Region codes (approximate — verify against the site):
+#   Hong Kong Island: region=1
+#   Kowloon: region=2
+#   New Territories: region=3
+#
+# Rent filter: rent-min, rent-max in HKD
+
+searches:
+  # --- Hong Kong Island west ---
+  - label: "HK Island West (Kennedy Town / Sai Ying Pun / Sheung Wan)"
+    url: "https://en.28hse.com/en/rent/residential/search?region=1&district=1,2,3&rent-min=23000&rent-max=38000"
+    max_pages: 8
+
+  # --- Kowloon west / Olympic ---
+  - label: "Kowloon West (Olympic / Tai Kok Tsui / West Kowloon)"
+    url: "https://en.28hse.com/en/rent/residential/search?region=2&district=20,21,22&rent-min=23000&rent-max=38000"
+    max_pages: 8
+
+  # --- Kowloon inner (Jordan / Ho Man Tin / Kowloon Tong) ---
+  - label: "Kowloon Inner (Jordan / Ho Man Tin / Kowloon Tong)"
+    url: "https://en.28hse.com/en/rent/residential/search?region=2&district=25,26,27&rent-min=23000&rent-max=38000"
+    max_pages: 8
+
+  # --- Tsim Sha Tsui ---
+  - label: "Tsim Sha Tsui / Jordan"
+    url: "https://en.28hse.com/en/rent/residential/search?region=2&district=23,24&rent-min=23000&rent-max=38000"
+    max_pages: 5

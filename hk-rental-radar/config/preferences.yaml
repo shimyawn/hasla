@@ -1,0 +1,62 @@
+# Household profile for scoring and filtering
+# Update these values before running the first crawl.
+
+household:
+  people: 2
+  type: "Korean newlywed couple, first move to Hong Kong"
+
+move_in:
+  target_date: "2026-08-31"
+  flexible: true
+
+occupations:
+  person_1:
+    workplace: "Central"
+    # Update with the actual building address for more accurate commute scoring
+    workplace_address: "Central, Hong Kong Island"
+    monthly_income_hkd: 200000
+  person_2:
+    institution: "City University of Hong Kong"
+    status: "postgraduate student"
+    campus_address: "83 Tat Chee Ave, Kowloon Tong"
+
+rental:
+  # Hard filter bounds (wider than target to catch negotiable listings)
+  min_budget_hkd: 23000
+  max_budget_hkd: 38000
+  # Target range for scoring
+  target_min_hkd: 25000
+  target_max_hkd: 30000
+  soft_max_hkd: 35000
+  # Bedroom requirement
+  bedrooms_min: 1
+  bedrooms_preferred: 2
+
+commute:
+  max_minutes: 60
+
+preferred_districts:
+  - "Kennedy Town"
+  - "Sai Ying Pun"
+  - "Sheung Wan"
+  - "Olympic"
+  - "Tai Kok Tsui"
+  - "Ho Man Tin"
+  - "Jordan"
+  - "Kowloon Tong"
+  - "West Kowloon"
+  - "Nam Cheong"
+  - "Austin"
+
+positive_signals:
+  - swimming_pool
+  - clubhouse
+  - large_estate
+  - mtr_within_5min
+  - well_managed
+
+negative_signals:
+  - serviced_apartment
+  - excessive_premium
+  - missing_saleable_area
+  - no_estate_name
